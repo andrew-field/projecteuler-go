@@ -19,6 +19,4 @@ func main() {
 	}
 
 	fmt.Println(total)
-
-	fmt.Printf("Test change")
 }
