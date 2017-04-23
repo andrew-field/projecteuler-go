@@ -14,4 +14,6 @@ func main() {
 
 	fmt.Println(total)
 
+	fmt.Println("testing")
+
 }
