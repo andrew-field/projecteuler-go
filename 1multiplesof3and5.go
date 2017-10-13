@@ -13,6 +13,4 @@ func main() {
 	}
 
 	fmt.Println(total)
-
-	fmt.Println(total/10000)
 }

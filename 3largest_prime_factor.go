@@ -12,6 +12,7 @@ func main() {
 		primes[i] = i + 1
 	}
 
+	// Make prime splice.
 	for j := 2; j <= 100; j++ {
 		for k := 1; k < 10000; k++ {
 			if primes[k] != 1 && primes[k]%j == 0 && primes[k]/j != 1 {
@@ -22,6 +23,7 @@ func main() {
 
 	factors := make([]int, 0)
 
+	// Make factors.
 	for i := 0; i < 10000; i++ {
 		if primes[i] != 1 && num%primes[i] == 0 {
 			factors = append(factors, primes[i])
