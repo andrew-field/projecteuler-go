@@ -10,7 +10,7 @@ func main() {
 
 	// Numbers below 20, not 1.
 	num := make([]int, 19)
-	for ind, _ := range num {
+	for ind := range num {
 		num[ind] = ind+2
 	}
 
