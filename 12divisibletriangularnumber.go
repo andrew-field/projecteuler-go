@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	length := 1999999
-	num := 512
+	length := 199999
 
 	// Primes.
 	primes := make([]int, length)
@@ -12,7 +11,7 @@ func main() {
 		primes[ind] = ind + 2
 	}
 
-	// Eulcidean seive.
+	// Euclidean seive.
 	for ind, val := range primes {
 		if val != 1 {
 			for j := ind + val; j < length; j += val {
@@ -23,26 +22,46 @@ func main() {
 		}
 	}
 
-	factors := make([]int, 0)
+	tri := 1
+	divisors := 1
 
-	// Make factors.
-	for i := 0; i < length; i++ {
-		if primes[i] != 1 && num%primes[i] == 0 {
-			factors = append(factors, primes[i])
-			num /= primes[i]
-			i--
-			if num == 1 {
-				break
+	for n := 2; divisors < 501; n++ {
+		tri += n
+
+		temp := tri
+		factors := make([]int, 0)
+
+		// Make factors.
+		for i := 0; i < length; i++ {
+			if primes[i] != 1 && temp%primes[i] == 0 {
+				factors = append(factors, primes[i])
+				temp /= primes[i]
+				i--
+				if temp == 1 {
+					break
+				}
 			}
 		}
+		if temp != 1 {
+			fmt.Println("Not enough primes!")
+			break
+		}
+
+		power := 0
+		check := factors[0]
+		divisors = 1
+
+		for _, val := range factors {
+			if val == check {
+				power++
+			} else {
+				divisors *= power + 1
+				power = 1
+				check = val
+			}
+		}
+		divisors *= power + 1
 	}
 
-	fmt.Println(factors)
-	/*
-		tri := 0
-		for n := 1; check < 501; n++ {
-			tri += n
-
-		}
-	*/
+	fmt.Println("Tri: ", tri)
 }

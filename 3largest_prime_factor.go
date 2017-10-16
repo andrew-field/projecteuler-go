@@ -14,7 +14,7 @@ func main() {
 	}
 
 	// Make prime splice.
-	// Eulcidean seive.
+	// Euclidean seive.
 	for ind, val := range primes {
 		if val != 1 {
 			for j := ind + val; j < length; j += val {

@@ -16,7 +16,7 @@ func main() {
 	}
 
 	total := 0
-	// Eulcidean seive.
+	// Euclidean seive.
 	for ind, val := range primes {
 		if val != 1 {
 			total += val
