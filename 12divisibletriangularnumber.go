@@ -3,17 +3,15 @@ package main
 import "fmt"
 
 func main() {
+	length := 1999999
+	num := 512
 
-	num := 600851475143
-
-	length := 9999
+	// Primes.
 	primes := make([]int, length)
-
 	for ind := range primes {
 		primes[ind] = ind + 2
 	}
 
-	// Make prime splice.
 	// Eulcidean seive.
 	for ind, val := range primes {
 		if val != 1 {
@@ -39,14 +37,12 @@ func main() {
 		}
 	}
 
-	largest := factors[0]
+	fmt.Println(factors)
+	/*
+		tri := 0
+		for n := 1; check < 501; n++ {
+			tri += n
 
-	for _, val := range factors {
-		if val > largest {
-			largest = val
 		}
-	}
-
-	fmt.Println(largest)
-
+	*/
 }

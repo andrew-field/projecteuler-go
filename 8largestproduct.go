@@ -22,7 +22,6 @@ func main() {
 			digits[999-ind] = display.Int64()
 		}
 	}
-	fmt.Println("digits", digits)
 
 	var check int64
 	var max int64

@@ -14,8 +14,8 @@ func main() {
 
 	for ind := range num {
 		num[ind] = ind + 1
-		total += num[ind]
-		sumsquare += num[ind] * num[ind]
+		total += ind + 1
+		sumsquare += (ind + 1) * (ind + 1)
 	}
 
 	// Square of sum.

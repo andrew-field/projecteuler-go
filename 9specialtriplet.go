@@ -10,9 +10,9 @@ func main() {
 	var b float64 = 1
 	for a < 1000 {
 		for b < 1000 {
-			if a+b+(math.Sqrt((a*a)+(b*b))) == val {
-				if math.Floor(math.Sqrt((a*a)+(b*b))) == math.Sqrt((a*a)+(b*b)) {
-					c := math.Sqrt((a * a) + (b * b))
+			if a+b+(math.Hypot(a, b)) == val {
+				if math.Floor(math.Hypot(a, b)) == math.Hypot(a, b) {
+					c := math.Hypot(a, b)
 					fmt.Println("a, b and c:", a, b, c)
 					fmt.Println("Product:", int64(a*b*c))
 					break

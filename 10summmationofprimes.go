@@ -7,18 +7,20 @@ func main() {
 	// Time taken
 	start := time.Now()
 
+	length := 1999998
+
 	// Primes.
-	primes := make([]int, 1999998)
+	primes := make([]int, length)
 	for ind := range primes {
 		primes[ind] = ind + 2
 	}
 
 	total := 0
 	// Eulcidean seive.
-	for i := 0; i < len(primes); i++ {
-		if primes[i] != 1 {
-			total += primes[i]
-			for j := i + primes[i]; j < len(primes); j += primes[i] {
+	for ind, val := range primes {
+		if val != 1 {
+			total += val
+			for j := ind + val; j < length; j += val {
 				if primes[j] != 1 {
 					primes[j] = 1
 				}
