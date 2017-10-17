@@ -11,7 +11,7 @@ func main() {
 		primes[ind] = ind + 2
 	}
 
-	// Euclidean seive.
+	// Euclidean sieve.
 	for ind, val := range primes {
 		if val != 1 {
 			for j := ind + val; j < length; j += val {
@@ -32,11 +32,12 @@ func main() {
 		factors := make([]int, 0)
 
 		// Make factors.
-		for i := 0; i < length; i++ {
-			if primes[i] != 1 && temp%primes[i] == 0 {
-				factors = append(factors, primes[i])
-				temp /= primes[i]
-				i--
+		for _, val := range primes {
+			if val != 1 {
+				for temp%val == 0 {
+					factors = append(factors, val)
+					temp /= val
+				}
 				if temp == 1 {
 					break
 				}

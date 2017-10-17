@@ -4,8 +4,6 @@ import "fmt"
 import "time"
 
 func main() {
-	// Time taken
-	start := time.Now()
 
 	length := 1999998
 
@@ -16,7 +14,8 @@ func main() {
 	}
 
 	total := 0
-	// Euclidean seive.
+	test := time.Now()
+	// Euclidean sieve.
 	for ind, val := range primes {
 		if val != 1 {
 			total += val
@@ -29,5 +28,5 @@ func main() {
 	}
 
 	fmt.Println("Total", total)
-	fmt.Println("Time taken:", time.Now().Sub(start))
+	fmt.Println("Sieve time:", time.Since(test))
 }

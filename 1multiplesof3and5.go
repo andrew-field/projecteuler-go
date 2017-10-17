@@ -6,11 +6,21 @@ func main() {
 
 	total := 0
 
-	for i := 3; i <= 999; i++ {
-		if i%3 == 0 || i%5 == 0 {
-			total += i
-		}
+	for i := 3; i < 1000; i += 3 {
+		total += i
 	}
 
-	fmt.Println(total)
+	i := 1
+	for j := 5; j < 1000; j += 5 {
+		if i == 3 {
+			i = 1
+			continue
+		}
+		total += j
+		i++
+	}
+
+	fmt.Println("Total:", total)
+
+	fmt.Println(45 % 5)
 }
