@@ -22,5 +22,4 @@ func main() {
 
 	fmt.Println("Total:", total)
 
-	fmt.Println(45 % 5)
 }
