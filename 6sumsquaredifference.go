@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	// Numbers 1 to 100.
 	num := make([]int, 100)
 

@@ -4,9 +4,11 @@ import "fmt"
 import "time"
 
 func main() {
+
+	// Upper limit for size of prime numbers.
 	length := 104999
 
-	// Primes.
+	// Make slice ready for primes starting from 2.
 	primes := make([]int, length)
 	for ind := range primes {
 		primes[ind] = ind + 2

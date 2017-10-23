@@ -6,8 +6,12 @@ import (
 )
 
 func main() {
+
+	// Height of pyramid.
+	length := 15
+
 	// Make the grid for the numbers.
-	grid := make([][]float64, 15)
+	grid := make([][]float64, length)
 	for ind := range grid {
 		grid[ind] = make([]float64, 0)
 	}
@@ -29,14 +33,16 @@ func main() {
 	grid[14] = append(grid[14], 04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23)
 
 	// Make the slice to hold the individual maximum numbers at each index of grid.
-	max := make([][]float64, 15)
+	max := make([][]float64, length)
+
+	// Maximum.
+	var maxi float64
 
 	// Go through each index starting at the top. Populate the max array with the maximum possible sum at each index by adding the
 	// grid number to the maximum of the two maximums for the above indexes. Left and right hand indexes are taken account of.
 	for ind := range grid {
-		max[ind] = make([]float64, 0)
+		max[ind] = make([]float64, ind+1)
 		for ind2 := range grid[ind] {
-			max[ind] = append(max[ind], 0)
 			if ind == 0 {
 				max[ind][ind2] = grid[ind][ind2]
 			} else if ind2 == 0 {
@@ -46,13 +52,12 @@ func main() {
 			} else {
 				max[ind][ind2] = grid[ind][ind2] + math.Max(max[ind-1][ind2-1], max[ind-1][ind2])
 			}
-		}
-	}
-
-	var maxi float64
-	for ind := range max[14] {
-		if max[14][ind] > maxi {
-			maxi = max[14][ind]
+			// If on the last row, find the maximum.
+			if ind == length-1 {
+				if max[length-1][ind2] > maxi {
+					maxi = max[length-1][ind2]
+				}
+			}
 		}
 	}
 	fmt.Println("Answer", maxi)

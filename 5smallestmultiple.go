@@ -5,6 +5,7 @@ package main
 import "fmt"
 
 func main() {
+
 	// Primes below 20.
 	primes := []int{2, 3, 5, 7, 11, 13, 17, 19}
 

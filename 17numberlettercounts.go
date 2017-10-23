@@ -10,8 +10,11 @@ const sixhundredand, sevenhundredand, eighthundredand, ninehundredand = 13, 15, 
 const onethousand = 11
 
 func main() {
+
+	// Total.
 	total := 0
 
+	// Each of the digits appears the following number of times.
 	total += 90 * one
 	total += 90 * two
 	total += 90 * three
@@ -22,6 +25,7 @@ func main() {
 	total += 90 * eight
 	total += 90 * nine
 
+	// Each of the digits appears the following number of times.
 	total += 10 * ten
 	total += 10 * eleven
 	total += 10 * twelve
@@ -33,6 +37,7 @@ func main() {
 	total += 10 * eighteen
 	total += 10 * nineteen
 
+	// Each of the digits appears the following number of times.
 	total += 100 * twenty
 	total += 100 * thirty
 	total += 100 * forty
@@ -42,6 +47,7 @@ func main() {
 	total += 100 * eighty
 	total += 100 * ninety
 
+	// Each of the digits appears the following number of times.
 	total += 100 * onehundredand
 	total += 100 * twohundredand
 	total += 100 * threehundredand

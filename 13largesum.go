@@ -4,6 +4,8 @@ import "math/big"
 import "fmt"
 
 func main() {
+
+	// Sum.
 	sum := big.NewInt(0)
 
 	numbers := make([]big.Int, 100)

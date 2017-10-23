@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
+
+	// Upper limit for size of prime numbers.
 	length := 199999
 
-	// Primes.
+	// Make slice for primes starting from 2.
 	primes := make([]int, length)
 	for ind := range primes {
 		primes[ind] = ind + 2
@@ -22,7 +24,10 @@ func main() {
 		}
 	}
 
+	// Each triangular number.
 	tri := 1
+
+	// Number of divisors.
 	divisors := 1
 
 	for n := 2; divisors < 501; n++ {
@@ -43,11 +48,13 @@ func main() {
 				}
 			}
 		}
+		// If the above for did not break, then there were not enough prime numbers to find all the factors for the current triangular number.
 		if temp != 1 {
 			fmt.Println("Not enough primes!")
 			break
 		}
 
+		// Calculate the number of divisors.
 		power := 0
 		check := factors[0]
 		divisors = 1
