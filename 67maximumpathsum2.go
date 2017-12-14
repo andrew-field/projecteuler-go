@@ -25,7 +25,7 @@ func main() {
 	}
 
 	// Open file.
-	f, err := os.Open("/home/andrew/go/src/github.com/andrew-field/go-testing/p067_triangle.txt")
+	f, err := os.Open("/home/andrew/go/src/go-testing/p067_triangle.txt")
 	check(err)
 
 	// Read 2 digits every time.
