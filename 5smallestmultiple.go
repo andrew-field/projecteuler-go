@@ -32,7 +32,7 @@ func main() {
 				count = temp
 			}
 		}
-		// val becomes prime rasied to the power count.
+		// mult becomes prime rasied to the power count.
 		mult := 1
 		for count > 0 {
 			mult *= prime
