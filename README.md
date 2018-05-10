@@ -1,2 +1,2 @@
-# go-testing
+# Testing Go
 Testing Go with project Euler
