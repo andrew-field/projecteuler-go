@@ -13,11 +13,10 @@ func main() {
 
 	// Generate Fibonacci.
 	for num1 < 4000000 {
-		num2 += num1
+		num1, num2 = num2, num1+num2
 		if num2%2 == 0 {
 			total += num2
 		}
-		num1, num2 = num2, num1
 	}
 
 	fmt.Println(total)
