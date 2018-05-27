@@ -40,5 +40,5 @@ func methodTwo() {
 }
 
 func main() {
-	methodOne()
+	methodTwo()
 }
