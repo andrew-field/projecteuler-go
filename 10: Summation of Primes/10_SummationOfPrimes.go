@@ -1,34 +1,42 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"os"
+	"strconv"
+
+	"github.com/andrew-field/testing_go/numbertheory"
+)
 
 func main() {
 
-	// Upper limit for size of prime numbers (Under 2000000).
-	length := 1999998
+	// Challenge number is 2000000.
 
-	// Make slice for primes under 2000000 starting from 2.
-	primes := make([]int, length)
-	for ind := range primes {
-		primes[ind] = ind + 2
+	if len(os.Args) != 2 {
+		panic("There needs to be 1 arguement, the ceiling for the summation of primes. E.g. 12 for the sum of all the prime numbers under 12.")
 	}
 
-	total := 0
-	test := time.Now()
-	// Euclidean sieve.
-	for ind, val := range primes {
-		if val != 1 {
-			// Sum each prime.
-			total += val
-			for j := ind + val; j < length; j += val {
-				if primes[j] != 1 {
-					primes[j] = 1
-				}
-			}
+	ceiling, err := strconv.ParseUint(os.Args[1], 10, 64)
+	if err != nil {
+		panic("Invalid input. Must be representable as an uint")
+	}
+
+	// Make prime and done channel.
+	primeChannel := make(chan uint, 100)
+	doneChannel := make(chan bool, 1)
+
+	go numbertheory.GetPrimeNumbersContinuously(primeChannel, 1000, doneChannel)
+
+	var sum uint
+
+	for val := range primeChannel {
+		if val < uint(ceiling) {
+			sum += val
+		} else {
+			break
 		}
 	}
 
-	fmt.Println("Total", total)
-	fmt.Println("Sieve time:", time.Since(test))
+	fmt.Printf("The summation of all the prime numbers under %v is %v\n", ceiling, sum)
+	doneChannel <- true
 }
