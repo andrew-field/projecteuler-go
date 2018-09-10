@@ -1,48 +1,37 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"os"
+	"strconv"
+
+	"github.com/andrew-field/testing_go/numbertheory"
+)
 
 func main() {
 
-	// Number in question.
-	num := 600851475143
+	// Challenge number is 600851475143.
 
-	// Upper limit for size of prime numbers.
-	length := 9999
-	primes := make([]int, length)
-
-	// Make slice ready for primes, starting from 2.
-	for ind := range primes {
-		primes[ind] = ind + 2
+	if len(os.Args) != 2 {
+		panic("There needs to be 1 arguement, the number for which you would like to know the largest prime factor. E.g. 6542.")
 	}
 
-	factors := make([]int, 0)
-
-	test := time.Now()
-	// Make prime splice.
-	// Euclidean sieve.
-	for ind, val := range primes {
-		if val != 1 {
-			// For each prime, test to see if it is a factor and for how many times.
-			for num%val == 0 {
-				factors = append(factors, val)
-				num /= val
-			}
-			// If found all factors, break.
-			if num == 1 {
-				break
-			}
-			// Generate primes.
-			for j := ind + val; j < length; j += val {
-				if primes[j] != 1 {
-					primes[j] = 1
-				}
-			}
-		}
+	numberToFactorise, err := strconv.ParseUint(os.Args[1], 10, 64)
+	if err != nil {
+		panic("Invalid input. Must be representable as an uint")
 	}
-	fmt.Println("Sieve time:", time.Since(test))
 
-	fmt.Println("Largest:", factors[len(factors)-1])
+	// Make factor channel.
+	primeFactorChannel := make(chan uint, 100)
 
+	// Generate factor.
+	go numbertheory.GetPrimeFactorisation(primeFactorChannel, uint(numberToFactorise))
+
+	var largestFactor uint
+
+	for val := range primeFactorChannel {
+		largestFactor = val
+	}
+
+	fmt.Println("Largest:", largestFactor)
 }

@@ -1,37 +1,36 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"os"
+	"strconv"
+
+	"github.com/andrew-field/testing_go/numbertheory"
+)
 
 func main() {
 
-	// Upper limit for size of prime numbers.
-	length := 104999
+	// Challenge position is 10001st.
 
-	// Make slice ready for primes starting from 2.
-	primes := make([]int, length)
-	for ind := range primes {
-		primes[ind] = ind + 2
+	if len(os.Args) != 2 {
+		panic("There needs to be 1 arguement, the position of the prime number you would like to know. E.g. \"12\" for 12th.")
 	}
 
-	count := 0
-
-	start := time.Now()
-	// Euclidean sieve.
-	for ind, val := range primes {
-		if val != 1 {
-			count++
-			if count == 10001 {
-				fmt.Printf("Prime number %d: %d\n", count, val)
-				break
-			} else {
-				for j := ind + val; j < length; j += val {
-					if primes[j] != 1 {
-						primes[j] = 1
-					}
-				}
-			}
-		}
+	positionOfPrime, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		panic("Invalid input. Must be representable as an int.")
 	}
-	fmt.Println("Sieve time:", time.Since(start))
+
+	// Make prime and done channel.
+	primeChannel := make(chan uint, 100)
+	doneChannel := make(chan bool, 1)
+
+	go numbertheory.GetPrimeNumbersContinuously(primeChannel, 1000, doneChannel)
+
+	for count := 1; count < positionOfPrime; count++ {
+		<-primeChannel
+	}
+
+	fmt.Printf("The prime number at position %v is %v\n", positionOfPrime, <-primeChannel)
+	doneChannel <- true
 }
