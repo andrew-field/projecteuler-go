@@ -2,7 +2,9 @@
 Testing Go with Project Euler
 
 Library details.
+
 numbertheory:
+
 primeNumbersBelowCeiling:
 This program creates a slice of all the numbers from 2 to the max prime size 'ceiling'. It uses a Euclidean sieve/Sieve of Eratosthenes to then find all the primes in the slice.
 
