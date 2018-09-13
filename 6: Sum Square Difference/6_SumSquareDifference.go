@@ -4,24 +4,19 @@ import "fmt"
 
 func main() {
 
-	// Numbers 1 to 100.
-	num := make([]int, 100)
+	// Square of sum of numbers.
+	squareSum := 0
 
-	// Sum of numbers.
-	total := 0
+	// Sum of square of numbers.
+	sumSquare := 0
 
-	// Sum of squares.
-	sumsquare := 0
-
-	for ind := range num {
-		num[ind] = ind + 1
-		total += ind + 1
-		sumsquare += (ind + 1) * (ind + 1)
+	for i := 1; i < 101; i++ {
+		squareSum += i
+		sumSquare += i * i
 	}
 
 	// Square of sum.
-	squaresum := total * total
+	squareSum *= squareSum
 
-	fmt.Println("Difference:", squaresum-sumsquare)
-
+	fmt.Println("Difference:", squareSum-sumSquare)
 }
