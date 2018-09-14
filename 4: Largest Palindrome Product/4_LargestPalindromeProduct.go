@@ -5,7 +5,6 @@ import (
 	"math"
 )
 
-// Assume it is 6 digits and the two numbers are greater than 400.
 // 456/10 = 45 with int.
 
 func main() {
