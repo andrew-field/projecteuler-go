@@ -14,7 +14,7 @@ var isPrime bool
 // The smaller the slice increment size, the quicker the primes will come initially but the slower the primes will come over time.
 // The larger the slice increment size, the slower the primes will come initially but the more suitable it will be for larger primes.
 // Things will probably break at the extremities with accuracy issues surrounding float64/uint.
-func GetPrimeNumbersContinuously(primeChannel chan uint, sliceIncrementsSize int, doneChannel chan bool) {
+func GetPrimeNumbersContinuously(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) {
 
 	if sliceIncrementsSize < 1 {
 		panic("The slice increment size must be larger than 0.")
@@ -28,6 +28,7 @@ func GetPrimeNumbersContinuously(primeChannel chan uint, sliceIncrementsSize int
 	newNumbers = make([]uint, sliceIncrementsSize)
 
 	for {
+		// If finished then end the function.
 		select {
 		case <-doneChannel:
 			close(primeChannel)
@@ -38,7 +39,7 @@ func GetPrimeNumbersContinuously(primeChannel chan uint, sliceIncrementsSize int
 				newNumbers[ind] = firstNumberToCheck
 				firstNumberToCheck++
 
-				// Check for finish.
+				// Check for finish (overflow).
 				if firstNumberToCheck < 0 {
 					newNumbers = newNumbers[:ind]
 					generatePrimes(primeChannel, ind)
