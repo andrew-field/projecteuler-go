@@ -15,4 +15,25 @@ primeFactorisation:
 This program provides a prime factorisation of a number given at runtime. It simply checks whether each prime number in order is a factor and if so, how many times, before moving on to the next prime.
 
 lowestCommonMultiple:
-Returns the lowest common multiple of a group of numbers.
+Returns the lowest common multiple of a group of numbers. lcm by raising each prime factor to the maximum number of times that prime factor appears in any of the numbers and then multiplying each of these results.
+
+numberOfDivisors:
+Returns the number of divisors a number has using its prime factorisation.
+
+From the prime factorization of n
+
+    n = ∏ i = 1 p i α i ∥ n , α i ≥ 1 ω ( n ) p i α i , {\displaystyle n=\prod _{i=1 \atop {{p_{i}}^{\alpha _{i}}\parallel n,\,\alpha _{i}\geq 1}}^{\omega (n)}{p_{i}}^{\alpha _{i}},\,} {\displaystyle n=\prod _{i=1 \atop {{p_{i}}^{\alpha _{i}}\parallel n,\,\alpha _{i}\geq 1}}^{\omega (n)}{p_{i}}^{\alpha _{i}},\,}
+
+where the pi
+are the distinct prime factors of n
+and ω (n)
+is the number of distinct prime factors of n
+, we obtain the number of divisors of n
+
+    σ 0 ( n ) = ∏ i = 1 ω ( n ) ( 1 + α i ) , {\displaystyle \sigma _{0}(n)=\prod _{i=1}^{\omega (n)}(1+\alpha _{i}),\,} {\displaystyle \sigma _{0}(n)=\prod _{i=1}^{\omega (n)}(1+\alpha _{i}),\,}
+
+since for each pi
+we can choose the exponent from 0
+to αi
+to build a divisor of n
+.
