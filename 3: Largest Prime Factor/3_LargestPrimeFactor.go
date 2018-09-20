@@ -24,7 +24,9 @@ func main() {
 	// Make factor channel.
 	primeFactorChannel := make(chan uint, 100)
 
-	// Generate factor.
+	// Generate factors.
+	// Should not need syncing as the closing of the primeFactorChannel is the very last operation
+	// of GetPrimeFactorisation.
 	go numbertheory.GetPrimeFactorisation(primeFactorChannel, uint(numberToFactorise))
 
 	var largestFactor uint
