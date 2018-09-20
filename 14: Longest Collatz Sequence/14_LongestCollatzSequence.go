@@ -8,28 +8,28 @@ func main() {
 
 	// Maximum.
 	max := 0
-	answer := 13
+	answer := 0
 
 	for start := 13; start < 1000000; start++ {
 		// Number of terms including the starter.
-		num := 1
+		numberOfTerms := 1
 
 		// Starting number to generate the pattern.
-		test := start
-		for test != 1 {
-			if test%2 == 0 {
-				test /= 2
+		seq := start
+		for seq != 1 {
+			if seq%2 == 0 {
+				seq /= 2
 			} else {
-				test = 3*test + 1
-				num++
-				test /= 2
+				seq = 3*seq + 1
+				numberOfTerms++ // The next term must be even so save some time next.
+				seq /= 2
 			}
-			num++
+			numberOfTerms++
 		}
 
 		// Compare maximum.
-		if num > max {
-			max = num
+		if numberOfTerms > max {
+			max = numberOfTerms
 			answer = start
 		}
 	}
