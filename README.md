@@ -1,7 +1,7 @@
 # Testing Go
 
 ## Testing Go with Project Euler.  
-This is a repository to keep my code for solving project Euler challenges.
+This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler")
 
 ## Why is this here?  
 1. I would like to learn Golang and solve these challenges.
@@ -27,4 +27,4 @@ Returns the lowest common multiple of a group of numbers. lcm by raising each pr
 
 numberOfDivisors:  
 Returns the number of divisors a number has using its prime factorisation.  
-![Because sharing (after solving for yourself) is caring.](images/numberOfDivisors.jpg)
+![Insert explantion here (You can't see the picture)](images/numberOfDivisors.png)
