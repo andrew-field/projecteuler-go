@@ -4,8 +4,10 @@
 This is a repository to keep my code for solving project Euler challenges.
 
 ## Why is this here?  
-1. I would like to learn Golang and solve these challenges.  
-2. ![Because sharing (after solving for yourself) is caring.](/reason2.jpg)
+1. I would like to learn Golang and solve these challenges.
+2.
+![Because sharing (after solving for yourself) is caring.](/reason2.jpg)
+
 
 Library details.
 
@@ -24,5 +26,5 @@ lowestCommonMultiple:
 Returns the lowest common multiple of a group of numbers. lcm by raising each prime factor to the maximum number of times that prime factor appears in any of the numbers and then multiplying each of these results.
 
 numberOfDivisors:  
-Returns the number of divisors a number has using its prime factorisation.
-See https://oeis.org/wiki/Number_of_divisors_function
+Returns the number of divisors a number has using its prime factorisation.  
+See [this brief explantion](https://oeis.org/wiki/Number_of_divisors_function "Wiki article")
