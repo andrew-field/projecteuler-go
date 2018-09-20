@@ -5,8 +5,7 @@ This is a repository to keep my code for solving project Euler challenges.
 
 ## Why is this here?  
 1. I would like to learn Golang and solve these challenges.
-2.
-![Because sharing (after solving for yourself) is caring.](/reason2.jpg)
+2. ![Because sharing (after solving for yourself) is caring.](images/reason2.jpg)
 
 
 Library details.
