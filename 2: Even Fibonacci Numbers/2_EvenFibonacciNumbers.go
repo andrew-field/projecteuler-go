@@ -4,19 +4,19 @@ import "fmt"
 
 func main() {
 
-	// Fibonacci numbers 1 and 2.
+	// Fibonacci numbers 2 and 3.
 	num1 := 1
-	num2 := 1
+	num2 := 2
 
 	// Sum.
 	total := 0
 
 	// Generate Fibonacci.
-	for num1 < 4000000 {
+	for num2 < 4000000 {
+		total += num2
 		num1, num2 = num2, num1+num2
-		if num2%2 == 0 {
-			total += num2
-		}
+		num1, num2 = num2, num1+num2
+		num1, num2 = num2, num1+num2
 	}
 
 	fmt.Println("Total:", total)
