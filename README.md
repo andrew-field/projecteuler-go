@@ -1,7 +1,7 @@
 # Testing Go
 
 ## Testing Go with Project Euler.  
-This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler")
+This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler"). **Solve them youself first.**
 
 ## Why is this here?  
 1. I would like to learn Golang and solve these challenges.
