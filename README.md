@@ -1,13 +1,14 @@
 # Testing Go
 
 ## Testing Go with Project Euler.  
-This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler"). **Solve them youself first.**
+This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler").
 
 ## Why is this here?  
 1. I would like to learn Golang and solve these challenges.
 2.
 ![Because sharing (after solving for yourself) is caring.](images/reason2.jpg)
 
+**Solve the challenges youself first.** After you have solved a challenge then please feel free to comment on the revelant issue if you would like and make suggestions!
 
 Library details.
 
