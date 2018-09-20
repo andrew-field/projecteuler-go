@@ -27,4 +27,4 @@ Returns the lowest common multiple of a group of numbers. lcm by raising each pr
 
 numberOfDivisors:  
 Returns the number of divisors a number has using its prime factorisation.  
-See [this brief explantion](https://oeis.org/wiki/Number_of_divisors_function "Wiki article")
+![Because sharing (after solving for yourself) is caring.](images/numberOfDivisors.jpg)
