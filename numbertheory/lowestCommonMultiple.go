@@ -10,6 +10,8 @@ func LowestCommonMultiple(numbers ...uint) uint {
 	for _, val := range numbers {
 		newFactorisation := make([]uint, 0)
 		factorChannel := make(chan uint, 100)
+		// Should not need syncing as the closing of the primeFactorChannel is the very last operation
+		// of GetPrimeFactorisation.
 		go GetPrimeFactorisation(factorChannel, val)
 		for val := range factorChannel {
 			newFactorisation = append(newFactorisation, val)
