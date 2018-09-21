@@ -8,7 +8,7 @@ This is a repository to keep my code for solving project Euler challenges. You c
 2.
 ![Because sharing (after solving for yourself) is caring.](images/reason2.jpg)
 
-**Solve the challenges youself first.** After you have solved a challenge then please feel free to comment on the revelant issue if you would like and make suggestions!
+**Solve the challenges youself first.** After you have solved a challenge then please feel free to comment on the revelant issue if you would like and make suggestions! There are forums on the website itself as well which is a good place for discussion though it seems mostly people just posting their code. This repository is more _Go_ specific. 
 
 Library details.
 
