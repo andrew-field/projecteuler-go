@@ -4,19 +4,13 @@ import "fmt"
 
 func main() {
 
-	// Square of sum of numbers.
-	squareSum := 0
+	squareSumTakeSumSquare := 0
+	sumPart := 0
 
-	// Sum of square of numbers.
-	sumSquare := 0
-
-	for i := 1; i < 101; i++ {
-		squareSum += i
-		sumSquare += i * i
+	for i := 1; i < 100; i++ {
+		sumPart += i
+		squareSumTakeSumSquare += (i + 1) * sumPart
 	}
 
-	// Square of sum.
-	squareSum *= squareSum
-
-	fmt.Println("Difference:", squareSum-sumSquare)
+	fmt.Println("Difference:", 2*squareSumTakeSumSquare)
 }
