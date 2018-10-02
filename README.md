@@ -6,7 +6,7 @@ This is a repository to keep my code for solving project Euler challenges. You c
 ---
 
 ## Why is this here?  
-1. I would like to learn Golang and solve these challenges.
+1. I would like to learn _Go_ and solve these challenges.
 2.
 ![Because sharing (after solving for yourself) is caring.](images/reason2.jpg)
 
