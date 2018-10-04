@@ -1,6 +1,8 @@
 package numbertheory
 
-import "sync"
+import (
+	"sync"
+)
 
 // GetPrimeFactorisation fills a channel with the prime factors of a number.
 func GetPrimeFactorisation(primeFactorChannel chan uint, numberToFactorise uint) {
@@ -36,14 +38,11 @@ func GetPrimeFactorisation(primeFactorChannel chan uint, numberToFactorise uint)
 		}
 	}
 
+	<-doneChannel
+
 	// Check
 	if numberToFactorise != 1 {
 		panic("Could not factorise.")
-	}
-
-	// Flush prime channel to prevent blocking.
-	for len(primeChannel) > 0 {
-		<-primeChannel
 	}
 
 	wg.Wait()

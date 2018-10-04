@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"sync"
 
 	"github.com/andrew-field/testing_go/numbertheory"
 )
@@ -25,12 +26,21 @@ func main() {
 	primeChannel := make(chan uint, 100)
 	doneChannel := make(chan bool, 1)
 
-	go numbertheory.GetPrimeNumbersContinuously(primeChannel, 1000, doneChannel)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		go numbertheory.GetPrimeNumbersContinuously(primeChannel, doneChannel, 1000)
+	}()
 
 	for count := 1; count < positionOfPrime; count++ {
 		<-primeChannel
 	}
 
 	fmt.Printf("The prime number at position %v is %v\n", positionOfPrime, <-primeChannel)
+
 	doneChannel <- true
+	close(doneChannel)
+
+	wg.Wait()
 }

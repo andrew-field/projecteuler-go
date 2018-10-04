@@ -25,7 +25,7 @@ func main() {
 	primeChannel := make(chan uint, 100)
 	doneChannel := make(chan bool, 1)
 
-	go numbertheory.GetPrimeNumbersContinuously(primeChannel, 1000, doneChannel)
+	go numbertheory.GetPrimeNumbersContinuously(primeChannel, doneChannel, 1000)
 
 	var sum uint
 

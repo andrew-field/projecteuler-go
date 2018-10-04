@@ -6,9 +6,8 @@ import (
 
 var primes []uint
 var newNumbers []uint
-var firstNumberToCheck uint
-var sizeOfSlice int
 var isPrime bool
+var isFinished bool
 
 // GetPrimeNumbersContinuously fills a channel with the prime numbers. This process will buffer through the channel passed in.
 // The smaller the slice increment size, the quicker the primes will come initially but the slower the primes will come over time.
@@ -20,42 +19,44 @@ func GetPrimeNumbersContinuously(primeChannel chan uint, doneChannel chan bool, 
 		panic("The slice increment size must be larger than 0.")
 	}
 
+	defer func() {
+		close(primeChannel)
+		doneChannel <- true
+	}()
+
 	// Inital slice for primes.
 	primes = make([]uint, 0)
-	firstNumberToCheck = 2
+
+	// Setup.
+	var firstNumberToCheck uint = 2
 
 	// Slice containing the new numbers to check for primality.
 	newNumbers = make([]uint, sliceIncrementsSize)
 
 	for {
-		// If finished then end the function.
-		select {
-		case <-doneChannel:
-			close(primeChannel)
+		if isFinished {
 			return
-		default:
-			// Make new numbers.
-			for ind := range newNumbers {
-				newNumbers[ind] = firstNumberToCheck
-				firstNumberToCheck++
-
-				// Check for finish (overflow).
-				if firstNumberToCheck < 0 {
-					newNumbers = newNumbers[:ind]
-					generatePrimes(primeChannel, ind)
-					close(primeChannel)
-					return
-				}
-			}
-
-			// Generate primes.
-			generatePrimes(primeChannel, sliceIncrementsSize)
 		}
+		// Make new numbers.
+		for ind := range newNumbers {
+			newNumbers[ind] = firstNumberToCheck
+			firstNumberToCheck++
+
+			// Check for finish (overflow).
+			if firstNumberToCheck < 0 {
+				newNumbers = newNumbers[:ind]
+				generatePrimes(primeChannel, doneChannel, ind)
+				return
+			}
+		}
+
+		// Generate primes.
+		generatePrimes(primeChannel, doneChannel, sliceIncrementsSize)
 	}
 }
 
 // Basic euclidean sieve that probably has some issues somewhere with the type casting on line 46...
-func generatePrimes(primeChannel chan uint, sliceSize int) {
+func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) {
 	for ind, val := range newNumbers {
 		isPrime = true
 		if val != 1 {
@@ -64,7 +65,7 @@ func generatePrimes(primeChannel chan uint, sliceSize int) {
 					break
 				}
 				if val%primeValue == 0 {
-					for ind < sliceSize {
+					for ind < sliceIncrementsSize {
 						if newNumbers[ind] != 1 {
 							newNumbers[ind] = 1
 						}
@@ -76,8 +77,18 @@ func generatePrimes(primeChannel chan uint, sliceSize int) {
 			}
 
 			if isPrime {
-				primeChannel <- val
-				primes = append(primes, val)
+				// If finished then end the function.
+				for {
+					select {
+					case <-doneChannel:
+						isFinished = true
+						return
+					case primeChannel <- val:
+						primes = append(primes, val)
+						break
+					default:
+					}
+				}
 			}
 		}
 	}
