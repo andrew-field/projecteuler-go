@@ -4,8 +4,6 @@ package numbertheory
 func GetNumberOfDivisors(number uint) int {
 	primeFactorChannel := make(chan uint, 100)
 
-	// Should not need syncing as the closing of the primeFactorChannel is the very last operation
-	// of GetPrimeFactorisation.
 	go GetPrimeFactorisation(primeFactorChannel, number)
 
 	// Calculate the number of divisors.

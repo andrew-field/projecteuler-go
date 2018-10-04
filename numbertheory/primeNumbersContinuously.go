@@ -25,6 +25,8 @@ func GetPrimeNumbersContinuously(primeChannel chan uint, doneChannel chan bool, 
 		doneChannel <- true
 	}()
 
+	isFinished = false
+
 	// Inital slice for primes.
 	primes = make([]uint, 0)
 
