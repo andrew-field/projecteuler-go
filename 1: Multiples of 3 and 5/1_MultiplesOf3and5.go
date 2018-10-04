@@ -14,7 +14,7 @@ func methodOne() {
 	// Include multiples of 5.
 	i := 1
 	for j := 5; j < 1000; j += 5 {
-		// Exclude multiples of 15.
+		// Exclude multiples of 3.
 		if i == 3 {
 			i = 1
 			continue
