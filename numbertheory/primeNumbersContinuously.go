@@ -13,6 +13,7 @@ var isFinished bool
 // The smaller the slice increment size, the quicker the primes will come initially but the slower the primes will come over time.
 // The larger the slice increment size, the slower the primes will come initially but the more suitable it will be for larger primes.
 // Things will probably break at the extremities with accuracy issues surrounding float64/uint.
+// Syncing and safely exiting this function should be done through blocking until a return value through the done channel.
 func GetPrimeNumbersContinuously(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) {
 
 	if sliceIncrementsSize < 1 {
@@ -78,16 +79,13 @@ func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncremen
 
 			if isPrime {
 				// If finished then end the function.
-				for {
-					select {
-					case <-doneChannel:
-						isFinished = true
-						return
-					case primeChannel <- val:
-						primes = append(primes, val)
-						break
-					default:
-					}
+				select {
+				case <-doneChannel:
+					isFinished = true
+					return
+				case primeChannel <- val:
+					primes = append(primes, val)
+					break
 				}
 			}
 		}

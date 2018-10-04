@@ -1,10 +1,7 @@
 package numbertheory
 
-import (
-	"sync"
-)
-
 // GetPrimeFactorisation fills a channel with the prime factors of a number.
+// Syncing and safely exiting this function should be done through flushing the prime factor channel.
 func GetPrimeFactorisation(primeFactorChannel chan uint, numberToFactorise uint) {
 
 	if numberToFactorise <= 1 {
@@ -13,15 +10,9 @@ func GetPrimeFactorisation(primeFactorChannel chan uint, numberToFactorise uint)
 
 	// Make prime and done channel.
 	primeChannel := make(chan uint, 100)
-	doneChannel := make(chan bool, 1)
+	doneChannel := make(chan bool)
 
-	// Generate primes.
-	var wg sync.WaitGroup
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		GetPrimeNumbersContinuously(primeChannel, doneChannel, 100)
-	}()
+	go GetPrimeNumbersContinuously(primeChannel, doneChannel, 100)
 
 	// For each prime, see if it is a factor.
 	for val := range primeChannel {
@@ -33,19 +24,11 @@ func GetPrimeFactorisation(primeFactorChannel chan uint, numberToFactorise uint)
 		// If found all factors, break.
 		if numberToFactorise == 1 {
 			doneChannel <- true
-			close(doneChannel)
 			break
 		}
 	}
-
 	<-doneChannel
-
-	// Check
-	if numberToFactorise != 1 {
-		panic("Could not factorise.")
-	}
-
-	wg.Wait()
+	close(doneChannel)
 
 	close(primeFactorChannel)
 }

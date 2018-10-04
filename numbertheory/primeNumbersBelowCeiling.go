@@ -5,6 +5,7 @@ package numbertheory
 // for the largest primes to be found is also limited by the max size of int. The implementation
 // conveniently handles all possible int numbers.
 // This process will buffer through the channel passed in.
+// Syncing and safely exiting this function should be done through flushing the prime channel.
 func GetAllPrimeNumbersBelowCeiling(primeChannel chan int, ceiling int) {
 
 	if ceiling <= 1 {

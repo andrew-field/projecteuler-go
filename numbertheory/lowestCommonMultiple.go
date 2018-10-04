@@ -1,7 +1,5 @@
 package numbertheory
 
-import "sync"
-
 // LowestCommonMultiple returns the lowest common multiple (lcm) of a group of numbers.
 func LowestCommonMultiple(numbers ...uint) uint {
 
@@ -11,21 +9,14 @@ func LowestCommonMultiple(numbers ...uint) uint {
 	// Fill slices
 	for _, val := range numbers {
 		newFactorisation := make([]uint, 0)
-		factorChannel := make(chan uint, 100)
-		// Should not need syncing as the closing of the primeFactorChannel is the very last operation
-		// of GetPrimeFactorisation.
+		primeFactorChannel := make(chan uint, 100)
 
-		var wg sync.WaitGroup
-		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			go GetPrimeFactorisation(factorChannel, val)
-		}()
-		for val := range factorChannel {
+		go GetPrimeFactorisation(primeFactorChannel, val)
+
+		for val := range primeFactorChannel {
 			newFactorisation = append(newFactorisation, val)
 		}
 		primeFactorisations = append(primeFactorisations, newFactorisation)
-		wg.Wait()
 	}
 
 	// For each prime number, any duplicates are removed from the other factorisations (once).
