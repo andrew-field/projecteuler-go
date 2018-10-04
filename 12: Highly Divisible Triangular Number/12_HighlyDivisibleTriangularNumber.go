@@ -12,9 +12,9 @@ func main() {
 	var triangularNumber uint = 1
 
 	// Calculate the number of divisors and see if it is greater than 500.
-	var i uint = 2
-	for divisors := 1; divisors < 501; i++ {
-		triangularNumber += i
+	var sequenceStep uint = 2
+	for divisors := 1; divisors < 501; sequenceStep++ {
+		triangularNumber += sequenceStep
 
 		divisors = numbertheory.GetNumberOfDivisors(triangularNumber)
 	}
