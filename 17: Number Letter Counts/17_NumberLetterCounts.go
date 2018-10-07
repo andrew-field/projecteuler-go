@@ -30,5 +30,5 @@ func main() {
 
 	total += onethousand
 
-	fmt.Println("total:", total)
+	fmt.Println("Total:", total)
 }
