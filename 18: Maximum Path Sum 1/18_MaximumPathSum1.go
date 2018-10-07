@@ -7,58 +7,57 @@ import (
 
 func main() {
 
-	// Height of pyramid.
+	// Height of pyramid/Length of longest row.
 	length := 15
 
 	// Make the grid for the numbers.
-	grid := make([][]float64, length)
-	for ind := range grid {
-		grid[ind] = make([]float64, 0)
-	}
+	pyramid := make([][][]float64, length)
 
-	grid[0] = append(grid[0], 75)
-	grid[1] = append(grid[1], 95, 64)
-	grid[2] = append(grid[2], 17, 47, 82)
-	grid[3] = append(grid[3], 18, 35, 87, 10)
-	grid[4] = append(grid[4], 20, 04, 82, 47, 65)
-	grid[5] = append(grid[5], 19, 01, 23, 75, 03, 34)
-	grid[6] = append(grid[6], 88, 02, 77, 73, 07, 63, 67)
-	grid[7] = append(grid[7], 99, 65, 04, 28, 06, 16, 70, 92)
-	grid[8] = append(grid[8], 41, 41, 26, 56, 83, 40, 80, 70, 33)
-	grid[9] = append(grid[9], 41, 48, 72, 33, 47, 32, 37, 16, 94, 29)
-	grid[10] = append(grid[10], 53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14)
-	grid[11] = append(grid[11], 70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57)
-	grid[12] = append(grid[12], 91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48)
-	grid[13] = append(grid[13], 63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31)
-	grid[14] = append(grid[14], 04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23)
+	// Each index of the pyramid has a corresponding "max slot" (The zeroes).
+	pyramid[0] = [][]float64{{75, 0}}
+	pyramid[1] = [][]float64{{95, 0}, {64, 0}}
+	pyramid[2] = [][]float64{{17, 0}, {47, 0}, {82, 0}}
+	pyramid[3] = [][]float64{{18, 0}, {35, 0}, {87, 0}, {10, 0}}
+	pyramid[4] = [][]float64{{20, 0}, {04, 0}, {82, 0}, {47, 0}, {65, 0}}
+	pyramid[5] = [][]float64{{19, 0}, {01, 0}, {23, 0}, {75, 0}, {03, 0}, {34, 0}}
+	pyramid[6] = [][]float64{{88, 0}, {02, 0}, {77, 0}, {73, 0}, {07, 0}, {63, 0}, {67, 0}}
+	pyramid[7] = [][]float64{{99, 0}, {65, 0}, {04, 0}, {28, 0}, {06, 0}, {16, 0}, {70, 0}, {92, 0}}
+	pyramid[8] = [][]float64{{41, 0}, {41, 0}, {26, 0}, {56, 0}, {83, 0}, {40, 0}, {80, 0}, {70, 0}, {33, 0}}
+	pyramid[9] = [][]float64{{41, 0}, {48, 0}, {72, 0}, {33, 0}, {47, 0}, {32, 0}, {37, 0}, {16, 0}, {94, 0}, {29, 0}}
+	pyramid[10] = [][]float64{{53, 0}, {71, 0}, {44, 0}, {65, 0}, {25, 0}, {43, 0}, {91, 0}, {52, 0}, {97, 0}, {51, 0}, {14, 0}}
+	pyramid[11] = [][]float64{{70, 0}, {11, 0}, {33, 0}, {28, 0}, {77, 0}, {73, 0}, {17, 0}, {78, 0}, {39, 0}, {68, 0}, {17, 0}, {57, 0}}
+	pyramid[12] = [][]float64{{91, 0}, {71, 0}, {52, 0}, {38, 0}, {17, 0}, {14, 0}, {91, 0}, {43, 0}, {58, 0}, {50, 0}, {27, 0}, {29, 0}, {48, 0}}
+	pyramid[13] = [][]float64{{63, 0}, {66, 0}, {04, 0}, {68, 0}, {89, 0}, {53, 0}, {67, 0}, {30, 0}, {73, 0}, {16, 0}, {69, 0}, {87, 0}, {40, 0}, {31, 0}}
+	pyramid[14] = [][]float64{{04, 0}, {62, 0}, {98, 0}, {27, 0}, {23, 0}, {9, 0}, {70, 0}, {98, 0}, {73, 0}, {93, 0}, {38, 0}, {53, 0}, {60, 0}, {04, 0}, {23, 0}}
 
-	// Make the slice to hold the individual maximum numbers at each index of grid.
-	max := make([][]float64, length)
-
-	// Maximum.
-	var maxi float64
-
-	// Go through each index starting at the top. Populate the max array with the maximum possible sum at each index by adding the
-	// grid number to the maximum of the two maximums for the above indexes. Left and right hand indexes are taken account of.
-	for ind := range grid {
-		max[ind] = make([]float64, ind+1)
-		for ind2 := range grid[ind] {
-			if ind == 0 {
-				max[ind][ind2] = grid[ind][ind2]
-			} else if ind2 == 0 {
-				max[ind][ind2] = grid[ind][ind2] + max[ind-1][0]
-			} else if ind == ind2 {
-				max[ind][ind2] = grid[ind][ind2] + max[ind-1][ind2-1]
-			} else {
-				max[ind][ind2] = grid[ind][ind2] + math.Max(max[ind-1][ind2-1], max[ind-1][ind2])
-			}
-			// If on the last row, find the maximum.
-			if ind == length-1 {
-				if max[length-1][ind2] > maxi {
-					maxi = max[length-1][ind2]
-				}
+	// Go through each index starting at the top.
+	// Populate each max slot of each index with the maximum possible sum with which it is possible
+	// to reach that index. Do this by adding the grid number at the index to the maximum of the
+	// two max slots for the above indexes (Directly above or left).
+	for ind := range pyramid {
+		// The top.
+		if ind == 0 {
+			pyramid[ind][0][1] = pyramid[ind][0][0]
+			continue
+		}
+		for ind2 := range pyramid[ind] {
+			if ind2 == 0 { // The leftmost indexes.
+				pyramid[ind][ind2][1] = pyramid[ind][ind2][0] + pyramid[ind-1][ind2][1]
+			} else if ind == ind2 { // The rightmost indexes.
+				pyramid[ind][ind2][1] = pyramid[ind][ind2][0] + pyramid[ind-1][ind2-1][1]
+			} else { // The rest.
+				pyramid[ind][ind2][1] = pyramid[ind][ind2][0] + math.Max(pyramid[ind-1][ind2-1][1], pyramid[ind-1][ind2][1])
 			}
 		}
 	}
-	fmt.Println("Answer", maxi)
+
+	// Maximum.
+	var max float64
+
+	// Find the maximum of the max slots in the final row.
+	for _, val := range pyramid[length-1] {
+		max = math.Max(max, val[1])
+	}
+
+	fmt.Println("Answer:", max)
 }
