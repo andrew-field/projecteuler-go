@@ -27,11 +27,11 @@ func main() {
 	// Generate factors.
 	go numbertheory.GetPrimeFactorisation(primeFactorChannel, uint(numberToFactorise))
 
-	var largestFactor uint
+	var largestPrimeFactor uint
 
 	for val := range primeFactorChannel {
-		largestFactor = val
+		largestPrimeFactor = val
 	}
 
-	fmt.Println("Largest:", largestFactor)
+	fmt.Println("Largest prime factor:", largestPrimeFactor)
 }
