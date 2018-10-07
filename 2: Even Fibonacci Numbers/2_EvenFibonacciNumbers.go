@@ -13,7 +13,7 @@ func main() {
 
 	// Generate Fibonacci.
 	for num2 < 4000000 {
-		total += num2
+		total += num2 // Only add even values so calculate three terms before adding.
 		num1, num2 = num2, num1+num2
 		num1, num2 = num2, num1+num2
 		num1, num2 = num2, num1+num2
