@@ -7,30 +7,49 @@ import (
 func main() {
 
 	// Maximum.
-	max := 0
+	maxNumberOfTerms := 0
+	// Answer (Starting number).
 	answer := 0
 
-	for start := 13; start < 1000000; start++ {
+	// Grid of numbers to reduce the number of sequences generated.
+	gridOfNumbers := make([]int, 1000001)
+	for ind := range gridOfNumbers {
+		gridOfNumbers[ind] = ind
+	}
+
+	for index := 1000000; index > 0; index-- {
+		// Starter numbers which have been part of previous sequences will form sequences
+		// which must be shorter than the previous maximum.
+		if gridOfNumbers[index] == 1 {
+			continue
+		}
+
 		// Number of terms including the starter.
 		numberOfTerms := 1
 
-		// Starting number to generate the pattern.
-		seq := start
-		for seq != 1 {
-			if seq%2 == 0 {
-				seq /= 2
+		// Generate the sequence. The grid reference for numbers along the way will be set to 1
+		// to indicate sequences which should be skipped later.
+		for gridOfNumbers[index] != 1 {
+			if gridOfNumbers[index]%2 == 0 {
+				gridOfNumbers[index] /= 2
 			} else {
-				seq = 3*seq + 1
-				numberOfTerms++ // The next term must be even so save some time next.
-				seq /= 2
+				gridOfNumbers[index] = 3*gridOfNumbers[index] + 1 // The next term must be even so save some time next.
+				if gridOfNumbers[index] <= 1000000 && gridOfNumbers[gridOfNumbers[index]] != 1 {
+					gridOfNumbers[gridOfNumbers[index]] = 1
+				}
+				numberOfTerms++
+				gridOfNumbers[index] /= 2
+			}
+			if gridOfNumbers[index] <= 1000000 && gridOfNumbers[gridOfNumbers[index]] != 1 {
+				gridOfNumbers[gridOfNumbers[index]] = 1
 			}
 			numberOfTerms++
 		}
 
 		// Compare maximum.
-		if numberOfTerms > max {
-			max = numberOfTerms
-			answer = start
+		if numberOfTerms > maxNumberOfTerms {
+			maxNumberOfTerms = numberOfTerms
+			answer = index
 		}
 	}
 
