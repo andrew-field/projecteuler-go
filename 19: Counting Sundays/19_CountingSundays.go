@@ -9,12 +9,14 @@ func main() {
 
 	// Go is great.
 	count := 0
-	date := time.Date(1901, 01, 06, 1, 1, 1, 000000000, time.UTC)
-	for date.Year() != 2001 {
-		date = date.AddDate(0, 0, 7)
-		if date.Day() == 1 {
+	startDate := time.Date(1901, 01, 01, 1, 1, 1, 000000000, time.UTC)
+
+	for startDate.Year() != 2001 {
+		startDate = startDate.AddDate(0, 1, 0)
+		if startDate.Weekday() == time.Sunday {
 			count++
 		}
 	}
+
 	fmt.Println("Count", count)
 }
