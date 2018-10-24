@@ -33,3 +33,6 @@ Returns the lowest common multiple of a group of numbers. lcm by raising each pr
 numberOfDivisors:  
 Returns the number of divisors a number has using its prime factorisation.  
 ![Insert explantion here (You can't see the picture)](images/numberOfDivisors.png)
+
+digitsOfNumber:
+Includes functions to fill a channel with the digits of both normal integers and big.Ints. It also includes functions to return a slice of all the digits of both normal integers and big.Ints.

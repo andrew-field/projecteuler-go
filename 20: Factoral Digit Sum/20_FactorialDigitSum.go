@@ -3,32 +3,28 @@ package main
 import (
 	"fmt"
 	"math/big"
+
+	"github.com/andrew-field/testing_go/numbertheory"
 )
 
 // Factorial function.
-func fact(n *big.Int) *big.Int {
-	if !n.IsInt64() || n.Int64() != 2 {
-		c := big.NewInt(1)
-		return n.Mul(n, fact(c.Sub(n, c)))
+func fact(number *big.Int) *big.Int {
+	if !number.IsInt64() || number.Int64() != 2 {
+		one := big.NewInt(1)
+		return number.Mul(number, fact(one.Sub(number, one)))
 	}
 	return big.NewInt(2)
 }
 
 func main() {
 
-	// Fact 100.
-	a := fact(big.NewInt(100))
+	digitsChannel := numbertheory.GetDigitsOfABigNumber(*fact(big.NewInt(100)))
 
-	ten := big.NewInt(10)
-	digit := big.NewInt(0)
+	total := 0
 
-	var total int64
-
-	// Dividing these Ints by 10 truncates the decimal places so it is fine. Reverse order of digits; doesn't matter.
-	for !a.IsInt64() || a.Int64() > 9 {
-		a.DivMod(a, ten, digit)
-		total += digit.Int64()
+	for val := range digitsChannel {
+		total += val
 	}
-	total += a.Int64()
-	fmt.Println("Answer:", total)
+
+	fmt.Println("Total:", total)
 }

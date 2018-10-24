@@ -1,12 +1,11 @@
 package main
 
-import "math/big"
-import "fmt"
+import (
+	"fmt"
+	"math/big"
+)
 
 func main() {
-
-	// Sum.
-	sum := big.NewInt(0)
 
 	numbers := make([]big.Int, 100)
 
@@ -111,8 +110,11 @@ func main() {
 	numbers[98].SetString("20849603980134001723930671666823555245252804609722", 10)
 	numbers[99].SetString("53503534226472524250874054075591789781264330331690", 10)
 
+	// Sum.
+	var sum big.Int
+
 	for _, val := range numbers {
-		sum.Add(sum, &val)
+		sum.Add(&sum, &val)
 	}
 
 	calc := sum.Text(10)
