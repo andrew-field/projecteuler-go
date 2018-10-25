@@ -22,17 +22,13 @@ func main() {
 	}
 
 	// Make prime and done channel.
-	primeChannel := make(chan uint, 100)
-	doneChannel := make(chan bool)
-
-	go numbertheory.GetPrimeNumbersContinuously(primeChannel, doneChannel, 100)
+	primeChannel, doneChannel := numbertheory.GetPrimeNumbersContinuously(100)
 
 	var sum uint
 
-	for val := <-primeChannel; val < uint(ceiling); val = <-primeChannel {
+	for val := <-primeChannel; uint64(val) < ceiling; val = <-primeChannel {
 		sum += val
 	}
-
 	doneChannel <- true
 
 	fmt.Printf("The summation of all the prime numbers under %v is %v\n", ceiling, sum)

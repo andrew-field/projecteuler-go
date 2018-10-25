@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	// Height of pyramid/Length of longest row.
+	// Height of the pyramid/Length of longest row.
 	length := 15
 
 	// Make the grid for the numbers.

@@ -8,10 +8,12 @@ func LowestCommonMultiple(numbers ...uint) uint {
 
 	// Fill slices
 	for _, val := range numbers {
+		if val <= 1 {
+			panic("The number to factorise must be larger than 1")
+		}
 		newFactorisation := make([]uint, 0)
-		primeFactorChannel := make(chan uint, 100)
 
-		go GetPrimeFactorisation(primeFactorChannel, val)
+		primeFactorChannel := GetPrimeFactorisation(val)
 
 		for val := range primeFactorChannel {
 			newFactorisation = append(newFactorisation, val)

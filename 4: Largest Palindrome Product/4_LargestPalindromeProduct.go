@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"math"
-)
 
-// 456/10 = 45 with int.
+	"github.com/andrew-field/testing_go/numbertheory"
+)
 
 func main() {
 
@@ -14,13 +13,11 @@ func main() {
 
 	for a := 100; a < 1000; a++ {
 		for b := a; b < 1000; b++ {
-			n := a * b
-			numberOfDigitsMinusOne := math.Floor(math.Log10(float64(n)))
-			maxExponentOf10 := int(math.Pow10(int(numberOfDigitsMinusOne)))
-
-			if n%10 == n/maxExponentOf10 && (n/10)%10 == (n/(maxExponentOf10/10))%10 && (n/100)%10 == (n/(maxExponentOf10/100))%10 {
-				if n > largest {
-					largest = n
+			product := a * b
+			digits := numbertheory.GetDigitsOfANumberInSlice(product)
+			if lastIndex := len(digits) - 1; digits[0] == digits[lastIndex] && digits[1] == digits[lastIndex-1] && digits[2] == digits[lastIndex-2] {
+				if product > largest {
+					largest = product
 				}
 			}
 		}

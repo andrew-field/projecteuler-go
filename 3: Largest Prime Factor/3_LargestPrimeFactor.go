@@ -22,10 +22,7 @@ func main() {
 	}
 
 	// Make factor channel.
-	primeFactorChannel := make(chan uint, 100)
-
-	// Generate factors.
-	go numbertheory.GetPrimeFactorisation(primeFactorChannel, uint(numberToFactorise))
+	primeFactorChannel := numbertheory.GetPrimeFactorisation(uint(numberToFactorise))
 
 	var largestPrimeFactor uint
 

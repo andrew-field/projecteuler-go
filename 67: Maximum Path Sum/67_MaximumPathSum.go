@@ -15,7 +15,7 @@ func check(e error) {
 
 func main() {
 
-	// Height of pyramid.
+	// Height of the pyramid/Length of longest row.
 	length := 100
 
 	// Make the grid for the numbers.

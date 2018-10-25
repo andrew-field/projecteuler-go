@@ -1,12 +1,14 @@
 package numbertheory
 
 import (
+	"math"
 	"math/big"
 	"strconv"
 )
 
 // GetDigitsOfABigNumber fills and returns a channel with the digits of a big.Int number
 // starting with the smallest magnitude numbers (Right to left).
+// Syncing and safely exiting this function can be done through flushing the digits channel.
 func GetDigitsOfABigNumber(number big.Int) chan int {
 
 	if number.Sign() == -1 {
@@ -36,6 +38,7 @@ func GetDigitsOfABigNumber(number big.Int) chan int {
 
 // GetDigitsOfANumber fills and returns a channel with the digits of a number
 // starting with the smallest magnitude numbers (Right to left).
+// Syncing and safely exiting this function can be done through flushing the digits channel.
 func GetDigitsOfANumber(number int) chan int {
 
 	if number < 0 {
@@ -56,6 +59,16 @@ func GetDigitsOfANumber(number int) chan int {
 	}()
 
 	return digitsChannel
+}
+
+// GetNumberOfDigitsOfANumber returns the number of digits a number has.
+func GetNumberOfDigitsOfANumber(number float64) float64 {
+	return math.Floor(math.Log10(number)) + 1
+}
+
+// GetNumberOfDigitsOfABigNumber returns the number of digits a big.Int has.
+func GetNumberOfDigitsOfABigNumber(number big.Int) int {
+	return len(number.String())
 }
 
 // GetDigitsOfABigNumberInSlice returns a slice of the digits of a big.Int number as written.

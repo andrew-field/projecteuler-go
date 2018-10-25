@@ -9,53 +9,61 @@ var newNumbers []uint
 var isPrime bool
 var isFinished bool
 
-// GetPrimeNumbersContinuously fills a channel with the prime numbers. This process will buffer through the channel passed in.
+// GetPrimeNumbersContinuously fills a channel with the prime numbers.
 // The smaller the slice increment size, the quicker the primes will come initially but the slower the primes will come over time.
 // The larger the slice increment size, the slower the primes will come initially but the more suitable it will be for larger primes.
 // Things will probably break at the extremities with accuracy issues surrounding float64/uint.
-// Syncing and safely exiting this function should be done through blocking until a return value through the done channel.
-func GetPrimeNumbersContinuously(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) {
+// Syncing and safely exiting this function can be done through blocking until a return value through the done channel.
+func GetPrimeNumbersContinuously(sliceIncrementsSize int) (chan uint, chan bool) {
 
 	if sliceIncrementsSize < 1 {
 		panic("The slice increment size must be larger than 0.")
 	}
 
-	defer func() {
-		close(primeChannel)
-		doneChannel <- true
-	}()
+	primeChannel := make(chan uint, 100)
+	doneChannel := make(chan bool)
 
-	isFinished = false
+	go func() {
+		defer func() {
+			close(primeChannel)
+			doneChannel <- true
+			close(doneChannel)
+		}()
 
-	// Inital slice for primes.
-	primes = make([]uint, 0)
+		isFinished = false
 
-	// Setup.
-	var firstNumberToCheck uint = 2
+		// Inital slice for primes.
+		primes = make([]uint, 0)
 
-	// Slice containing the new numbers to check for primality.
-	newNumbers = make([]uint, sliceIncrementsSize)
+		// Setup.
+		var firstNumberToCheck uint = 2
 
-	for {
-		if isFinished {
-			return
-		}
-		// Make new numbers.
-		for ind := range newNumbers {
-			newNumbers[ind] = firstNumberToCheck
-			firstNumberToCheck++
+		// Slice containing the new numbers to check for primality.
+		newNumbers = make([]uint, sliceIncrementsSize)
 
-			// Check for finish (overflow).
-			if firstNumberToCheck < 0 {
-				newNumbers = newNumbers[:ind]
-				generatePrimes(primeChannel, doneChannel, ind)
+		for {
+			if isFinished {
 				return
 			}
-		}
+			// Make new numbers.
+			for ind := range newNumbers {
+				newNumbers[ind] = firstNumberToCheck
+				firstNumberToCheck++
 
-		// Generate primes.
-		generatePrimes(primeChannel, doneChannel, sliceIncrementsSize)
-	}
+				// Check for finish (overflow).
+				if firstNumberToCheck < 0 {
+					newNumbers = newNumbers[:ind]
+					generatePrimes(primeChannel, doneChannel, ind)
+					return
+				}
+			}
+
+			// Generate primes.
+			generatePrimes(primeChannel, doneChannel, sliceIncrementsSize)
+		}
+	}()
+
+	return primeChannel, doneChannel
 }
 
 // Basic euclidean sieve that probably has some issues somewhere with the type casting on line 46...
