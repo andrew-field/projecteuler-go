@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/andrew-field/testing_go/numbertheory"
 )
 
 func main() {
-	fmt.Println(numbertheory.GetNumberOfDigitsOfANumber(2356452))
+	dfg := make([]float64, 3)
+	fmt.Println(dfg[0])
+	fmt.Println(dfg[1])
+	fmt.Println(dfg[2])
 }
