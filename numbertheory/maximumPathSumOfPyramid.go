@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-// GetMaximumPathSumOfPyramidUsingMaximumSlots returns the maximum sum of a path from top to bottom while
+// GetMaximumPathSumOfPyramidUsingMaximumSlots returns the maximum sum of every path from top to bottom of a pyramid while
 // moving only to adjacent numbers on the row below.
 func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
 	// Height of the pyramid/Length of longest row.
@@ -55,8 +55,8 @@ func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
 
 var pyramidUsingRecursiveFunction [][]float64
 
-// GetMaximumPathSumOfPyramidUsingRecursiveFunction returns the maximum sum of a path from top to bottom while
-// moving only to adjacent numbers on the row below. This method uses a recursive function and is relativelyy slow.
+// GetMaximumPathSumOfPyramidUsingRecursiveFunction returns the maximum sum of every path from top to bottom of a pyramid while
+// moving only to adjacent numbers on the row below. This method uses a recursive function and is relatively slow.
 func GetMaximumPathSumOfPyramidUsingRecursiveFunction(pyramid [][]float64) float64 {
 	// Maximum.
 	var max float64
