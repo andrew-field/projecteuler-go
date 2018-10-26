@@ -38,3 +38,7 @@ digitsOfNumber:
  - Functions to fill a channel with the digits of both normal integers and big.Ints. 
  - Functions to return a slice of all the digits of both normal integers and big.Ints.
  - Functions to return the number of digits an integer and big.Int has.
+
+maximumPathSumOfPyramid:
+Two functions to calclulate the maximum sum of every path from top to bottom of a pyramid while
+moving only to adjacent numbers on the row below. The method to use a recursive function is slow an should not be used.
