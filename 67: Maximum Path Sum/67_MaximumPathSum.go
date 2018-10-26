@@ -16,7 +16,10 @@ func check(e error) {
 }
 
 func main() {
+	methodOne()
+}
 
+func methodOne() {
 	// Height of the pyramid/Length of longest row.
 	length := 100
 
@@ -79,4 +82,66 @@ func main() {
 	}
 
 	fmt.Println("Answer:", max)
+}
+
+var pyramidMethodTwo [][]float64
+
+func methodTwo() {
+	// Height of the pyramid/Length of longest row.
+	length := 100
+
+	// Make the grid for the numbers.
+	pyramidMethodTwo = make([][]float64, length)
+	for ind := range pyramidMethodTwo {
+		pyramidMethodTwo[ind] = make([]float64, ind+1)
+	}
+
+	// Open file.
+	absPath, err := filepath.Abs("p067_triangle.txt")
+	check(err)
+	f, err := os.Open(absPath)
+	check(err)
+	defer func() {
+		f.Close()
+	}()
+	reader := bufio.NewReader(f)
+
+	// Read 2 digits every time and populate the pyramidMethodTwo.
+	number := make([]byte, 2)
+	for i := 0; i < length; i++ {
+		for j := 0; j <= i; j++ {
+			_, err = reader.Read(number)
+			check(err)
+			pyramidMethodTwo[i][j], err = strconv.ParseFloat(string(number), 64)
+			check(err)
+		}
+	}
+
+	// Maximum.
+	var max float64
+
+	// Find the maximum of the maximums in the final row.
+	for ind := range pyramidMethodTwo[length-1] {
+		max = math.Max(max, getMax(length-1, ind))
+		fmt.Println(max)
+	}
+
+	fmt.Println("Answer:", max)
+}
+
+func getMax(x, y int) float64 {
+	// The top.
+	if x == 0 {
+		return pyramidMethodTwo[x][y]
+	}
+	// The leftmost indexes.
+	if y == 0 {
+		return pyramidMethodTwo[x][y] + getMax(x-1, y)
+	}
+	// The rightmost indexes.
+	if y == x {
+		return pyramidMethodTwo[x][y] + getMax(x-1, y-1)
+	}
+	// The rest.
+	return pyramidMethodTwo[x][y] + math.Max(getMax(x-1, y-1), getMax(x-1, y))
 }

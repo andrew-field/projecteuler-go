@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
+	methodOne()
+}
 
+func methodOne() {
 	// Height of the pyramid/Length of longest row.
 	length := 15
 
@@ -60,4 +63,57 @@ func main() {
 	}
 
 	fmt.Println("Answer:", max)
+}
+
+var pyramidMethodTwo [][]float64
+
+func methodTwo() {
+	// Height of the pyramid/Length of longest row.
+	length := 15
+
+	// Make the grid for the numbers.
+	pyramidMethodTwo = make([][]float64, length)
+
+	pyramidMethodTwo[0] = []float64{75}
+	pyramidMethodTwo[1] = []float64{95, 64}
+	pyramidMethodTwo[2] = []float64{17, 47, 82}
+	pyramidMethodTwo[3] = []float64{18, 35, 87, 10}
+	pyramidMethodTwo[4] = []float64{20, 04, 82, 47, 65}
+	pyramidMethodTwo[5] = []float64{19, 01, 23, 75, 03, 34}
+	pyramidMethodTwo[6] = []float64{88, 02, 77, 73, 07, 63, 67}
+	pyramidMethodTwo[7] = []float64{99, 65, 04, 28, 06, 16, 70, 92}
+	pyramidMethodTwo[8] = []float64{41, 41, 26, 56, 83, 40, 80, 70, 33}
+	pyramidMethodTwo[9] = []float64{41, 48, 72, 33, 47, 32, 37, 16, 94, 29}
+	pyramidMethodTwo[10] = []float64{53, 71, 44, 65, 25, 43, 91, 52, 97, 51, 14}
+	pyramidMethodTwo[11] = []float64{70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57}
+	pyramidMethodTwo[12] = []float64{91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48}
+	pyramidMethodTwo[13] = []float64{63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31}
+	pyramidMethodTwo[14] = []float64{04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23}
+
+	// Maximum.
+	var max float64
+
+	// Find the maximum of the maximums in the final row.
+	for ind := range pyramidMethodTwo[length-1] {
+		max = math.Max(max, getMax(length-1, ind))
+	}
+
+	fmt.Println("Answer:", max)
+}
+
+func getMax(x, y int) float64 {
+	// The top.
+	if x == 0 {
+		return pyramidMethodTwo[x][y]
+	}
+	// The leftmost indexes.
+	if y == 0 {
+		return pyramidMethodTwo[x][y] + getMax(x-1, y)
+	}
+	// The rightmost indexes.
+	if y == x {
+		return pyramidMethodTwo[x][y] + getMax(x-1, y-1)
+	}
+	// The rest.
+	return pyramidMethodTwo[x][y] + math.Max(getMax(x-1, y-1), getMax(x-1, y))
 }
