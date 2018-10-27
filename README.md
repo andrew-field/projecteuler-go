@@ -30,9 +30,10 @@ This program provides a prime factorisation of a number given at runtime. It sim
 lowestCommonMultiple:  
 Returns the lowest common multiple of a group of numbers. lcm by raising each prime factor to the maximum number of times that prime factor appears in any of the numbers and then multiplying each of these results.
 
-numberOfDivisors:  
-Returns the number of divisors a number has using its prime factorisation.  
+divisors:  
+ - Function to return the number of divisors a number has using its prime factorisation.  
 ![Insert explantion here (You can't see the picture)](images/numberOfDivisors.png)
+ - Functions to get all the divisors of a number.
 
 digitsOfNumber:
  - Functions to fill a channel with the digits of both normal integers and big.Ints. 
