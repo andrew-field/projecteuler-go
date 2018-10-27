@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/andrew-field/testing_go/numbertheory"
 )
 
 func main() {
-	dfg := make([]float64, 3)
-	fmt.Println(dfg[0])
-	fmt.Println(dfg[1])
-	fmt.Println(dfg[2])
+	sdf := numbertheory.GetDivisorsOfANumberInASlice(284)
+
+	fmt.Println(sdf)
 }
