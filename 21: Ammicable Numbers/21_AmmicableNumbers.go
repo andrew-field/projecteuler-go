@@ -26,7 +26,6 @@ func main() {
 	for ind, val := range sumOfProperDivisors {
 		if val != 1 && val != 0 && uint(ind) != val && val < 10000 && sumOfProperDivisors[val] == uint(ind) {
 			sumOfAmicableNumbers += uint(ind) + val
-			fmt.Println(ind, val)
 			sumOfProperDivisors[val] = 1
 			sumOfProperDivisors[ind] = 1
 		}

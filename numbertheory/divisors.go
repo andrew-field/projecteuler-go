@@ -1,14 +1,19 @@
 package numbertheory
 
 import (
+	"math"
 	"sort"
 )
 
 // GetNumberOfDivisors returns the number of divisors of number.
 func GetNumberOfDivisors(number uint) int {
 
-	if number <= 1 {
-		panic("The number must be larger than 1")
+	if number < 1 {
+		panic("The number must be larger than 0")
+	}
+
+	if number == 1 {
+		return 1
 	}
 
 	primeFactorChannel := GetPrimeFactorisation(number)
@@ -83,12 +88,41 @@ func GetDivisorsOfANumber(number uint) chan uint {
 	return divisorChannel
 }
 
+// GetDivisorsOfANumberBruteForce fills a channel with all the divisors of a number.
+// Probably some errors can occur when parsing back and forth between uint and float64.
+// Syncing and safely exiting this function can be done through flushing the divisor channel.
+func GetDivisorsOfANumberBruteForce(number uint) chan uint {
+
+	if number < 1 {
+		panic("The number must be larger than 0")
+	}
+
+	divisorChannel := make(chan uint, 100)
+	go func() {
+		var index uint = 1
+		for ; index <= uint(math.Floor(math.Sqrt(float64(number)))); index++ {
+			if number%index == 0 {
+				divisorChannel <- index
+				otherDivisor := number / index
+				if otherDivisor != index {
+					divisorChannel <- otherDivisor
+				}
+			}
+		}
+
+		close(divisorChannel)
+	}()
+
+	return divisorChannel
+}
+
 // GetDivisorsOfANumberInASlice returns a sorted slice with all the divisors of a number.
 func GetDivisorsOfANumberInASlice(number uint) []uint {
 
 	if number < 1 {
 		panic("The number must be larger than 0")
 	}
+
 	// A record of all the divisors.
 	allDivisors := []uint{1}
 
@@ -123,6 +157,28 @@ func GetDivisorsOfANumberInASlice(number uint) []uint {
 		allDivisors = append(allDivisors, newDivisors...)
 		sort.Slice(allDivisors, func(i, j int) bool { return allDivisors[i] < allDivisors[j] })
 	}
+
+	return allDivisors
+}
+
+// GetDivisorsOfANumberInASliceBruteForce returns a sorted slice with all the divisors of a number.
+func GetDivisorsOfANumberInASliceBruteForce(number uint) []uint {
+
+	if number < 1 {
+		panic("The number must be larger than 0")
+	}
+
+	// A record of all the divisors.
+	allDivisors := make([]uint, 0)
+
+	var index uint = 1
+	for ; index <= uint(math.Floor(math.Sqrt(float64(number)))); index++ {
+		if number%index == 0 {
+			allDivisors = append(allDivisors, index)
+			allDivisors = append(allDivisors, number/index)
+		}
+	}
+	sort.Slice(allDivisors, func(i, j int) bool { return allDivisors[i] < allDivisors[j] })
 
 	return allDivisors
 }

@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	sdf := numbertheory.GetDivisorsOfANumberInASlice(284)
+	sdf := numbertheory.GetDivisorsOfANumberBruteForce(284)
 
-	fmt.Println(sdf)
+	for val := range sdf {
+		fmt.Println(val)
+	}
 }

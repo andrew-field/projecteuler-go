@@ -34,6 +34,7 @@ divisors:
  - Function to return the number of divisors a number has using its prime factorisation.  
 ![Insert explantion here (You can't see the picture)](images/numberOfDivisors.png)
  - Functions to get all the divisors of a number.
+ - Brute force functions to get all the divisors of a number.
 
 digitsOfNumber:
  - Functions to fill a channel with the digits of both normal integers and big.Ints. 
