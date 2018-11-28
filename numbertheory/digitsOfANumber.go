@@ -63,21 +63,16 @@ func GetDigitsOfANumber(number int) chan int {
 
 // GetNumberOfDigitsOfANumber returns the number of digits a number has.
 func GetNumberOfDigitsOfANumber(number float64) float64 {
-	return math.Floor(math.Log10(number)) + 1
+	if number == 0 {
+		return 1
+	}
+
+	return math.Floor(math.Log10(math.Abs(number))) + 1
 }
 
 // GetNumberOfDigitsOfABigNumber returns the number of digits a big.Int has.
 func GetNumberOfDigitsOfABigNumber(number big.Int) int {
 	return len(number.String())
-}
-
-// GetDigitsOfABigNumberInSlice returns a slice of the digits of a big.Int number as written.
-func GetDigitsOfABigNumberInSlice(number big.Int) []int {
-	if number.Sign() == -1 {
-		panic("The number should be 0 or positive.")
-	}
-
-	return digitsOfANumber(number.Text(10))
 }
 
 // GetDigitsOfANumberInSlice returns a slice of the digits of a number as written.
@@ -87,6 +82,15 @@ func GetDigitsOfANumberInSlice(number int) []int {
 	}
 
 	return digitsOfANumber(strconv.Itoa(number))
+}
+
+// GetDigitsOfABigNumberInSlice returns a slice of the digits of a big.Int number as written.
+func GetDigitsOfABigNumberInSlice(number big.Int) []int {
+	if number.Sign() == -1 {
+		panic("The number should be 0 or positive.")
+	}
+
+	return digitsOfANumber(number.Text(10))
 }
 
 func digitsOfANumber(number string) []int {
