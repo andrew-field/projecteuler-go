@@ -1,7 +1,6 @@
 package numbertheory
 
 import (
-	"math"
 	"math/big"
 	"strconv"
 )
@@ -61,13 +60,24 @@ func GetDigitsOfANumber(number int) chan int {
 	return digitsChannel
 }
 
-// GetNumberOfDigitsOfANumber returns the number of digits a number has.
-func GetNumberOfDigitsOfANumber(number float64) float64 {
-	if number == 0 {
-		return 1
+// GetNumberOfDigitsOfAFloat returns the number of digits a float64 has.
+func GetNumberOfDigitsOfAFloat(number float64) int {
+	string := strconv.FormatFloat(number, 'f', 5, 64)
+	return len(string)
+	// if number == 0 {
+	// 	return 1
+	// }
+
+	//return math.Floor(math.Log10(math.Abs(number))) + 1
+}
+
+// GetNumberOfDigitsOfAnInt returns the number of digits an int has.
+func GetNumberOfDigitsOfAnInt(number int) int {
+	if number < 0 {
+		number *= -1
 	}
 
-	return math.Floor(math.Log10(math.Abs(number))) + 1
+	return len(strconv.Itoa(number))
 }
 
 // GetNumberOfDigitsOfABigNumber returns the number of digits a big.Int has.
