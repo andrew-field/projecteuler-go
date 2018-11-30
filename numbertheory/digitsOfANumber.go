@@ -15,8 +15,8 @@ func GetNumberOfDigitsOfAnInt(number int) int {
 }
 
 // GetNumberOfDigitsOfABigInt returns the number of digits a big.Int has.
-func GetNumberOfDigitsOfABigInt(number big.Int) int {
-	return len(number.String())
+func GetNumberOfDigitsOfABigInt(number *big.Int) int {
+	return len(number.Abs(number).String())
 }
 
 // GetDigitsOfAnInt fills and returns a channel with the digits of a number
