@@ -18,7 +18,7 @@ func fact(number *big.Int) *big.Int {
 
 func main() {
 
-	digitsChannel := numbertheory.GetDigitsOfABigNumber(*fact(big.NewInt(100)))
+	digitsChannel := numbertheory.GetDigitsOfABigInt(*fact(big.NewInt(100)))
 
 	total := 0
 

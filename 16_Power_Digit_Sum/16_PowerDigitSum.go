@@ -15,7 +15,7 @@ func main() {
 	// Calculate answer.
 	answer.Exp(x, y, nil)
 
-	digitsChannel := numbertheory.GetDigitsOfABigNumber(answer)
+	digitsChannel := numbertheory.GetDigitsOfABigInt(answer)
 
 	total := 0
 

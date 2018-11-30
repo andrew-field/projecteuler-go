@@ -5,10 +5,49 @@ import (
 	"strconv"
 )
 
-// GetDigitsOfABigNumber fills and returns a channel with the digits of a big.Int number
+// GetNumberOfDigitsOfAnInt returns the number of digits an int has.
+func GetNumberOfDigitsOfAnInt(number int) int {
+	if number < 0 {
+		number *= -1
+	}
+
+	return len(strconv.Itoa(number))
+}
+
+// GetNumberOfDigitsOfABigInt returns the number of digits a big.Int has.
+func GetNumberOfDigitsOfABigInt(number big.Int) int {
+	return len(number.String())
+}
+
+// GetDigitsOfAnInt fills and returns a channel with the digits of a number
 // starting with the smallest magnitude numbers (Right to left).
 // Syncing and safely exiting this function can be done through flushing the digits channel.
-func GetDigitsOfABigNumber(number big.Int) chan int {
+func GetDigitsOfAnInt(number int) chan int {
+
+	if number < 0 {
+		panic("The number should be 0 or positive.")
+	}
+
+	digitsChannel := make(chan int, 10)
+	go func() {
+		// 456/10 = 45 with int.
+		for number > 9 {
+			digitsChannel <- number % 10
+			number /= 10
+		}
+
+		digitsChannel <- number
+
+		close(digitsChannel)
+	}()
+
+	return digitsChannel
+}
+
+// GetDigitsOfABigInt fills and returns a channel with the digits of a big.Int number
+// starting with the smallest magnitude numbers (Right to left).
+// Syncing and safely exiting this function can be done through flushing the digits channel.
+func GetDigitsOfABigInt(number big.Int) chan int {
 
 	if number.Sign() == -1 {
 		panic("The number should be 0 or positive.")
@@ -35,58 +74,8 @@ func GetDigitsOfABigNumber(number big.Int) chan int {
 	return digitsChannel
 }
 
-// GetDigitsOfANumber fills and returns a channel with the digits of a number
-// starting with the smallest magnitude numbers (Right to left).
-// Syncing and safely exiting this function can be done through flushing the digits channel.
-func GetDigitsOfANumber(number int) chan int {
-
-	if number < 0 {
-		panic("The number should be 0 or positive.")
-	}
-
-	digitsChannel := make(chan int, 10)
-	go func() {
-		// 456/10 = 45 with int.
-		for number > 9 {
-			digitsChannel <- number % 10
-			number /= 10
-		}
-
-		digitsChannel <- number
-
-		close(digitsChannel)
-	}()
-
-	return digitsChannel
-}
-
-// GetNumberOfDigitsOfAFloat returns the number of digits a float64 has.
-func GetNumberOfDigitsOfAFloat(number float64) int {
-	string := strconv.FormatFloat(number, 'f', 5, 64)
-	return len(string)
-	// if number == 0 {
-	// 	return 1
-	// }
-
-	//return math.Floor(math.Log10(math.Abs(number))) + 1
-}
-
-// GetNumberOfDigitsOfAnInt returns the number of digits an int has.
-func GetNumberOfDigitsOfAnInt(number int) int {
-	if number < 0 {
-		number *= -1
-	}
-
-	return len(strconv.Itoa(number))
-}
-
-// GetNumberOfDigitsOfABigNumber returns the number of digits a big.Int has.
-func GetNumberOfDigitsOfABigNumber(number big.Int) int {
-	return len(number.String())
-}
-
-// GetDigitsOfANumberInSlice returns a slice of the digits of a number as written.
-func GetDigitsOfANumberInSlice(number int) []int {
+// GetDigitsOfAnIntInSlice returns a slice of the digits of a number as written.
+func GetDigitsOfAnIntInSlice(number int) []int {
 	if number < 0 {
 		panic("The number should be 0 or positive.")
 	}
