@@ -78,10 +78,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 		t.Run(strconv.Itoa(ind), func(t *testing.T) {
 			for index := 0; index < 2; index++ {
 				// For each number, try the negative as well.
-				dfg := big.NewInt(-2)
-				t.Logf("dfg: %#+v\n", dfg)
-				t.Logf("tC.number: %#+v\n", tC.number)
-				tC.number.Mul(tC.number, dfg)
+				tC.number.Mul(tC.number, big.NewInt(-1))
 				t.Logf("tC.number: %#+v\n", tC.number)
 				if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.number); actualNumberOfDigits != tC.expectedNumberOfDigits {
 					t.Errorf("Number in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.number, tC.expectedNumberOfDigits, actualNumberOfDigits)
