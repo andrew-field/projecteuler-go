@@ -39,7 +39,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 
 	// Test random numbers.
 	randomGenerator := rand.New(rand.NewSource(time.Now().UnixNano()))
-	for testNumber := 0; testNumber < 10000; testNumber++ {
+	for index := 0; index < 1000; index++ {
 		// This will give a random number n such that 0 <= n < 18.
 		powerOfTen := int(randomGenerator.Float64() * 18)
 		lowerBound := math.Pow10(powerOfTen)
@@ -73,6 +73,10 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 		{big.NewInt(500), 3},
 		{big.NewInt(math.MaxInt32), 10},
 		{big.NewInt(math.MaxInt64), 19},
+		{big.NewInt(0).Exp(big.NewInt(10), big.NewInt(20), nil), 20},
+		{big.NewInt(0).Exp(big.NewInt(10), big.NewInt(35), nil), 35},
+		{big.NewInt(0).Exp(big.NewInt(10), big.NewInt(99), nil), 99},
+		{big.NewInt(0).Exp(big.NewInt(10), big.NewInt(100), nil), 100},
 	}
 	for ind, tC := range testCases {
 		t.Run(strconv.Itoa(ind), func(t *testing.T) {
@@ -82,6 +86,27 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 				t.Logf("tC.number: %#+v\n", tC.number)
 				if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.number); actualNumberOfDigits != tC.expectedNumberOfDigits {
 					t.Errorf("Number in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.number, tC.expectedNumberOfDigits, actualNumberOfDigits)
+				}
+			}
+		})
+	}
+
+	// Test random numbers.
+	randomGenerator := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for index := 0; index < 1000; index++ {
+		// This will give a random number n such that 0 <= n < 100.
+		powerOfTen := int64(randomGenerator.Float64() * 100)
+		lowerBound := big.NewInt(0).Exp(big.NewInt(10), big.NewInt(powerOfTen), nil)
+		// This will give a random number n such that lowerBound <= n < lowerBound*10 where lowerBound is always a multiple of 10.
+		// The expected number of digits is powerOfTen + 1.
+		testNumber := int(randomGenerator.Float64()*(9*lowerBound) + lowerBound)
+		t.Run(strconv.Itoa(testNumber), func(t *testing.T) {
+			for index := 0; index < 2; index++ {
+				// For each number, try the negative as well.
+				testNumber *= -1
+				t.Logf("testNumber: %#+v\n", testNumber)
+				if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(testNumber); actualNumberOfDigits != powerOfTen+1 {
+					t.Errorf("Number in test: %v. Expected number of digits: %v. Actual number of digits: %v.", testNumber, powerOfTen, actualNumberOfDigits)
 				}
 			}
 		})
