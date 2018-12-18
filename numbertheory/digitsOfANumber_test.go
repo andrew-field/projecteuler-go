@@ -99,13 +99,15 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 		lowerBound := big.NewInt(0).Exp(big.NewInt(10), big.NewInt(powerOfTen), nil)
 		// This will give a random number n such that lowerBound <= n < lowerBound*10 where lowerBound is always a multiple of 10.
 		// The expected number of digits is powerOfTen + 1.
-		testNumber := int(randomGenerator.Float64()*(9*lowerBound) + lowerBound)
-		t.Run(strconv.Itoa(testNumber), func(t *testing.T) {
+		nine := big.NewInt(9)
+		rand := big.NewInt(int64(randomGenerator.Float64()))
+		testNumber := lowerBound.Add(rand.Mul(rand, nine.Mul(nine, lowerBound)), lowerBound)
+		t.Run(testNumber.String(), func(t *testing.T) {
 			for index := 0; index < 2; index++ {
 				// For each number, try the negative as well.
-				testNumber *= -1
+				testNumber.Mul(testNumber, big.NewInt(-1))
 				t.Logf("testNumber: %#+v\n", testNumber)
-				if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(testNumber); actualNumberOfDigits != powerOfTen+1 {
+				if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(testNumber); actualNumberOfDigits != int(powerOfTen+1) {
 					t.Errorf("Number in test: %v. Expected number of digits: %v. Actual number of digits: %v.", testNumber, powerOfTen, actualNumberOfDigits)
 				}
 			}
