@@ -16,6 +16,7 @@ func GetNumberOfDigitsOfAnInt(number int) int {
 
 // GetNumberOfDigitsOfABigInt returns the number of digits a big.Int has.
 func GetNumberOfDigitsOfABigInt(number *big.Int) int {
+	// Uses absNumber so as to not change the original number.
 	absNumber := *number
 	return len(absNumber.Abs(&absNumber).String())
 }
@@ -24,7 +25,6 @@ func GetNumberOfDigitsOfABigInt(number *big.Int) int {
 // starting with the smallest magnitude numbers (Right to left).
 // Syncing and safely exiting this function can be done through flushing the digits channel.
 func GetDigitsOfAnInt(number int) chan int {
-
 	if number < 0 {
 		panic("The number should be 0 or positive.")
 	}
