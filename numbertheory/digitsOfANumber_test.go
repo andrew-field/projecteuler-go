@@ -29,7 +29,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Number in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -49,7 +49,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(input); actualNumberOfDigits != expectedNumberOfDigits {
-				t.Errorf("Number in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -80,7 +80,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input.Mul(tC.input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Number in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -102,8 +102,36 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input.Mul(input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(input); actualNumberOfDigits != int(expectedNumberOfDigits) {
-				t.Errorf("Number in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
 			}
+		}
+	}
+}
+
+func TestGetDigitsOfAnInt(t *testing.T) {
+	testCases := []struct {
+		input          int
+		expectedDigits []int
+	}{
+		{0, []int{0}},
+		{1, []int{1}},
+		{9, []int{9}},
+		{10, []int{0, 1}},
+		{99, []int{9, 9}},
+		{100, []int{0, 0, 1}},
+		{500, []int{0, 0, 5}},
+		{4563198, []int{8, 9, 1, 3, 6, 5, 4}},
+		{math.MaxInt32, []int{7, 4, 6, 3, 8, 4, 7, 4, 1, 2}},
+		{math.MaxInt64, []int{7, 0, 8, 5, 7, 7, 4, 5, 8, 6, 3, 0, 2, 7, 3, 3, 2, 2, 9}},
+	}
+	for _, tC := range testCases {
+		digitChannel := GetDigitsOfAnInt(tC.input)
+		index := 0
+		for actualDigit := range digitChannel {
+			if actualDigit != tC.expectedDigits[index] {
+				t.Errorf("Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+			}
+			index++
 		}
 	}
 }
