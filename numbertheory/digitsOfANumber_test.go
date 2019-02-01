@@ -108,7 +108,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 	}
 }
 
-func TestGetDigitsOfAnInt(t *testing.T) {
+func TestGetDigitsOfAnIntANDGetDigitsOfAnIntInSlice(t *testing.T) {
 	testCases := []struct {
 		input          int
 		expectedDigits []int
@@ -125,13 +125,79 @@ func TestGetDigitsOfAnInt(t *testing.T) {
 		{math.MaxInt64, []int{7, 0, 8, 5, 7, 7, 4, 5, 8, 6, 3, 0, 2, 7, 3, 3, 2, 2, 9}},
 	}
 	for _, tC := range testCases {
+		digitSlice := GetDigitsOfAnIntInSlice(tC.input)
 		digitChannel := GetDigitsOfAnInt(tC.input)
 		index := 0
 		for actualDigit := range digitChannel {
 			if actualDigit != tC.expectedDigits[index] {
-				t.Errorf("Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+			}
+			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
+				t.Errorf("GetDigitsOfAnIntInSlice has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
 			}
 			index++
 		}
 	}
+
+	// Testing that the code panics if there is a negative input.
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic.")
+		}
+		defer func() {
+			if r := recover(); r == nil {
+				t.Errorf("The code did not panic.")
+			}
+		}()
+		GetDigitsOfAnIntInSlice(-10)
+	}()
+	GetDigitsOfAnInt(-10)
+}
+
+func TestGetDigitsOfABigIntANDGetDigitsOfABigNumberInSlice(t *testing.T) {
+	testCases := []struct {
+		input          *big.Int
+		expectedDigits []int
+	}{
+		{big.NewInt(0), []int{0}},
+		{big.NewInt(1), []int{1}},
+		{big.NewInt(9), []int{9}},
+		{big.NewInt(10), []int{0, 1}},
+		{big.NewInt(99), []int{9, 9}},
+		{big.NewInt(100), []int{0, 0, 1}},
+		{big.NewInt(500), []int{0, 0, 5}},
+		{big.NewInt(4563198), []int{8, 9, 1, 3, 6, 5, 4}},
+		{big.NewInt(math.MaxInt32), []int{7, 4, 6, 3, 8, 4, 7, 4, 1, 2}},
+		{big.NewInt(math.MaxInt64), []int{7, 0, 8, 5, 7, 7, 4, 5, 8, 6, 3, 0, 2, 7, 3, 3, 2, 2, 9}},
+		{big.NewInt(0).Exp(big.NewInt(10), big.NewInt(20), nil), []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}},
+		{big.NewInt(0).Exp(big.NewInt(2), big.NewInt(100), nil), []int{6, 7, 3, 5, 0, 2, 3, 0, 7, 6, 9, 4, 1, 0, 4, 9, 2, 2, 8, 2, 2, 0, 0, 6, 0, 5, 6, 7, 6, 2, 1}},
+	}
+	for _, tC := range testCases {
+		digitSlice := GetDigitsOfABigNumberInSlice(tC.input)
+		digitChannel := GetDigitsOfABigInt(tC.input)
+		index := 0
+		for actualDigit := range digitChannel {
+			if actualDigit != tC.expectedDigits[index] {
+				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+			}
+			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
+				t.Errorf("GetDigitsOfABigNumberInSlice has failed. GetDigitsOfAnIntInSlice has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
+			}
+			index++
+		}
+	}
+
+	// Testing that the code panics if there is a negative input.
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic.")
+		}
+		defer func() {
+			if r := recover(); r == nil {
+				t.Errorf("The code did not panic.")
+			}
+		}()
+		GetDigitsOfABigNumberInSlice(big.NewInt(-10))
+	}()
+	GetDigitsOfABigInt(big.NewInt(-10))
 }
