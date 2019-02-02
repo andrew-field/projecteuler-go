@@ -1,9 +1,10 @@
 package main
 
-import (
-	"github.com/andrew-field/testing_go/numbertheory"
-)
+import "fmt"
 
 func main() {
-	numbertheory.LargestPrimeFactor(600851475143)
+	fsdf := 10
+	fdsf := 4567
+	fmt.Println(fsdf / 2)
+	fmt.Println(fdsf / 2)
 }

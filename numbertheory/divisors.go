@@ -7,9 +7,8 @@ import (
 
 // GetNumberOfDivisors returns the number of divisors of number.
 func GetNumberOfDivisors(number uint) int {
-
-	if number < 1 {
-		panic("The number must be larger than 0")
+	if number == 0 {
+		return 0
 	}
 
 	if number == 1 {
@@ -40,9 +39,8 @@ func GetNumberOfDivisors(number uint) int {
 // GetDivisorsOfANumber fills a channel with all the divisors of a number.
 // Syncing and safely exiting this function can be done through flushing the divisor channel.
 func GetDivisorsOfANumber(number uint) chan uint {
-
-	if number < 1 {
-		panic("The number must be larger than 0")
+	if number == 0 {
+		panic("The number must be larger than 0.")
 	}
 
 	divisorChannel := make(chan uint, 100)
@@ -93,9 +91,8 @@ func GetDivisorsOfANumber(number uint) chan uint {
 // Probably some errors can occur when parsing back and forth between uint and float64.
 // Syncing and safely exiting this function can be done through flushing the divisor channel.
 func GetDivisorsOfANumberBruteForce(number uint) chan uint {
-
-	if number < 1 {
-		panic("The number must be larger than 0")
+	if number == 0 {
+		panic("The number must be larger than 0.")
 	}
 
 	divisorChannel := make(chan uint, 100)
@@ -119,9 +116,8 @@ func GetDivisorsOfANumberBruteForce(number uint) chan uint {
 
 // GetDivisorsOfANumberInASlice returns a sorted slice with all the divisors of a number.
 func GetDivisorsOfANumberInASlice(number uint) []uint {
-
-	if number < 1 {
-		panic("The number must be larger than 0")
+	if number == 0 {
+		panic("The number must be larger than 0.")
 	}
 
 	// A record of all the divisors.
@@ -164,9 +160,8 @@ func GetDivisorsOfANumberInASlice(number uint) []uint {
 
 // GetDivisorsOfANumberInASliceBruteForce returns a sorted slice with all the divisors of a number.
 func GetDivisorsOfANumberInASliceBruteForce(number uint) []uint {
-
-	if number < 1 {
-		panic("The number must be larger than 0")
+	if number == 0 {
+		panic("The number must be larger than 0.")
 	}
 
 	// A record of all the divisors.

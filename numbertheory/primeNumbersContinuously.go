@@ -6,8 +6,6 @@ import (
 
 var primes []uint
 var newNumbers []uint
-var isPrime bool
-var isFinished bool
 
 // GetPrimeNumbersContinuously fills a channel with the prime numbers.
 // The smaller the slice increment size, the quicker the primes will come initially but the slower the primes will come over time.
@@ -26,11 +24,7 @@ func GetPrimeNumbersContinuously(sliceIncrementsSize int) (chan uint, chan bool)
 	go func() {
 		defer func() {
 			close(primeChannel)
-			doneChannel <- true
-			close(doneChannel)
 		}()
-
-		isFinished = false
 
 		// Inital slice for primes.
 		primes = make([]uint, 0)
@@ -42,9 +36,6 @@ func GetPrimeNumbersContinuously(sliceIncrementsSize int) (chan uint, chan bool)
 		newNumbers = make([]uint, sliceIncrementsSize)
 
 		for {
-			if isFinished {
-				return
-			}
 			// Make new numbers.
 			for ind := range newNumbers {
 				newNumbers[ind] = firstNumberToCheck
@@ -58,19 +49,21 @@ func GetPrimeNumbersContinuously(sliceIncrementsSize int) (chan uint, chan bool)
 				}
 			}
 
-			// Generate primes.
-			generatePrimes(primeChannel, doneChannel, sliceIncrementsSize)
+			// Generate primes. This function will return true if a signal on the done channel comes through.
+			if generatePrimes(primeChannel, doneChannel, sliceIncrementsSize) {
+				return
+			}
 		}
 	}()
 
 	return primeChannel, doneChannel
 }
 
-// Basic euclidean sieve that probably has some issues somewhere with the type casting on line 46...
-func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) {
+// Basic euclidean sieve that probably has some issues somewhere with the type casting...
+func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncrementsSize int) bool {
 	for ind, val := range newNumbers {
-		isPrime = true
 		if val != 1 {
+			isPrime := true
 			for _, primeValue := range primes {
 				if float64(primeValue) > math.Floor(math.Sqrt(float64(val))) {
 					break
@@ -88,11 +81,10 @@ func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncremen
 			}
 
 			if isPrime {
-				// If finished then end the function.
 				select {
+				// If finished then end the function.
 				case <-doneChannel:
-					isFinished = true
-					return
+					return true
 				case primeChannel <- val:
 					primes = append(primes, val)
 					break
@@ -100,4 +92,6 @@ func generatePrimes(primeChannel chan uint, doneChannel chan bool, sliceIncremen
 			}
 		}
 	}
+
+	return false
 }

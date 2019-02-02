@@ -1,6 +1,6 @@
 package numbertheory
 
-// LowestCommonMultiple returns the lowest common multiple (lcm) of a group of numbers.
+// LowestCommonMultiple returns the lowest common multiple (LCM) of a group of numbers.
 func LowestCommonMultiple(numbers ...uint) uint {
 
 	// Slice of slices containing the prime factorisation of each number.
@@ -22,7 +22,7 @@ func LowestCommonMultiple(numbers ...uint) uint {
 	}
 
 	// For each prime number, any duplicates are removed from the other factorisations (once).
-	// This is so each prime number appears the correct number of times for the lcm calculation.
+	// This is so each prime number appears the correct number of times for the LCM calculation.
 	// Another way to think about it is that each prime number appears exactly the maximum number
 	// of times it appears in any individual factorisation.
 	// See lcm calculation.
