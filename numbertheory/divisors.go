@@ -68,14 +68,15 @@ func GetDivisorsOfANumber(number uint) chan uint {
 				if currentPrime == previousPrime {
 					currentPrimeMultiple *= currentPrime
 				} else {
-					// A new distinct factor is found. Add all the divisors generated from the previous factor and generate the new ones.
+					// A new distinct factor is found. Add all the divisors generated from the previous factor.
 					allDivisors = append(allDivisors, newDivisors...)
+					// Generate the new ones.
 					newDivisors = []uint{}
 					previousPrime = currentPrime
 					currentPrimeMultiple = currentPrime
 				}
 				for _, divisor := range allDivisors {
-					divisor := currentPrimeMultiple * divisor
+					divisor *= currentPrimeMultiple
 					divisorChannel <- divisor
 					newDivisors = append(newDivisors, divisor)
 				}

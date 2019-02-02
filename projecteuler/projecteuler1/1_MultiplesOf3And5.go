@@ -1,4 +1,4 @@
-package projecteuler
+package projecteuler1
 
 // MultiplesOf3And5MethodOne sums the multiples of 3 and 5 below 1000 without unnecessary calculations.
 // The question is whether the steps taken to avoid frivolous calculations actually make the process quicker
@@ -15,7 +15,7 @@ func MultiplesOf3And5MethodOne() int {
 	// Include multiples of 5.
 	i := 1
 	for j := 5; j < 1000; j += 5 {
-		// Exclude multiples of 3.
+		// Exclude multiples of 15 (Duplicate multiples of 3).
 		if i == 3 {
 			i = 1
 			continue
