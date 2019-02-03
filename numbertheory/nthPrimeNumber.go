@@ -10,10 +10,10 @@ func GetNthPrimeNumber(position uint) uint {
 	primeChannel, doneChannel := GetPrimeNumbersContinuously(100)
 
 	var count uint = 1
-	var prime uint
-	for ; count <= position; count++ {
-		prime = <-primeChannel
+	for ; count < position; count++ {
+		<-primeChannel
 	}
+	prime := <-primeChannel
 	doneChannel <- true
 
 	return prime

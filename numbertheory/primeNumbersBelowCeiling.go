@@ -6,7 +6,6 @@ package numbertheory
 // conveniently handles all possible int numbers.
 // Syncing and safely exiting this function can be done through flushing the prime channel.
 func GetAllPrimeNumbersBelowCeiling(ceiling int) chan int {
-
 	if ceiling <= 1 {
 		panic("The ceiling must be larger than 1 for any prime numbers to exist.")
 	}

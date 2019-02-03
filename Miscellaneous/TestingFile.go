@@ -1,10 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/andrew-field/testing_go/numbertheory"
+)
 
 func main() {
-	fsdf := 10
-	fdsf := 4567
-	fmt.Println(fsdf / 2)
-	fmt.Println(fdsf / 2)
+	for val := range numbertheory.GetAllPrimeNumbersBelowCeiling(100) {
+		fmt.Println(val)
+	}
 }

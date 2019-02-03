@@ -18,8 +18,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"7: 10001st Prime Number", Position10001Prime, 104743},
 	}
 	for _, tC := range testCases {
-		actualResult := tC.function()
-		if tC.expectedResult != actualResult {
+		if actualResult := tC.function(); tC.expectedResult != actualResult {
 			t.Errorf("Failure. Test case: %#v. Expected result: %#v. Actual result: %#v", tC.desc, tC.expectedResult, actualResult)
 		}
 	}

@@ -5,32 +5,36 @@ package numbertheory
 func GetPrimeFactorisation(numberToFactorise uint) chan uint {
 	primeFactorChannel := make(chan uint, 100)
 
-	go func() {
-		// Make prime and done channel.
-		primeChannel, doneChannel := GetPrimeNumbersContinuously(100)
-
-		// For each prime, see if it is a factor.
-		for val := range primeChannel {
-			for numberToFactorise%val == 0 {
-				primeFactorChannel <- val
-				numberToFactorise /= val
-			}
-
-			// If found all factors, break.
-			if numberToFactorise == 1 {
-				doneChannel <- true
-				break
-			}
-		}
-		<-doneChannel
-
+	// Special case I will use for 0 and 1.
+	if numberToFactorise == 0 || numberToFactorise == 1 {
+		primeFactorChannel <- numberToFactorise
 		close(primeFactorChannel)
-	}()
+	} else {
+		go func() {
+			// Make prime and done channel.
+			primeChannel, doneChannel := GetPrimeNumbersContinuously(100)
+
+			// For each prime, see if it is a factor.
+			for val := range primeChannel {
+				for numberToFactorise%val == 0 {
+					primeFactorChannel <- val
+					numberToFactorise /= val
+				}
+
+				// If found all factors then finish.
+				if numberToFactorise == 1 {
+					doneChannel <- true
+					close(primeFactorChannel)
+					return
+				}
+			}
+		}()
+	}
 
 	return primeFactorChannel
 }
 
-// LargestPrimeFactor returns the largest prime factor of a number.
+// LargestPrimeFactor returns the largest prime factor of a number. The special case of 0 and 1 follows from "GetPrimeFactorisation" and will be 0 and 1 respectively.
 func LargestPrimeFactor(number uint) uint {
 	primeFactorChannel := GetPrimeFactorisation(number)
 
