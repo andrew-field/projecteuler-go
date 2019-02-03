@@ -2,7 +2,7 @@ package numbertheory
 
 import "testing"
 
-func TestGetPrimeFactorisation(t *testing.T) {
+func TestGetPrimeFactorisationANDGetPrimeFactorisationInSlice(t *testing.T) {
 	testCases := []struct {
 		input          uint
 		expectedResult []uint
@@ -36,6 +36,16 @@ func TestGetPrimeFactorisation(t *testing.T) {
 		// Check the prime factor channel does not have too many values.
 		if _, unfinished := <-primeFactorChannel; unfinished {
 			t.Errorf("GetPrimeFactorisation has failed. Input in test: %#v. The prime factor channel has too many primes", tC.input)
+		}
+
+		actualResult := GetPrimeFactorisationInSlice(tC.input)
+		if len(tC.expectedResult) != len(actualResult) {
+			t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %#v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
+		}
+		for ind, expectedPrimeFactor := range tC.expectedResult {
+			if actualPrimeFactor := actualResult[ind]; expectedPrimeFactor != actualPrimeFactor {
+				t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrimeFactor, actualPrimeFactor)
+			}
 		}
 	}
 }
