@@ -19,7 +19,7 @@ func TestLowestCommonMultiple(t *testing.T) {
 	}
 	for _, tC := range testCases {
 		if actualResult := LowestCommonMultiple(tC.input...); tC.expectedResult != actualResult {
-			t.Errorf("LowestCommonMultiple has failed. Input in test: %#v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
+			t.Errorf("LowestCommonMultiple has failed. Input in test: %v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
 		}
 	}
 }

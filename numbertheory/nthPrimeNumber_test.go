@@ -24,7 +24,7 @@ func TestGetNthPrimeNumber(t *testing.T) {
 	}
 	for _, tC := range testCases {
 		if actualResult := GetNthPrimeNumber(tC.input); tC.expectedResult != actualResult {
-			t.Errorf("GetNthPrimeNumber has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, tC.expectedResult, actualResult)
+			t.Errorf("GetNthPrimeNumber has failed. Input in test: %v. Expected prime: %v. Actual prime: %v.", tC.input, tC.expectedResult, actualResult)
 		}
 	}
 

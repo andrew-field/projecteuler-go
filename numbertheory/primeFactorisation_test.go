@@ -29,22 +29,22 @@ func TestGetPrimeFactorisationANDGetPrimeFactorisationInSlice(t *testing.T) {
 		for _, expectedPrimeFactor := range tC.expectedResult {
 			// All these tests should not encounter the problem where the prime factor channel has too few values. The reverse is checked below.
 			if actualPrimeFactor := <-primeFactorChannel; expectedPrimeFactor != actualPrimeFactor {
-				t.Errorf("GetPrimeFactorisation has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrimeFactor, actualPrimeFactor)
+				t.Errorf("GetPrimeFactorisation has failed. Input in test: %v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrimeFactor, actualPrimeFactor)
 			}
 		}
 
 		// Check the prime factor channel does not have too many values.
 		if _, unfinished := <-primeFactorChannel; unfinished {
-			t.Errorf("GetPrimeFactorisation has failed. Input in test: %#v. The prime factor channel has too many primes", tC.input)
+			t.Errorf("GetPrimeFactorisation has failed. Input in test: %v. The prime factor channel has too many primes", tC.input)
 		}
 
 		actualResult := GetPrimeFactorisationInSlice(tC.input)
 		if len(tC.expectedResult) != len(actualResult) {
-			t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %#v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
+			t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
 		}
 		for ind, expectedPrimeFactor := range tC.expectedResult {
 			if actualPrimeFactor := actualResult[ind]; expectedPrimeFactor != actualPrimeFactor {
-				t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrimeFactor, actualPrimeFactor)
+				t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrimeFactor, actualPrimeFactor)
 			}
 		}
 	}
@@ -74,7 +74,7 @@ func TestLargestPrimeFactor(t *testing.T) {
 	}
 	for _, tC := range testCases {
 		if actualResult := LargestPrimeFactor(tC.input); tC.expectedResult != actualResult {
-			t.Errorf("LargestPrimeFactor has failed. Input in test: %#v. Expected largest prime factor: %v. Actual largest prime factor: %v.", tC.input, tC.expectedResult, actualResult)
+			t.Errorf("LargestPrimeFactor has failed. Input in test: %v. Expected largest prime factor: %v. Actual largest prime factor: %v.", tC.input, tC.expectedResult, actualResult)
 		}
 	}
 }

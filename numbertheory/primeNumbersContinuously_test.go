@@ -1,6 +1,8 @@
 package numbertheory
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGetPrimeNumbersContinuously(t *testing.T) {
 	testCases := []struct {
@@ -18,7 +20,7 @@ func TestGetPrimeNumbersContinuously(t *testing.T) {
 		for _, expectedPrime := range tC.expectedResult {
 			// All these tests should not encounter the problem where the prime channel has too few values.
 			if actualPrime := <-primeChannel; expectedPrime != actualPrime {
-				t.Errorf("GetPrimeNumbersContinuously has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrime, actualPrime)
+				t.Errorf("GetPrimeNumbersContinuously has failed. Input in test: %v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrime, actualPrime)
 			}
 		}
 		doneChannel <- true

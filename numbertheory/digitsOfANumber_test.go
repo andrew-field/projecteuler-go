@@ -29,7 +29,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -49,7 +49,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(input); actualNumberOfDigits != expectedNumberOfDigits {
-				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -80,7 +80,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input.Mul(tC.input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -102,7 +102,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input.Mul(input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(input); actualNumberOfDigits != int(expectedNumberOfDigits) {
-				t.Errorf("Input in test: %#v. Expected number of digits: %#v. Actual number of digits: %#v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedNumberOfDigits, actualNumberOfDigits)
 			}
 		}
 	}
@@ -130,10 +130,10 @@ func TestGetDigitsOfAnIntANDGetDigitsOfAnIntInSlice(t *testing.T) {
 		index := 0
 		for actualDigit := range digitChannel {
 			if actualDigit != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
 			}
 			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnIntInSlice has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
+				t.Errorf("GetDigitsOfAnIntInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
 			}
 			index++
 		}
@@ -178,10 +178,10 @@ func TestGetDigitsOfABigIntANDGetDigitsOfABigNumberInSlice(t *testing.T) {
 		index := 0
 		for actualDigit := range digitChannel {
 			if actualDigit != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigit)
+				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
 			}
 			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfABigNumberInSlice has failed. GetDigitsOfAnIntInSlice has failed. Input in test: %#v. Expected digit: %#v. Actual digit: %#v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
+				t.Errorf("GetDigitsOfABigNumberInSlice has failed. GetDigitsOfAnIntInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
 			}
 			index++
 		}

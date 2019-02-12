@@ -4,40 +4,49 @@ import (
 	"math"
 )
 
-// GetMaximumPathSumOfPyramidUsingMaximumSlots returns the maximum sum of every path from top to bottom of a pyramid while
+// GetMaximumPathSumOfPyramidUsingMaximumSlots returns the maximum of every path sum from top to bottom of a pyramid while
 // moving only to adjacent numbers on the row below.
 func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
+	if pyramid == nil {
+		panic("The pyramid can not be nil.")
+	}
+
 	// Height of the pyramid/Length of longest row.
 	length := len(pyramid)
 
-	// Make the grid for the numbers.
-	pyramidWithMaximumSlots := make([][][]float64, length)
-
-	// Each index of the pyramid has a corresponding "max slot" (The zeroes).
-	for ind := range pyramidWithMaximumSlots {
-		pyramidWithMaximumSlots[ind] = make([][]float64, 0)
-		for j := 0; j <= ind; j++ {
-			pyramidWithMaximumSlots[ind] = append(pyramidWithMaximumSlots[ind], []float64{pyramid[ind][j], 0})
+	// Safety checking of correctly constructed pyramid as a 2D slice.
+	if length == 0 {
+		panic("The pyramid can not have zero length.")
+	}
+	for ind := range pyramid {
+		if len(pyramid[ind]) != ind+1 {
+			panic("The pyramid is not properly constructed.")
 		}
 	}
 
-	// Go through each index starting at the top.
-	// Populate each max slot of each index with the maximum possible sum with which it is possible
-	// to reach that index. Do this by adding the grid number at the index to the maximum of the
-	// two max slots for the above indexes (Directly above or left).
-	for ind := range pyramidWithMaximumSlots {
-		// The top.
-		if ind == 0 {
-			pyramidWithMaximumSlots[ind][0][1] = pyramidWithMaximumSlots[ind][0][0]
-			continue
-		}
-		for ind2 := range pyramidWithMaximumSlots[ind] {
-			if ind2 == 0 { // The leftmost indexes.
-				pyramidWithMaximumSlots[ind][ind2][1] = pyramidWithMaximumSlots[ind][ind2][0] + pyramidWithMaximumSlots[ind-1][ind2][1]
-			} else if ind == ind2 { // The rightmost indexes.
-				pyramidWithMaximumSlots[ind][ind2][1] = pyramidWithMaximumSlots[ind][ind2][0] + pyramidWithMaximumSlots[ind-1][ind2-1][1]
+	// The Coordinate can correspond to each index of the 2D slice.
+	type Coordinate struct {
+		outerIndex, innerIndex int
+	}
+
+	// Make the map to store for each index of the pyramid the maximum possible sum with which it is possible
+	// to reach that index.
+	maximumMap := make(map[Coordinate]float64)
+
+	// The top is obvious.
+	maximumMap[Coordinate{0, 0}] = pyramid[0][0]
+
+	// Go through each index excluding the top.
+	// Populate th maximumMap including each index of the pyramid. Do this by adding the value at each index of the pyramid to the maximum of the
+	// two values stored in the maximumMap for the indexes above (directly above and, above and left).
+	for outerIndex := 1; outerIndex < length; outerIndex++ {
+		for innerIndex := range pyramid[outerIndex] {
+			if innerIndex == 0 { // The leftmost indexes.
+				maximumMap[Coordinate{outerIndex, innerIndex}] = pyramid[outerIndex][innerIndex] + maximumMap[Coordinate{outerIndex - 1, innerIndex}]
+			} else if outerIndex == innerIndex { // The rightmost indexes.
+				maximumMap[Coordinate{outerIndex, innerIndex}] = pyramid[outerIndex][innerIndex] + maximumMap[Coordinate{outerIndex - 1, innerIndex - 1}]
 			} else { // The rest.
-				pyramidWithMaximumSlots[ind][ind2][1] = pyramidWithMaximumSlots[ind][ind2][0] + math.Max(pyramidWithMaximumSlots[ind-1][ind2-1][1], pyramidWithMaximumSlots[ind-1][ind2][1])
+				maximumMap[Coordinate{outerIndex, innerIndex}] = pyramid[outerIndex][innerIndex] + math.Max(maximumMap[Coordinate{outerIndex - 1, innerIndex - 1}], maximumMap[Coordinate{outerIndex - 1, innerIndex}])
 			}
 		}
 	}
@@ -45,45 +54,61 @@ func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
 	// Maximum.
 	var max float64
 
-	// Find the maximum of the max slots in the final row.
-	for _, val := range pyramidWithMaximumSlots[length-1] {
-		max = math.Max(max, val[1])
+	// Find the maximum in the maximumMap at the indexes of the bottom and final row.
+	for index := 0; index < length; index++ {
+		max = math.Max(max, maximumMap[Coordinate{length - 1, index}])
 	}
 
 	return max
 }
 
-var pyramidUsingRecursiveFunction [][]float64
-
-// GetMaximumPathSumOfPyramidUsingRecursiveFunction returns the maximum sum of every path from top to bottom of a pyramid while
-// moving only to adjacent numbers on the row below. This method uses a recursive function and is relatively slow.
+// GetMaximumPathSumOfPyramidUsingRecursiveFunction returns the maximum of every path sum from top to bottom of a pyramid while
+// moving only to adjacent numbers on the row below.
 func GetMaximumPathSumOfPyramidUsingRecursiveFunction(pyramid [][]float64) float64 {
-	// Maximum.
-	var max float64
-	length := len(pyramid)
-	pyramidUsingRecursiveFunction = pyramid
-
-	// Find the maximum of the maximums in the final row.
-	for i := 0; i < length; i++ {
-		max = math.Max(max, getMax(length-1, i))
+	if pyramid == nil {
+		panic("The pyramid can not be nil.")
 	}
 
-	return max
+	// Height of the pyramid/Length of longest row cannot be 0.
+	if len(pyramid) == 0 {
+		panic("The pyramid can not have zero length.")
+	}
+	// Safety checking of correctly constructed pyramid as a 2D slice.
+	for ind := range pyramid {
+		if len(pyramid[ind]) != ind+1 {
+			panic("The pyramid is not properly constructed.")
+		}
+	}
+
+	return getMax(pyramid)
 }
 
-func getMax(x, y int) float64 {
-	// The top.
-	if x == 0 {
-		return pyramidUsingRecursiveFunction[x][y]
+func getMax(pyramid [][]float64) float64 {
+	// A single number, the bottom of the pyramid.
+	if len(pyramid) == 1 {
+		return pyramid[0][0]
 	}
-	// The leftmost indexes.
-	if y == 0 {
-		return pyramidUsingRecursiveFunction[x][y] + getMax(x-1, y)
+
+	// Because of how go uses memory for slices, a copy is needed to have to distinct slices not altering each other.
+	// See https://blog.golang.org/go-slices-usage-and-internals for more.
+	copyOfPyramid := make([][]float64, len(pyramid))
+	copy(copyOfPyramid, pyramid)
+
+	return pyramid[0][0] + math.Max(getMax(getLowerPyramid(pyramid, "Left")), getMax(getLowerPyramid(copyOfPyramid, "Right")))
+}
+
+func getLowerPyramid(pyramid [][]float64, position string) [][]float64 {
+	pyramid = pyramid[1:]
+
+	for ind := range pyramid {
+		if position == "Left" {
+			pyramid[ind] = pyramid[ind][:len(pyramid[ind])-1]
+		} else if position == "Right" {
+			pyramid[ind] = pyramid[ind][1:]
+		} else {
+			panic("Encountered unexpected position.")
+		}
 	}
-	// The rightmost indexes.
-	if y == x {
-		return pyramidUsingRecursiveFunction[x][y] + getMax(x-1, y-1)
-	}
-	// The rest.
-	return pyramidUsingRecursiveFunction[x][y] + math.Max(getMax(x-1, y-1), getMax(x-1, y))
+
+	return pyramid
 }

@@ -31,13 +31,13 @@ func TestGetAllPrimeNumbersBelowCeiling(t *testing.T) {
 		for _, expectedPrime := range tC.expectedResult {
 			// All these tests should not encounter the problem where the prime channel has too few values. The reverse is checked below.
 			if actualPrime := <-primeChannel; expectedPrime != actualPrime {
-				t.Errorf("GetAllPrimeNumbersBelowCeiling has failed. Input in test: %#v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrime, actualPrime)
+				t.Errorf("GetAllPrimeNumbersBelowCeiling has failed. Input in test: %v. Expected prime: %v. Actual prime: %v.", tC.input, expectedPrime, actualPrime)
 			}
 		}
 
 		// Check the prime channel does not have too many values.
 		if _, unfinished := <-primeChannel; unfinished {
-			t.Errorf("GetAllPrimeNumbersBelowCeiling has failed. Input in test: %#v. The prime channel has too many primes", tC.input)
+			t.Errorf("GetAllPrimeNumbersBelowCeiling has failed. Input in test: %v. The prime channel has too many primes", tC.input)
 		}
 	}
 
