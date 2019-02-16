@@ -16,6 +16,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"5: Smallest Multiple", SmallestMultiple, 232792560},
 		{"6: Sum Square Difference", SumSquareDifference, 25164150},
 		{"7: 10001st Prime Number", Position10001Prime, 104743},
+		{"8: Largest Product in a Series", LargestProductInASeries, 23514624000},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {
