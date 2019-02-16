@@ -17,16 +17,17 @@ func GetNumberOfDigitsOfAnInt(number int) int {
 // GetNumberOfDigitsOfABigInt returns the number of digits a big.Int has.
 func GetNumberOfDigitsOfABigInt(number *big.Int) int {
 	// Uses altNumber so as to not change the original number.
-	altNumber := *number
-	return len(altNumber.Abs(&altNumber).String())
+	altNumber := big.NewInt(0)
+	altNumber.Set(number)
+	altNumber.Abs(altNumber)
+	return len(altNumber.String())
 }
 
-// GetDigitsOfAnInt fills and returns a channel with the digits of a number
+// GetDigitsOfAnInt returns and fills a channel with the digits of a number
 // starting with the smallest magnitude numbers (Right to left).
-// Syncing and safely exiting this function can be done through flushing the digits channel.
 func GetDigitsOfAnInt(number int) chan int {
 	if number < 0 {
-		panic("The number should be 0 or positive.")
+		number *= -1
 	}
 
 	digitsChannel := make(chan int, 10)
@@ -47,14 +48,11 @@ func GetDigitsOfAnInt(number int) chan int {
 
 // GetDigitsOfABigInt fills and returns a channel with the digits of a big.Int number
 // starting with the smallest magnitude numbers (Right to left).
-// Syncing and safely exiting this function can be done through flushing the digits channel.
 func GetDigitsOfABigInt(number *big.Int) chan int {
 	// Uses altNumber so as to not change the original number.
-	altNumber := *number
-
-	if altNumber.Sign() == -1 {
-		panic("The number should be 0 or positive.")
-	}
+	altNumber := big.NewInt(0)
+	altNumber.Set(number)
+	altNumber.Abs(altNumber)
 
 	digitsChannel := make(chan int, 10)
 	go func() {
@@ -65,7 +63,7 @@ func GetDigitsOfABigInt(number *big.Int) chan int {
 		for !altNumber.IsInt64() || altNumber.Int64() > 9 {
 			// Go is so nice with this handy function that does everything I need.
 			// Sets altNumber to altNumber / 10 and sets digit to altNumber mod 10 (The last digit).
-			altNumber.QuoRem(&altNumber, ten, &digit)
+			altNumber.QuoRem(altNumber, ten, &digit)
 			digitsChannel <- int(digit.Int64())
 		}
 
@@ -78,23 +76,22 @@ func GetDigitsOfABigInt(number *big.Int) chan int {
 }
 
 // GetDigitsOfAnIntInSlice returns a slice of the digits of a number as written.
+// This function uses string conversions instead of maths.
 func GetDigitsOfAnIntInSlice(number int) []int {
 	if number < 0 {
-		panic("The number should be 0 or positive.")
+		number *= -1
 	}
 
 	return digitsOfANumber(strconv.Itoa(number))
 }
 
 // GetDigitsOfABigNumberInSlice returns a slice of the digits of a big.Int number as written.
+// This function uses string conversions instead of maths.
 func GetDigitsOfABigNumberInSlice(number *big.Int) []int {
 	// Uses altNumber so as to not change the original number.
-	altNumber := *number
-
-	if altNumber.Sign() == -1 {
-		panic("The number should be 0 or positive.")
-	}
-
+	altNumber := big.NewInt(0)
+	altNumber.Set(number)
+	altNumber.Abs(altNumber)
 	return digitsOfANumber(altNumber.Text(10))
 }
 

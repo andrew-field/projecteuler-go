@@ -10,8 +10,8 @@ import (
 
 func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 	testCases := []struct {
-		input                  int
-		expectedNumberOfDigits int
+		input          int
+		expectedResult int
 	}{
 		{0, 1},
 		{1, 1},
@@ -22,14 +22,14 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 		{500, 3},
 		{4563198, 7},
 		{math.MaxInt32, 10},
-		{math.MaxInt64, 19},
+		{math.MaxInt64 - 1, 19},
 	}
 	for _, tC := range testCases {
 		for index := 0; index < 2; index++ {
 			// For each number, try the negative as well.
 			tC.input *= -1
-			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(tC.input); actualNumberOfDigits != tC.expectedResult {
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -44,12 +44,12 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 		// This will give a random number n such that lowerBound <= n < lowerBound*10.
 		input := int(randomGenerator.Float64()*(9*lowerBound) + lowerBound)
 		// The expected number of digits is powerOfTen + 1.
-		expectedNumberOfDigits := powerOfTen + 1
+		expectedResult := powerOfTen + 1
 		for index := 0; index < 2; index++ {
 			// For each number, try the negative as well.
 			input *= -1
-			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(input); actualNumberOfDigits != expectedNumberOfDigits {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(input); actualNumberOfDigits != expectedResult {
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -57,8 +57,8 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 
 func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 	testCases := []struct {
-		input                  *big.Int
-		expectedNumberOfDigits int
+		input          *big.Int
+		expectedResult int
 	}{
 		{big.NewInt(0), 1},
 		{big.NewInt(1), 1},
@@ -79,8 +79,8 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 		for index := 0; index < 2; index++ {
 			// For each number, try the negative as well.
 			tC.input.Mul(tC.input, big.NewInt(-1))
-			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.input); actualNumberOfDigits != tC.expectedNumberOfDigits {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedNumberOfDigits, actualNumberOfDigits)
+			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.input); actualNumberOfDigits != tC.expectedResult {
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -97,12 +97,12 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 		rand := big.NewFloat(randomGenerator.Float64())
 		input, _ := lowerBound.Add(rand.Mul(rand, nine.Mul(nine, lowerBound)), lowerBound).Int(nil)
 		// The expected number of digits is powerOfTen + 1.
-		expectedNumberOfDigits := powerOfTen + 1
+		expectedResult := powerOfTen + 1
 		for index := 0; index < 2; index++ {
 			// For each number, try the negative as well.
 			input.Mul(input, big.NewInt(-1))
-			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(input); actualNumberOfDigits != int(expectedNumberOfDigits) {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedNumberOfDigits, actualNumberOfDigits)
+			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(input); actualNumberOfDigits != int(expectedResult) {
+				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -125,33 +125,23 @@ func TestGetDigitsOfAnIntANDGetDigitsOfAnIntInSlice(t *testing.T) {
 		{math.MaxInt64, []int{7, 0, 8, 5, 7, 7, 4, 5, 8, 6, 3, 0, 2, 7, 3, 3, 2, 2, 9}},
 	}
 	for _, tC := range testCases {
-		digitSlice := GetDigitsOfAnIntInSlice(tC.input)
-		digitChannel := GetDigitsOfAnInt(tC.input)
-		index := 0
-		for actualDigit := range digitChannel {
-			if actualDigit != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
+		for index := 0; index < 2; index++ {
+			// For each number, try the negative as well.
+			tC.input *= -1
+			digitChannel := GetDigitsOfAnInt(tC.input)
+			digitSlice := GetDigitsOfAnIntInSlice(tC.input)
+			index := 0
+			for actualDigit := range digitChannel {
+				if actualDigit != tC.expectedDigits[index] {
+					t.Errorf("GetDigitsOfAnInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
+				}
+				if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
+					t.Errorf("GetDigitsOfAnIntInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
+				}
+				index++
 			}
-			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnIntInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
-			}
-			index++
 		}
 	}
-
-	// Testing that the code panics if there is a negative input.
-	defer func() {
-		if r := recover(); r == nil {
-			t.Errorf("The code did not panic.")
-		}
-		defer func() {
-			if r := recover(); r == nil {
-				t.Errorf("The code did not panic.")
-			}
-		}()
-		GetDigitsOfAnIntInSlice(-10)
-	}()
-	GetDigitsOfAnInt(-10)
 }
 
 func TestGetDigitsOfABigIntANDGetDigitsOfABigNumberInSlice(t *testing.T) {
@@ -173,31 +163,22 @@ func TestGetDigitsOfABigIntANDGetDigitsOfABigNumberInSlice(t *testing.T) {
 		{big.NewInt(0).Exp(big.NewInt(2), big.NewInt(100), nil), []int{6, 7, 3, 5, 0, 2, 3, 0, 7, 6, 9, 4, 1, 0, 4, 9, 2, 2, 8, 2, 2, 0, 0, 6, 0, 5, 6, 7, 6, 2, 1}},
 	}
 	for _, tC := range testCases {
-		digitSlice := GetDigitsOfABigNumberInSlice(tC.input)
-		digitChannel := GetDigitsOfABigInt(tC.input)
-		index := 0
-		for actualDigit := range digitChannel {
-			if actualDigit != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfAnInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
+		for ind := 0; ind < 2; ind++ {
+			// For each number, try the negative as well.
+			tC.input.Mul(tC.input, big.NewInt(-1))
+
+			digitChannel := GetDigitsOfABigInt(tC.input)
+			digitSlice := GetDigitsOfABigNumberInSlice(tC.input)
+			index := 0
+			for actualDigit := range digitChannel {
+				if actualDigit != tC.expectedDigits[index] {
+					t.Errorf("GetDigitsOfABigInt has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigit)
+				}
+				if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
+					t.Errorf("GetDigitsOfABigNumberInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
+				}
+				index++
 			}
-			if actualDigitFromSlice := digitSlice[len(digitSlice)-1-index]; actualDigitFromSlice != tC.expectedDigits[index] {
-				t.Errorf("GetDigitsOfABigNumberInSlice has failed. GetDigitsOfAnIntInSlice has failed. Input in test: %v. Expected digit: %v. Actual digit: %v.", tC.input, tC.expectedDigits[index], actualDigitFromSlice)
-			}
-			index++
 		}
 	}
-
-	// Testing that the code panics if there is a negative input.
-	defer func() {
-		if r := recover(); r == nil {
-			t.Errorf("The code did not panic.")
-		}
-		defer func() {
-			if r := recover(); r == nil {
-				t.Errorf("The code did not panic.")
-			}
-		}()
-		GetDigitsOfABigNumberInSlice(big.NewInt(-10))
-	}()
-	GetDigitsOfABigInt(big.NewInt(-10))
 }

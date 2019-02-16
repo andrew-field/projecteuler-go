@@ -25,6 +25,7 @@ func TestGetPrimeFactorisationANDGetPrimeFactorisationInSlice(t *testing.T) {
 		{600851475143, []uint{71, 839, 1471, 6857}},
 	}
 	for _, tC := range testCases {
+		// GetPrimeFactorisation
 		primeFactorChannel := GetPrimeFactorisation(tC.input)
 		for _, expectedPrimeFactor := range tC.expectedResult {
 			// All these tests should not encounter the problem where the prime factor channel has too few values. The reverse is checked below.
@@ -38,6 +39,7 @@ func TestGetPrimeFactorisationANDGetPrimeFactorisationInSlice(t *testing.T) {
 			t.Errorf("GetPrimeFactorisation has failed. Input in test: %v. The prime factor channel has too many primes", tC.input)
 		}
 
+		// GetPrimeFactorisationInSlice
 		actualResult := GetPrimeFactorisationInSlice(tC.input)
 		if len(tC.expectedResult) != len(actualResult) {
 			t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
