@@ -34,19 +34,11 @@ func GetPrimeFactorisation(numberToFactorise uint) chan uint {
 	return primeFactorChannel
 }
 
-// GetPrimeFactorisationInSlice returns a slice containing the prime factorisation of a number.
+// GetPrimeFactorisationInASlice returns a slice containing the prime factorisation of a number.
 // This is useful when the whole factorisation is required before further calculation.
 // The special case of 0 and 1 follows from "GetPrimeFactorisation" and will be 0 and 1 respectively.
-func GetPrimeFactorisationInSlice(numberToFactorise uint) []uint {
-	factorisation := make([]uint, 0)
-
-	primeFactorChannel := GetPrimeFactorisation(numberToFactorise)
-
-	for primeFactor := range primeFactorChannel {
-		factorisation = append(factorisation, primeFactor)
-	}
-
-	return factorisation
+func GetPrimeFactorisationInASlice(numberToFactorise uint) []uint {
+	return channelIntoSlice(GetPrimeFactorisation, numberToFactorise)
 }
 
 // LargestPrimeFactor returns the largest prime factor of a number.

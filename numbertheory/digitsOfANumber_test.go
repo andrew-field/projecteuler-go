@@ -29,7 +29,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(tC.input); actualNumberOfDigits != tC.expectedResult {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
+				t.Errorf("GetNumberOfDigitsOfAnInt has failed. Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -49,7 +49,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input *= -1
 			if actualNumberOfDigits := GetNumberOfDigitsOfAnInt(input); actualNumberOfDigits != expectedResult {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
+				t.Errorf("GetNumberOfDigitsOfAnInt has failed. Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -80,7 +80,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input.Mul(tC.input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(tC.input); actualNumberOfDigits != tC.expectedResult {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
+				t.Errorf("GetNumberOfDigitsOfABigInt has failed. Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", tC.input, tC.expectedResult, actualNumberOfDigits)
 			}
 		}
 	}
@@ -102,7 +102,7 @@ func TestGetNumberOfDigitsOfABigInt(t *testing.T) {
 			// For each number, try the negative as well.
 			input.Mul(input, big.NewInt(-1))
 			if actualNumberOfDigits := GetNumberOfDigitsOfABigInt(input); actualNumberOfDigits != int(expectedResult) {
-				t.Errorf("Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
+				t.Errorf("GetNumberOfDigitsOfABigInt has failed. Input in test: %v. Expected number of digits: %v. Actual number of digits: %v.", input, expectedResult, actualNumberOfDigits)
 			}
 		}
 	}

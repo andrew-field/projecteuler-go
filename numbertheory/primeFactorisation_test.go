@@ -40,7 +40,7 @@ func TestGetPrimeFactorisationANDGetPrimeFactorisationInSlice(t *testing.T) {
 		}
 
 		// GetPrimeFactorisationInSlice
-		actualResult := GetPrimeFactorisationInSlice(tC.input)
+		actualResult := GetPrimeFactorisationInASlice(tC.input)
 		if len(tC.expectedResult) != len(actualResult) {
 			t.Errorf("GetPrimeFactorisationInSlice has failed. Input in test: %v. Expected result: %v. Actual result: %v.", tC.input, tC.expectedResult, actualResult)
 		}

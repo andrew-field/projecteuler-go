@@ -18,7 +18,7 @@ func LowestCommonMultiple(allNumbers ...uint) uint {
 			continue
 		}
 
-		primeFactorisations = append(primeFactorisations, GetPrimeFactorisationInSlice(val))
+		primeFactorisations = append(primeFactorisations, GetPrimeFactorisationInASlice(val))
 	}
 
 	// Special case if all the numbers are 1.
