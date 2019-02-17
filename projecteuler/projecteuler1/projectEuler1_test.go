@@ -19,6 +19,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"8: Largest Product in a Series", LargestProductInASeries, 23514624000},
 		{"9: Special Pythagorean triplet", SpecialPythagoreanTriplet, 31875000},
 		{"10: Summation of Primes", SummationOfPrimes, 142913828922},
+		{"11: Largest Product in a Grid", LargestProductInAGrid, 70600674},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {

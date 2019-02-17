@@ -1,11 +1,12 @@
-package main
+package projecteuler1
 
 import (
-	"fmt"
 	"math"
 )
 
-func main() {
+// LargestProductInAGrid returns the greatest product of four adjacent numbers
+// in the same direction (up, down, left, right, or diagonally) in a grid?
+func LargestProductInAGrid() int {
 	matrix := make([][]float64, 20)
 
 	// Setup.
@@ -61,5 +62,5 @@ func main() {
 		}
 	}
 
-	fmt.Println("Max:", int64(max))
+	return int(max)
 }
