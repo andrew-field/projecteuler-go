@@ -75,9 +75,9 @@ func GetDigitsOfABigInt(number *big.Int) chan int {
 	return digitsChannel
 }
 
-// GetDigitsOfAnIntInSlice returns a slice of the digits of a number as written.
+// GetDigitsOfAnIntInASlice returns a slice of the digits of a number as written.
 // This function uses string conversions instead of maths.
-func GetDigitsOfAnIntInSlice(number int) []int {
+func GetDigitsOfAnIntInASlice(number int) []int {
 	if number < 0 {
 		number *= -1
 	}
@@ -85,9 +85,9 @@ func GetDigitsOfAnIntInSlice(number int) []int {
 	return digitsOfANumber(strconv.Itoa(number))
 }
 
-// GetDigitsOfABigNumberInSlice returns a slice of the digits of a big.Int number as written.
+// GetDigitsOfABigNumberInASlice returns a slice of the digits of a big.Int number as written.
 // This function uses string conversions instead of maths.
-func GetDigitsOfABigNumberInSlice(number *big.Int) []int {
+func GetDigitsOfABigNumberInASlice(number *big.Int) []int {
 	// Uses altNumber so as to not change the original number.
 	altNumber := big.NewInt(0)
 	altNumber.Set(number)

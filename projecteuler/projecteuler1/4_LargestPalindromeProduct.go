@@ -12,7 +12,7 @@ func LargestPalindromeProduct() int {
 	for a := 100; a < 1000; a++ {
 		for b := a; b < 1000; b++ {
 			product := a * b
-			digits := numbertheory.GetDigitsOfAnIntInSlice(product)
+			digits := numbertheory.GetDigitsOfAnIntInASlice(product)
 			lastIndex := len(digits) - 1
 			// General palindrome checker.
 			for index := 0; digits[index] == digits[lastIndex-index]; index++ {

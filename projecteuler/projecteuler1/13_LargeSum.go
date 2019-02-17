@@ -1,11 +1,14 @@
-package main
+package projecteuler1
 
 import (
-	"fmt"
+	"math"
 	"math/big"
+
+	"github.com/andrew-field/testing_go/numbertheory"
 )
 
-func main() {
+// LargeSum returns the first ten digits of the sum of the following one-hundred 50-digit numbers.
+func LargeSum() int {
 
 	numbers := make([]big.Int, 100)
 
@@ -111,15 +114,16 @@ func main() {
 	numbers[99].SetString("53503534226472524250874054075591789781264330331690", 10)
 
 	// Sum.
-	var sum big.Int
-
+	sum := big.NewInt(0)
 	for _, val := range numbers {
-		sum.Add(&sum, &val)
+		sum.Add(sum, &val)
 	}
 
-	calc := sum.Text(10)
-	for i := 0; i < 10; i++ {
-		fmt.Print(string(calc[i]))
+	digits := numbertheory.GetDigitsOfABigNumberInASlice(sum)
+	firstTen := 0
+	for index := 0; index < 10; index++ {
+		firstTen += digits[index] * int(math.Pow10(9-index))
 	}
-	fmt.Println()
+
+	return firstTen
 }

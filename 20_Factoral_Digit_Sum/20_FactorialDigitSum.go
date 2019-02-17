@@ -1,10 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"math/big"
-
-	"github.com/andrew-field/testing_go/numbertheory"
 )
 
 // Factorial function.
@@ -18,13 +15,13 @@ func fact(number *big.Int) *big.Int {
 
 func main() {
 
-	digitsChannel := numbertheory.GetDigitsOfABigInt(*fact(big.NewInt(100)))
+	// digitsChannel := numbertheory.GetDigitsOfABigInt(*fact(big.NewInt(100)))
 
-	total := 0
+	// total := 0
 
-	for val := range digitsChannel {
-		total += val
-	}
+	// for val := range digitsChannel {
+	// 	total += val
+	// }
 
-	fmt.Println("Total:", total)
+	// fmt.Println("Total:", total)
 }

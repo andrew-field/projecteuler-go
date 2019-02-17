@@ -129,7 +129,7 @@ func TestGetDigitsOfAnIntANDGetDigitsOfAnIntInSlice(t *testing.T) {
 			// For each number, try the negative as well.
 			tC.input *= -1
 			digitChannel := GetDigitsOfAnInt(tC.input)
-			digitSlice := GetDigitsOfAnIntInSlice(tC.input)
+			digitSlice := GetDigitsOfAnIntInASlice(tC.input)
 			index := 0
 			for actualDigit := range digitChannel {
 				if actualDigit != tC.expectedDigits[index] {
@@ -168,7 +168,7 @@ func TestGetDigitsOfABigIntANDGetDigitsOfABigNumberInSlice(t *testing.T) {
 			tC.input.Mul(tC.input, big.NewInt(-1))
 
 			digitChannel := GetDigitsOfABigInt(tC.input)
-			digitSlice := GetDigitsOfABigNumberInSlice(tC.input)
+			digitSlice := GetDigitsOfABigNumberInASlice(tC.input)
 			index := 0
 			for actualDigit := range digitChannel {
 				if actualDigit != tC.expectedDigits[index] {
