@@ -1,8 +1,7 @@
-package main
+package projecteuler1
 
-import "fmt"
-
-func main() {
+// SpecialPythagoreanTriplet returns the product abc where a, b and c form the only Pythagorean triplet for which a + b + c = 1000.
+func SpecialPythagoreanTriplet() int {
 
 	var a float64 = 1
 
@@ -12,9 +11,10 @@ func main() {
 			// This must be true with the two simultaneous equations.
 			if 500000 == 1000*(b+a)-b*a {
 				// As there is only one triplet for which this works I don't need to make further checks on c.
-				fmt.Println("Product:", int(a*b*(1000-b-a)))
-				return
+				return int(a * b * (1000 - b - a))
 			}
 		}
 	}
+
+	return 0
 }

@@ -17,10 +17,11 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"6: Sum Square Difference", SumSquareDifference, 25164150},
 		{"7: 10001st Prime Number", Position10001Prime, 104743},
 		{"8: Largest Product in a Series", LargestProductInASeries, 23514624000},
+		{"9: Special Pythagorean triplet", SpecialPythagoreanTriplet, 31875000},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {
-			t.Errorf("Failure. Test case: %#v. Expected result: %#v. Actual result: %#v", tC.desc, tC.expectedResult, actualResult)
+			t.Errorf("Failure. Test case: %v. Expected result: %v. Actual result: %v", tC.desc, tC.expectedResult, actualResult)
 		}
 	}
 }
