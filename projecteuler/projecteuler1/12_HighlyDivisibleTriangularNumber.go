@@ -1,12 +1,11 @@
-package main
+package projecteuler1
 
 import (
-	"fmt"
-
 	"github.com/andrew-field/testing_go/numbertheory"
 )
 
-func main() {
+// HighlyDivisibleTriangularNumber returns the value of the first triangle number to have over five hundred divisors.
+func HighlyDivisibleTriangularNumber() int {
 
 	// Each triangular number.
 	var triangularNumber uint = 1
@@ -15,9 +14,8 @@ func main() {
 	var sequenceStep uint = 2
 	for divisors := 1; divisors < 501; sequenceStep++ {
 		triangularNumber += sequenceStep
-
 		divisors = numbertheory.GetNumberOfDivisors(triangularNumber)
 	}
 
-	fmt.Println("Triangular number: ", triangularNumber)
+	return int(triangularNumber)
 }
