@@ -1,12 +1,11 @@
-package main
+package projecteuler2
 
 import (
-	"fmt"
-
 	"github.com/andrew-field/testing_go/numbertheory"
 )
 
-func main() {
+// AmicableNumbers returns the sum of all the amicable numbers under 10000.
+func AmicableNumbers() int {
 	sumOfProperDivisors := make([]uint, 10000)
 
 	var index uint = 2
@@ -22,14 +21,13 @@ func main() {
 		sumOfProperDivisors[index] = sum
 	}
 
-	var sumOfAmicableNumbers uint
+	sumOfAmicableNumbers := 0
 	for ind, val := range sumOfProperDivisors {
 		if val != 1 && val != 0 && uint(ind) != val && val < 10000 && sumOfProperDivisors[val] == uint(ind) {
-			sumOfAmicableNumbers += uint(ind) + val
-			sumOfProperDivisors[val] = 1
-			sumOfProperDivisors[ind] = 1
+			sumOfAmicableNumbers += ind + int(val)
+			sumOfProperDivisors[val], sumOfProperDivisors[ind] = 1, 1
 		}
 	}
 
-	fmt.Println("Answer:", sumOfAmicableNumbers)
+	return sumOfAmicableNumbers
 }
