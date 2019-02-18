@@ -22,6 +22,8 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"11: Largest Product in a Grid", LargestProductInAGrid, 70600674},
 		{"12: Highly Divisible Triangular Number", HighlyDivisibleTriangularNumber, 76576500},
 		{"13: Large Sum", LargeSum, 5537376230},
+		{"14: Longest Collatz Sequence", LongestCollatzSequence, 837799},
+		{"15: Lattice Paths", LatticePaths, 137846528820},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {

@@ -1,15 +1,12 @@
-package main
+package projecteuler1
 
-import (
-	"fmt"
-)
-
-func main() {
+// LongestCollatzSequence returns the starting number, under one million, which produces the longest chain/Collatz sequence.
+func LongestCollatzSequence() int {
 
 	// Maximum.
 	maxNumberOfTerms := 0
-	// Answer (Starting number).
-	answer := 0
+	// The eventual answer.
+	startingNumber := 0
 
 	// Grid of numbers to reduce the number of sequences generated.
 	gridOfNumbers := make([]int, 1000001)
@@ -49,9 +46,9 @@ func main() {
 		// Compare maximum.
 		if numberOfTerms > maxNumberOfTerms {
 			maxNumberOfTerms = numberOfTerms
-			answer = index
+			startingNumber = index
 		}
 	}
 
-	fmt.Println("Answer:", answer)
+	return startingNumber
 }
