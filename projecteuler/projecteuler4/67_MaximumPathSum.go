@@ -1,8 +1,7 @@
-package main
+package projecteuler4
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -16,8 +15,9 @@ func check(e error) {
 	}
 }
 
-func main() {
-	// Height of the pyramid/Length of longest row.
+// MaximumPathSumTwo returns the maximum total from top to bottom of the following pyramid by starting at the top of the triangle
+// and moving to adjacent numbers on the row below.
+func MaximumPathSumTwo() int {
 	length := 100
 
 	// Make the grid for the numbers.
@@ -45,5 +45,5 @@ func main() {
 		}
 	}
 
-	fmt.Println("Answer:", numbertheory.GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid))
+	return int(numbertheory.GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid))
 }
