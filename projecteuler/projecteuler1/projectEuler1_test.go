@@ -27,6 +27,8 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"16: Power Digit Sum", PowerDigitSum, 1366},
 		{"17: Number Letter Counts", NumberLetterCounts, 21124},
 		{"18: Maximum Path Sum One", MaximumPathSumOne, 1074},
+		{"19: Counting Sundays", CountingSundays, 171},
+		{"20: Factorial Digit Sum", FactorialDigitSum, 648},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {
