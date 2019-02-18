@@ -25,6 +25,8 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"14: Longest Collatz Sequence", LongestCollatzSequence, 837799},
 		{"15: Lattice Paths", LatticePaths, 137846528820},
 		{"16: Power Digit Sum", PowerDigitSum, 1366},
+		{"17: Number Letter Counts", NumberLetterCounts, 21124},
+		{"18: Maximum Path Sum One", MaximumPathSumOne, 1074},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {

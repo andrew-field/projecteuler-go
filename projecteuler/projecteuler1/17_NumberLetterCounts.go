@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package projecteuler1
 
 const one, two, three, four, five, six, seven, eight, nine = 3, 3, 5, 4, 4, 3, 5, 5, 4
 const ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen = 3, 6, 6, 8, 8, 7, 7, 9, 8, 8
@@ -10,9 +8,8 @@ const sixhundred, sevenhundred, eighthundred, ninehundred = 10, 12, 12, 11
 const and = 3
 const onethousand = 11
 
-func main() {
-
-	// Total.
+// NumberLetterCounts returns how many letters would be used if all the numbers from 1 to 1000 (one thousand) inclusive were written out in words.
+func NumberLetterCounts() int {
 	total := 0
 
 	// Each of these digits appears 90 times.
@@ -25,10 +22,10 @@ func main() {
 	total += 100 * (twenty + thirty + forty + fifty + sixty + seventy + eighty + ninety)
 	total += 100 * (onehundred + twohundred + threehundred + fourhundred + fivehundred + sixhundred + sevenhundred + eighthundred + ninehundred)
 
-	// The word and appears 891 times.
+	// The word "and" appears 891 times.
 	total += 891 * and
 
 	total += onethousand
 
-	fmt.Println("Total:", total)
+	return total
 }

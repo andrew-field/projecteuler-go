@@ -1,17 +1,14 @@
-package main
+package projecteuler1
 
 import (
-	"fmt"
-
 	"github.com/andrew-field/testing_go/numbertheory"
 )
 
-func main() {
-	// Height of the pyramid/Length of longest row.
-	length := 15
-
+// MaximumPathSumOne returns the maximum total from top to bottom of the following pyramid by starting at the top of the triangle
+// and moving to adjacent numbers on the row below.
+func MaximumPathSumOne() int {
 	// Make the grid for the numbers.
-	pyramid := make([][]float64, length)
+	pyramid := make([][]float64, 15)
 
 	pyramid[0] = []float64{75}
 	pyramid[1] = []float64{95, 64}
@@ -29,5 +26,5 @@ func main() {
 	pyramid[13] = []float64{63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31}
 	pyramid[14] = []float64{04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23}
 
-	fmt.Println("Answer:", numbertheory.GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid))
+	return int(numbertheory.GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid))
 }
