@@ -1,7 +1,12 @@
-# Testing Go
+# Testing *Go*
 
-## Testing Go with Project Euler.  
+## Testing *Go* with Project Euler.  
 This is a repository to keep my code for solving project Euler challenges. It is not supposed to be an answer book (as if it could be!). You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler").
+
+---
+
+## Why *Go*?
+I chose Go because it is an exciting 'new' language I wanted to learn. Where speed is concerned, a compiled language is a must and C is often used because it is also operates at a very low level. Go is 'C-like' (Not derived from) so enjoys many of these benifits. I am willing to trade off a possible slight performance boost by using Go instead of C, which would be less fun and a lot harder not to mention I would loose the abilities of Go. Go is compiled down to assembly level code, executed directly on the processor and its garbage collector is fast and latency free. As if that wasn't enough, the speed factor is almost certainly outweighed by the concurrency available in Go to utilise multicore processing. Go is really fun with simplicity built-in. It has lots more features than what is listed here but they are left to the reader to discover once they try Go if they have not already.
 
 ---
 
