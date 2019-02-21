@@ -11,7 +11,7 @@ I chose Go because it is an exciting 'new' language I wanted to learn. Where spe
 ---
 
 ## Why is this here?  
-1. I would like to learn _Go_ and solve these challenges. This is my record.
+1. I would like to learn *Go* and solve these challenges. This is my record.
 2.
 ![Because sharing (after solving for yourself) is caring.](images/reason2.jpg)
 
