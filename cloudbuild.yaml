@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['test', './...']
-  env: ['PROJECT_ROOT=github.com/andrew-field/testing_go']
+  env: ['PROJECT_ROOT=github.com/andrew-field/testing_go/numbertheory']
