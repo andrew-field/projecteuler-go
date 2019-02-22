@@ -1,6 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![cloud build status](https://storage.googleapis.com/testing_go/build/testing_go-master.svg)](https://github.com/ljvmiranda921/cloud-build-badge)
 
+
 # Testing *Go*
 
 ## Testing *Go* with Project Euler.  
