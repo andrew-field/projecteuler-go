@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
-  args: ['build', './numbertheory']
+  args: ['test', './numbertheory']
   env: ['PROJECT_ROOT=numbertheory']
