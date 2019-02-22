@@ -13,7 +13,7 @@ func TestGetNumberOfDigitsOfAnInt(t *testing.T) {
 		input          int
 		expectedResult int
 	}{
-		{0, 1},
+		{0, 0},
 		{1, 1},
 		{9, 1},
 		{10, 2},
