@@ -7,22 +7,10 @@ import (
 // GetMaximumPathSumOfPyramidUsingMaximumSlots returns the maximum of every path sum from top to bottom of a pyramid while
 // moving only to adjacent numbers on the row below.
 func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
-	if pyramid == nil {
-		panic("The pyramid can not be nil.")
-	}
+	checkPyramidIsOK(pyramid)
 
 	// Height of the pyramid/Length of longest row.
 	length := len(pyramid)
-
-	// Safety checking of correctly constructed pyramid as a 2D slice.
-	if length == 0 {
-		panic("The pyramid can not have zero length.")
-	}
-	for ind := range pyramid {
-		if len(pyramid[ind]) != ind+1 {
-			panic("The pyramid is not properly constructed.")
-		}
-	}
 
 	// The Coordinate can correspond to each index of the 2D slice.
 	type Coordinate struct {
@@ -65,10 +53,15 @@ func GetMaximumPathSumOfPyramidUsingMaximumSlots(pyramid [][]float64) float64 {
 // GetMaximumPathSumOfPyramidUsingRecursiveFunction returns the maximum of every path sum from top to bottom of a pyramid while
 // moving only to adjacent numbers on the row below.
 func GetMaximumPathSumOfPyramidUsingRecursiveFunction(pyramid [][]float64) float64 {
+	checkPyramidIsOK(pyramid)
+
+	return getMax(pyramid)
+}
+
+func checkPyramidIsOK(pyramid [][]float64) {
 	if pyramid == nil {
 		panic("The pyramid can not be nil.")
 	}
-
 	// Height of the pyramid/Length of longest row cannot be 0.
 	if len(pyramid) == 0 {
 		panic("The pyramid can not have zero length.")
@@ -79,8 +72,6 @@ func GetMaximumPathSumOfPyramidUsingRecursiveFunction(pyramid [][]float64) float
 			panic("The pyramid is not properly constructed.")
 		}
 	}
-
-	return getMax(pyramid)
 }
 
 func getMax(pyramid [][]float64) float64 {

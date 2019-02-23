@@ -29,16 +29,21 @@ func TestGetMaximumPathSumOfPyramidUsingMaximumSlotsANDGetMaximumPathSumOfPyrami
 	}
 
 	// Testing that the code panics if there is a bad input.
-	CheckGetMaximumPathSumOfPyramidUsingMaximumSlotsPanic(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, nil)
-	CheckGetMaximumPathSumOfPyramidUsingMaximumSlotsPanic(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, [][]float64{{1, 2}})
-	CheckGetMaximumPathSumOfPyramidUsingMaximumSlotsPanic(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, [][]float64{{1}, {2, 3, 4}})
-	CheckGetMaximumPathSumOfPyramidUsingMaximumSlotsPanic(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, [][]float64{{}})
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, "GetMaximumPathSumOfPyramidUsingMaximumSlots", nil)
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, "GetMaximumPathSumOfPyramidUsingMaximumSlots", [][]float64{{1, 2}})
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, "GetMaximumPathSumOfPyramidUsingMaximumSlots", [][]float64{{1}, {2, 3, 4}})
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingMaximumSlots, "GetMaximumPathSumOfPyramidUsingMaximumSlots", make([][]float64, 0))
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingRecursiveFunction, "GetMaximumPathSumOfPyramidUsingRecursiveFunction", nil)
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingRecursiveFunction, "GetMaximumPathSumOfPyramidUsingRecursiveFunction", [][]float64{{1, 2}})
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingRecursiveFunction, "GetMaximumPathSumOfPyramidUsingRecursiveFunction", [][]float64{{1}, {2, 3, 4}})
+	CheckGetMaximumPathSumOfPyramidPanics(t, GetMaximumPathSumOfPyramidUsingRecursiveFunction, "GetMaximumPathSumOfPyramidUsingRecursiveFunction", make([][]float64, 0))
+
 }
 
-func CheckGetMaximumPathSumOfPyramidUsingMaximumSlotsPanic(t *testing.T, function func([][]float64) float64, inputForFunction [][]float64) {
+func CheckGetMaximumPathSumOfPyramidPanics(t *testing.T, function func([][]float64) float64, functionName string, inputForFunction [][]float64) {
 	defer func() {
 		if r := recover(); r == nil {
-			t.Errorf("GetMaximumPathSumOfPyramidUsingMaximumSlots has failed. The code did not panic.")
+			t.Errorf("%v has failed. The code did not panic.", functionName)
 		}
 	}()
 	function(inputForFunction)
