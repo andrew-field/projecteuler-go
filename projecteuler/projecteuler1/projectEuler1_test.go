@@ -8,7 +8,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		function       func() int
 		expectedResult int
 	}{
-		{"1a: Multiples of 3 and 5 (Method 1)", MultiplesOf3And5MethodOne, 233168},
+		{"1a: Multiples of 3 and 5 (Method 1)", MultiplesOf3And5MethodOne, 233167},
 		{"1b: Multiples of 3 and 5 (Method 2)", MultiplesOf3And5MethodTwo, 233168},
 		{"2: Even Fibonacci Numbers", EvenFibonacciNumbers, 4613732},
 		{"3: Largest Prime Factor", LargestPrimeFactor, 6857},
