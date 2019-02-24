@@ -9,6 +9,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		expectedResult int
 	}{
 		{"21: Amicable Numbers", AmicableNumbers, 31626},
+		{"22: Name Scores", NameScores, 871198282},
 	}
 	for _, tC := range testCases {
 		if actualResult := tC.function(); tC.expectedResult != actualResult {
