@@ -6,7 +6,7 @@
 # Testing *Go*
 
 ## Testing *Go* with Project Euler.  
-This is a repository to keep my code for solving project Euler challenges. It is not supposed to be an answer book (as if it could be!). You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler").
+This is a repository to keep my code for solving project Euler challenges. It is not supposed to be an answer book (as if it could be!). You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler"). This is a test.
 
 ---
 
