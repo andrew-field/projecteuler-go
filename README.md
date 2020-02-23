@@ -1,5 +1,4 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![cloud build status](https://storage.googleapis.com/testing_go/build/testing_go-master.svg)](https://github.com/ljvmiranda921/cloud-build-badge)
 [![Build Status](https://travis-ci.com/andrew-field/testing_go.svg?branch=master)](https://travis-ci.com/andrew-field/testing_go)
 [![codecov](https://codecov.io/gh/andrew-field/testing_go/branch/master/graph/badge.svg)](https://codecov.io/gh/andrew-field/testing_go)
 
