@@ -9,7 +9,7 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		panic("There needs to be 1 arguement.")
+		panic("There needs to be 1 argument.")
 	}
 
 	programToRun := exec.Command(os.Args[1])
