@@ -22,7 +22,7 @@ func GetPrimeNumbersContinuously(sliceIncrementsSize int) (chan uint, chan bool)
 			close(primeChannel)
 		}()
 
-		// Inital slice for primes.
+		// Initial slice for primes.
 		primes := make([]uint, 0)
 
 		// Setup.
