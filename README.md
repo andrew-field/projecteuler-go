@@ -1,5 +1,4 @@
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Build Status](https://travis-ci.com/andrew-field/testing_go.svg?branch=master)](https://travis-ci.com/andrew-field/testing_go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andrew-field/testing_go)](https://goreportcard.com/report/github.com/andrew-field/testing_go)
 [![codecov](https://codecov.io/gh/andrew-field/testing_go/branch/master/graph/badge.svg)](https://codecov.io/gh/andrew-field/testing_go)
 
