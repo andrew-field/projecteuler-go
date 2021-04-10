@@ -15,8 +15,7 @@ jobs:
     
     - name: Get latest go version
       id: get-semantic-version
-      run: SEMANTICVERSION="$(curl https://golang.org/VERSION?m=text | cut -c 3-)"
-           echo "::set-output name=SEMANTIC_VERSION::${SEMANTICVERSION}"
+      run: echo "::set-output name=SEMANTIC_VERSION::$(curl https://golang.org/VERSION?m=text | cut -c 3-)"
     
     - name: Set up Go
       uses: actions/setup-go@v2
