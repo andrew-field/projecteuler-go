@@ -1,0 +1,14 @@
+name: Refresh go report card
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  post-request:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Execute Request
+      run: curl -X POST -F "repo=github.com/$GITHUB_REPOSITORY" https://goreportcard.com/checks
