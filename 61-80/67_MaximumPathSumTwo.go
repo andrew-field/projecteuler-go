@@ -47,3 +47,5 @@ func MaximumPathSumTwo() int {
 
 	return maths.MaxPath(pyramidTree)
 }
+
+// The maths library does most of the work.
