@@ -28,6 +28,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"18: Maximum Path Sum One", MaximumPathSumOne(), 1074},
 		{"19: Counting Sundays", CountingSundays(), 171},
 		{"20: Factorial Digit Sum", FactorialDigitSum(100), 648},
+		{"Bonus: PositionNthPrime(0) test", PositionNthPrime(0), 0},
 	}
 	for _, tC := range testCases {
 		if tC.actualResult != tC.expectedResult {
