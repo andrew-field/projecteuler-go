@@ -1,8 +1,2 @@
-github.com/andrew-field/maths v0.0.0-20210529203637-e1a09ca6b15c h1:WHLt0fhQFZR9/Ah58Z21y3D+ku8aV6+ffraZDXpRN58=
-github.com/andrew-field/maths v0.0.0-20210529203637-e1a09ca6b15c/go.mod h1:hmqvkxN2gjcWtcwUIGR3viEdr+ZnbKsYneojq2SvAqg=
-github.com/andrew-field/maths v0.0.0-20210530100327-4415263a71c0 h1:PaHYB/981zgeToeEfm3DSCE0mawFleLwOoRHfVNum+8=
-github.com/andrew-field/maths v0.0.0-20210530100327-4415263a71c0/go.mod h1:hmqvkxN2gjcWtcwUIGR3viEdr+ZnbKsYneojq2SvAqg=
-github.com/andrew-field/maths v0.0.0-20210604184555-f05cbf952974 h1:x8C95qOWzItx/lKtlujuhQZeag45Z8CHv8Vu/vILHGY=
-github.com/andrew-field/maths v0.0.0-20210604184555-f05cbf952974/go.mod h1:hmqvkxN2gjcWtcwUIGR3viEdr+ZnbKsYneojq2SvAqg=
-github.com/andrew-field/maths v1.0.0 h1:ozcOTSIinYCl5kxnztCy4kd6DoQmkTgAU3Vk1OlbzUI=
-github.com/andrew-field/maths v1.0.0/go.mod h1:hmqvkxN2gjcWtcwUIGR3viEdr+ZnbKsYneojq2SvAqg=
+github.com/andrew-field/maths v1.1.0 h1:ltOdOE9odAo1DHKFopd3V9vtLD8GksNS3Cy/P0Rgsfc=
+github.com/andrew-field/maths v1.1.0/go.mod h1:hmqvkxN2gjcWtcwUIGR3viEdr+ZnbKsYneojq2SvAqg=
