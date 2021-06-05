@@ -19,7 +19,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"9: Special Pythagorean triplet", SpecialPythagoreanTriplet(), 31875000},
 		{"10: Summation of Primes", SummationOfPrimes(2000000), 142913828922},
 		{"11: Largest Product in a Grid", LargestProductInAGrid(), 70600674},
-		//{"12: Highly Divisible Triangular Number", HighlyDivisibleTriangularNumber(500), 76576500},
+		{"12: Highly Divisible Triangular Number", HighlyDivisibleTriangularNumber(500), 76576500},
 		{"13: Large Sum", LargeSum(), 5537376230},
 		{"14: Longest Collatz Sequence", LongestCollatzSequence(), 837799},
 		{"15: Lattice Paths", LatticePaths(), 137846528820},
