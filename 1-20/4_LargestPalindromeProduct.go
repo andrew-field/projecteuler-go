@@ -4,8 +4,8 @@ import "strconv"
 
 // LargestPalindromeProduct returns the largest palindrome made from the product of two 3-digit numbers.
 func LargestPalindromeProduct() int {
-	largest := 0
 
+	largest := 0
 	for a := 100; a < 1000; a++ {
 		for b := a; b < 1000; b++ {
 			product := a * b

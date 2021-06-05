@@ -13,9 +13,8 @@ func PowerDigitSum() int {
 	// Calculate 2¹⁰⁰⁰.
 	x.Exp(x, big.NewInt(1000), nil)
 
-	digitsChannel := maths.DigitsBig(x)
 	total := 0
-	for val := range digitsChannel {
+	for val := range maths.DigitsBig(x) {
 		total += val
 	}
 
