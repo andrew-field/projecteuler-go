@@ -1,13 +1,12 @@
-package projecteuler1
+package euler1
 
 import (
-	"math"
 	"math/big"
 
-	"github.com/andrew-field/testing_go/numbertheory"
+	"github.com/andrew-field/maths"
 )
 
-// LargeSum returns the first ten digits of the sum of the following one-hundred 50-digit numbers.
+// LargeSum returns an int whose digits are the first ten digits of the sum of the following one-hundred 50-digit numbers.
 func LargeSum() int {
 
 	numbers := make([]big.Int, 100)
@@ -119,11 +118,20 @@ func LargeSum() int {
 		sum.Add(sum, &val)
 	}
 
-	digits := numbertheory.GetDigitsOfABigNumberInASlice(sum)
+	numberOfDigits := maths.NumberOfDigitsBig(sum)
+	digits := maths.DigitsBig(sum)
+	for i := 0; i < numberOfDigits-10; i++ {
+		<-digits
+	}
+
 	firstTen := 0
-	for index := 0; index < 10; index++ {
-		firstTen += digits[index] * int(math.Pow10(9-index))
+	powerOfTen := 1
+	for val := range digits {
+		firstTen += val * powerOfTen
+		powerOfTen *= 10
 	}
 
 	return firstTen
 }
+
+// Go makes this quite easy. This returns an int instead of individual ints so it is easier to test.

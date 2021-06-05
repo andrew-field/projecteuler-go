@@ -1,16 +1,14 @@
-package projecteuler1
+package euler1
 
-import (
-	"github.com/andrew-field/testing_go/numbertheory"
-)
+import "github.com/andrew-field/maths"
 
 // SmallestMultiple returns the smallest positive number that is evenly divisible by all of the numbers from 1 to 20.
 func SmallestMultiple() int {
 	// Numbers to 20, not 1.
-	numbers := make([]uint, 19)
+	numbers := make([]int, 19)
 	for ind := range numbers {
-		numbers[ind] = uint(ind) + 2
+		numbers[ind] = ind + 2
 	}
 
-	return int(numbertheory.LowestCommonMultiple(numbers...))
+	return maths.LCM(numbers...)
 }

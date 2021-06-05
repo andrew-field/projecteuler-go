@@ -1,10 +1,6 @@
 name: build-test
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
 
@@ -12,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    
+      with:
+        fetch-depth: 2
+
     - name: Get latest go version
       id: get-semantic-version
       run: echo "::set-output name=SEMANTIC_VERSION::$(curl https://golang.org/VERSION?m=text | cut -c 3-)"
