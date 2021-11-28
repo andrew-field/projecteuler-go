@@ -7,8 +7,4 @@ on:
 jobs:
 
   post-request:
-    runs-on: ubuntu-latest
-    steps:
-
-    - name: Execute Request
-      run: curl -X POST -F "repo=github.com/$GITHUB_REPOSITORY" https://goreportcard.com/checks
+    uses: andrew-field/reusable-workflows/.github/workflows/refresh-go-report-card.yml@master
