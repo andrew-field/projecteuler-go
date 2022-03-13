@@ -1,9 +1,8 @@
 name: Bump go mod version
 
 on:
-  push:
-  #schedule:
-  #  - cron: '15 13 13 * *'
+  schedule:
+    - cron: '40 0 1 * *'
 
 jobs:
 
