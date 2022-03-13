@@ -7,5 +7,5 @@ on:
 
 jobs:
 
-  post-request:
+  bump_go_mod_version:
     uses: andrew-field/reusable-workflows/.github/workflows/bump-go-mod-version.yml@master
