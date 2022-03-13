@@ -2,7 +2,7 @@ name: Bump go mod version
 
 on:
   schedule:
-    - cron: '31 12 13 * *'
+    - cron: '45 12 13 * *'
 
 jobs:
 
