@@ -1,0 +1,10 @@
+name: Bump go mod version
+
+on:
+  schedule:
+    - cron: '31 12 13 * *'
+
+jobs:
+
+  post-request:
+    uses: andrew-field/reusable-workflows/.github/workflows/bump-go-mod-version.yml@master
