@@ -1,7 +1,6 @@
 package filefunctions
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -25,8 +24,5 @@ func OpenFile(path string) *os.File {
 // CloseFile closes a file pointer.
 func CloseFile(f *os.File) {
 	err := f.Close()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
-	}
+	Check(err)
 }
