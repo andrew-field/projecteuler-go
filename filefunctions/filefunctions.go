@@ -2,7 +2,6 @@ package filefunctions
 
 import (
 	"os"
-	"path/filepath"
 )
 
 // Check checks error values
@@ -12,11 +11,9 @@ func Check(e error) {
 	}
 }
 
-// OpenFile return a file pointer. The file path is relative to the current working directory. CloseFile must be called on the returned file pointer.
+// OpenFile returns a file pointer. The file path is relative. CloseFile must be called on the returned file pointer.
 func OpenFile(path string) *os.File {
-	absPath, err := filepath.Abs(path)
-	Check(err)
-	file, err := os.Open(absPath)
+	file, err := os.Open(path)
 	Check(err)
 	return file
 }

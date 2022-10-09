@@ -1,8 +1,6 @@
 package euler1
 
-import (
-	"time"
-)
+import "time"
 
 // CountingSundays returns the number of Sundays that fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000).
 func CountingSundays() int {

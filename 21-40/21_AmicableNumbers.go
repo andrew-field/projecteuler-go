@@ -1,8 +1,6 @@
 package euler2
 
-import (
-	"github.com/andrew-field/maths"
-)
+import "github.com/andrew-field/maths"
 
 // AmicableNumbers returns the sum of all the amicable numbers below n.
 func AmicableNumbers(n int) int {

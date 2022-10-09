@@ -1,12 +1,8 @@
-package filefunctions_test
+package filefunctions
 
-import (
-	"testing"
-
-	"github.com/andrew-field/projecteuler-go/filefunctions"
-)
+import "testing"
 
 func TestOpenFileCloseFile(t *testing.T) {
-	f := filefunctions.OpenFile("filefunctions.go")
-	filefunctions.CloseFile(f)
+	f := OpenFile("filefunctions.go")
+	CloseFile(f)
 }
