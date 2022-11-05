@@ -2,7 +2,8 @@ name: Refresh go report card
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   schedule:
     - cron: '40 12 1 * *'
     
