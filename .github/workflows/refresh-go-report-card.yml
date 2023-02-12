@@ -2,9 +2,7 @@ name: Refresh go report card
 
 on:
   push:
-    branches: [ master ]
-  schedule:
-    - cron: '40 12 1 * *'
+    branches: [master]
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
