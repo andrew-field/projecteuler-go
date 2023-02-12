@@ -3,7 +3,7 @@
 [![Codecov](https://codecov.io/gh/andrew-field/projecteuler-go/branch/master/graph/badge.svg)](https://codecov.io/gh/andrew-field/projecteuler-go)
 [![Build and test](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml)
 [![CodeQL](https://github.com/andrew-field/projecteuler-go/actions/workflows/codeql.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/codeql.yml)
-[![GitHub Super-Linter](https://github.com/andrew-field/projecteuler-go/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Lint Code Base](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml)
 
 This is a repository to keep my code for solving project Euler challenges. You can see the fantastic website and challenges [here](https://projecteuler.net/ "Project Euler").
 
