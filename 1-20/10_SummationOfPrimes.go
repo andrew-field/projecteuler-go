@@ -9,5 +9,5 @@ func SummationOfPrimes(n int) int {
 		sum += val
 	}
 
-	 return sum
+	return sum
 }
