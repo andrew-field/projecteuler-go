@@ -1,4 +1,4 @@
-# Project Euler C
+# Project Euler Challenges
 
 [![License](https://img.shields.io/github/license/andrew-field/projecteuler-go)](./LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andrew-field/projecteuler-go)](https://goreportcard.com/report/github.com/andrew-field/projecteuler-go)
