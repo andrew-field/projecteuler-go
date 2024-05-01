@@ -7,6 +7,8 @@
 [![CodeQL](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql)
 [![Lint Code Base](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml)
 
+[![codecov - svg](https://codecov.io/gh/andrew-field/projecteuler-go/graphs/icicle.svg?token=OBD2GRGRN2)](https://codecov.io/gh/andrew-field/projecteuler-go)
+
 This is a repository to keep my code for solving project Euler challenges. You can see the fantastic site and challenges [here](https://projecteuler.net/ "Project Euler").
 
 The problems have been generalised where possible. The challenges are organised into groups of 20.
