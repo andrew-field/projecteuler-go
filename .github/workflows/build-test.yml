@@ -5,18 +5,17 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
-    
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions: read-all
 
 jobs:
-
   build_test:
     name: Call build and test action
     uses: andrew-field/reusable-workflows/.github/workflows/build-test.yml@master
     # -race flag not used here because some tests (e.g. #14) use more than 8128 go routines.
-    
+
     secrets: inherit
     # Codecov secret used by the build-test action. Codecov token needs to be added as a secret.
