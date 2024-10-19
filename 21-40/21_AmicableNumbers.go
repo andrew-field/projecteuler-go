@@ -8,7 +8,7 @@ func AmicableNumbers(n int) int {
 
 	for index := 2; index < n; index++ {
 		// The sum of divisors includes the number itself but the challenge does not.
-		sumOfProperDivisors[index] = maths.SumOfDivisors2(index) - index
+		sumOfProperDivisors[index] = maths.SumOfDivisorsBruteForce(index) - index
 		if index == sumOfProperDivisors[index] { // Setup to avoid perfect numbers, which satisfy the condition of d(a) = b and d(b) = a except that a = b.
 			sumOfProperDivisors[index] = 1
 		}

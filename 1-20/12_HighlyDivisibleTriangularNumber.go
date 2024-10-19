@@ -15,7 +15,7 @@ func HighlyDivisibleTriangularNumber(n int) int {
 	sequenceStep := 1
 	for numberOfDivisors := 0; numberOfDivisors < n; sequenceStep++ {
 		triangularNumber += sequenceStep
-		numberOfDivisors = maths.NumberOfDivisors2(triangularNumber)
+		numberOfDivisors = maths.NumberOfDivisorsBruteForce(triangularNumber)
 	}
 
 	return triangularNumber
