@@ -2,8 +2,8 @@ package euler1
 
 import "strconv"
 
-// LargestPalindromeProduct returns the largest palindrome made from the product of two 3-digit numbers.
-func LargestPalindromeProduct() int {
+// largestPalindromeProduct returns the largest palindrome made from the product of two 3-digit numbers.
+func largestPalindromeProduct() int {
 
 	largest := 0
 	for a := 100; a < 1000; a++ {

@@ -9,9 +9,9 @@ import (
 	"github.com/andrew-field/projecteuler-go/filefunctions"
 )
 
-// MaximumPathSumTwo returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
+// maximumPathSumTwo returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
 // and moving to adjacent numbers on the row below.
-func MaximumPathSumTwo() int {
+func maximumPathSumTwo() int {
 	f := filefunctions.OpenFile("p067_triangle.txt")
 	defer filefunctions.CloseFile(f)
 

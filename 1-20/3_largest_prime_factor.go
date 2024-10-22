@@ -2,9 +2,9 @@ package euler1
 
 import "github.com/andrew-field/maths"
 
-// LargestPrimeFactor returns the largest prime factor of |x|.
+// largestPrimeFactor returns the largest prime factor of |x|.
 // Does not handle math.MinInt64
-func LargestPrimeFactor(x int) int {
+func largestPrimeFactor(x int) int {
 
 	largestPrimeFactor := 0
 	for v := range maths.PrimeFactorisation(x) {

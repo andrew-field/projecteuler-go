@@ -7,13 +7,13 @@ import (
 
 // TestOpenFile tests the OpenFile function.
 func TestOpenFile(t *testing.T) {
-	// Case 1: Open an existing file (e.g., "filefunctions.go").
+	// Case 1: Open an existing file (e.g., "file_functions.go").
 	defer func() {
 		if r := recover(); r != nil {
-			t.Errorf("OpenFile(\"filefunctions.go\") panicked unexpectedly: %v", r)
+			t.Errorf("OpenFile(\"file_functions.go\") panicked unexpectedly: %v", r)
 		}
 	}()
-	file := OpenFile("filefunctions.go")
+	file := OpenFile("file_functions.go")
 	if file == nil {
 		t.Errorf("Expected a valid *os.File, got nil")
 	}
@@ -33,12 +33,12 @@ func TestOpenFile(t *testing.T) {
 // TestCloseFile tests the CloseFile function.
 func TestCloseFile(t *testing.T) {
 	// Open an existing file for testing CloseFile.
-	file := OpenFile("filefunctions.go")
+	file := OpenFile("file_functions.go")
 
 	// Case 1: Close an open file
 	defer func() {
 		if r := recover(); r != nil {
-			t.Errorf("CloseFile(filefunctions.go) panicked unexpectedly: %v", r)
+			t.Errorf("CloseFile(file_functions.go) panicked unexpectedly: %v", r)
 		}
 	}()
 	CloseFile(file)

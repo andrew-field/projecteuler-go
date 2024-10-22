@@ -1,8 +1,8 @@
 package euler1
 
-// SumSquareDifference returns the difference between the sum of the squares of xₖ, xₖ₊₁, ..., xₙ and the square of the sum, where xₖ₊₁ = xₖ + 1 and xₖ = x.
+// sumSquareDifference returns the difference between the sum of the squares of xₖ, xₖ₊₁, ..., xₙ and the square of the sum, where xₖ₊₁ = xₖ + 1 and xₖ = x.
 // Assumes x >= 0 and n >= 0
-func SumSquareDifference(x, n int) int {
+func sumSquareDifference(x, n int) int {
 	return n*x*(x+n-1)*(n-1) + (n*(3*(n*n*n)-10*(n*n)+(9*n)-2))/12
 }
 

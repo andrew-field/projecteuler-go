@@ -8,8 +8,8 @@ const sixhundred, sevenhundred, eighthundred, ninehundred = 10, 12, 12, 11
 const and = 3
 const onethousand = 11
 
-// NumberLetterCounts returns how many letters would be used if all the numbers from 1 to 1000 (one thousand) inclusive were written out in words.
-func NumberLetterCounts() int {
+// numberLetterCounts returns how many letters would be used if all the numbers from 1 to 1000 (one thousand) inclusive were written out in words.
+func numberLetterCounts() int {
 	// Each of these digits appears 90 times.
 	total := 90 * (one + two + three + four + five + six + seven + eight + nine)
 

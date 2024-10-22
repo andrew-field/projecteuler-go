@@ -1,7 +1,7 @@
 package euler1
 
-// EvenFibonacciNumbers sums all the even fibonacci numbers below x.
-func EvenFibonacciNumbers(x int) int {
+// evenFibonacciNumbers sums all the even fibonacci numbers below x.
+func evenFibonacciNumbers(x int) int {
 	total := 0
 
 	// Fibonacci numbers 2 and 3.

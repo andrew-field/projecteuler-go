@@ -6,8 +6,8 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// LargeSum returns an int whose digits are the first ten digits of the sum of the following one-hundred 50-digit numbers.
-func LargeSum() int {
+// largeSum returns an int whose digits are the first ten digits of the sum of the following one-hundred 50-digit numbers.
+func largeSum() int {
 
 	numbers := make([]big.Int, 100)
 

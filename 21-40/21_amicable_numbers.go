@@ -2,8 +2,8 @@ package euler2
 
 import "github.com/andrew-field/maths"
 
-// AmicableNumbers returns the sum of all the amicable numbers below n.
-func AmicableNumbers(n int) int {
+// amicableNumbers returns the sum of all the amicable numbers below n.
+func amicableNumbers(n int) int {
 	sumOfProperDivisors := make([]int, n)
 
 	for index := 2; index < n; index++ {

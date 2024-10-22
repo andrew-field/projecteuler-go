@@ -6,8 +6,8 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// FactorialDigitSum returns the sum of the digits in the number |n|!
-func FactorialDigitSum(n int) int {
+// factorialDigitSum returns the sum of the digits in the number |n|!
+func factorialDigitSum(n int) int {
 
 	var z big.Int
 	total := 0

@@ -40,8 +40,8 @@ var (
 	}
 )
 
-// NameScores returns the summation of all the name scores in the file p022_names.txt
-func NameScores() int {
+// nameScores returns the summation of all the name scores in the file p022_names.txt
+func nameScores() int {
 	f := filefunctions.OpenFile("p022_names.txt")
 	defer filefunctions.CloseFile(f)
 

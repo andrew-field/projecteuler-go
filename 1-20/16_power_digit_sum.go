@@ -6,8 +6,8 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// PowerDigitSum returns the sum of the digits of the number 2¹⁰⁰⁰.
-func PowerDigitSum() int {
+// powerDigitSum returns the sum of the digits of the number 2¹⁰⁰⁰.
+func powerDigitSum() int {
 
 	x := big.NewInt(2)
 	// Calculate 2¹⁰⁰⁰.

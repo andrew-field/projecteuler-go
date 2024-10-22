@@ -6,9 +6,9 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// LargestProductInAGrid returns the greatest product of four adjacent numbers
+// largestProductInAGrid returns the greatest product of four adjacent numbers
 // in the same direction (up, down, left, right, or diagonally) in a grid.
-func LargestProductInAGrid() int {
+func largestProductInAGrid() int {
 	matrix := make([][]int, 20)
 
 	// Setup.

@@ -4,8 +4,8 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// HighlyDivisibleTriangularNumber returns the value of the first triangle number to have over |n| divisors.
-func HighlyDivisibleTriangularNumber(n int) int {
+// highlyDivisibleTriangularNumber returns the value of the first triangle number to have over |n| divisors.
+func highlyDivisibleTriangularNumber(n int) int {
 	n = maths.Abs(n)
 
 	// Each triangular number.

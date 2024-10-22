@@ -2,9 +2,9 @@ package euler1
 
 import "github.com/andrew-field/maths"
 
-// PositionNthPrime returns the |n|th prime number, for |n| <= 100000
-// PositionNthPrime(x) returns 0 for x = 0, x > 100000
-func PositionNthPrime(n int) int {
+// positionNthPrime returns the |n|th prime number, for |n| <= 100000
+// positionNthPrime(x) returns 0 for x = 0, x > 100000
+func positionNthPrime(n int) int {
 	n = maths.Abs(n)
 	if n == 0 || n > 100000 {
 		return 0

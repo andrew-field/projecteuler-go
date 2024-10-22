@@ -8,7 +8,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		actualResult   int
 		expectedResult int
 	}{
-		{"67: Maximum Path Sum Two", MaximumPathSumTwo(), 7273},
+		{"67: Maximum Path Sum Two", maximumPathSumTwo(), 7273},
 	}
 	for _, tC := range testCases {
 		if tC.actualResult != tC.expectedResult {

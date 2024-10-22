@@ -2,9 +2,9 @@ package euler1
 
 import "math/big"
 
-// LatticePaths returns the number of routes through a 20x20 grid starting in the top left, finishing in the bottom right
+// latticePaths returns the number of routes through a 20x20 grid starting in the top left, finishing in the bottom right
 // and only moving right or down.
-func LatticePaths() int {
+func latticePaths() int {
 	var z big.Int
 	return int(z.Binomial(40, 20).Int64())
 }

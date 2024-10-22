@@ -4,8 +4,8 @@ type sequence struct {
 	startingNumber, length int
 }
 
-// LongestCollatzSequence returns the starting number, under one million, which produces the longest chain/Collatz sequence.
-func LongestCollatzSequence() int {
+// longestCollatzSequence returns the starting number, under one million, which produces the longest chain/Collatz sequence.
+func longestCollatzSequence() int {
 
 	longest := sequence{}
 	sequenceCh := make(chan sequence)

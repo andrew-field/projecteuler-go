@@ -6,8 +6,8 @@ import (
 	"github.com/andrew-field/maths"
 )
 
-// LargestProductInASeries returns the maximum product of thirteen adjacent digits in this 1000-digit number.
-func LargestProductInASeries() int {
+// largestProductInASeries returns the maximum product of thirteen adjacent digits in this 1000-digit number.
+func largestProductInASeries() int {
 
 	number := big.NewInt(0)
 	// Number in question.
