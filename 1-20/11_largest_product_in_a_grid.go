@@ -43,7 +43,7 @@ func largestProductInAGrid() int {
 	copy(matrix3, matrix)
 
 	// Maximum.
-	var max int
+	var max0 int
 	var max1 int
 	var max2 int
 	var max3 int
@@ -55,7 +55,7 @@ func largestProductInAGrid() int {
 		// Horizontal.
 		for j := 0; j < 20; j++ {
 			for i := 0; i < 17; i++ {
-				max = maths.Max(max, matrix[j][i]*matrix[j][i+1]*matrix[j][i+2]*matrix[j][i+3])
+				max0 = maths.Max(max0, matrix[j][i]*matrix[j][i+1]*matrix[j][i+2]*matrix[j][i+3])
 			}
 		}
 		wg.Done()
@@ -92,7 +92,7 @@ func largestProductInAGrid() int {
 	}()
 	wg.Wait()
 
-	return maths.Max(max, max1, max2, max3)
+	return maths.Max(max0, max1, max2, max3)
 }
 
 // This is a simple brute force but at least with some concurrency.

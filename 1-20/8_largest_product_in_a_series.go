@@ -21,14 +21,14 @@ func largestProductInASeries() int {
 	}
 
 	var check int
-	var max int
+	var maxProduct int
 
 	// Not the most efficient as 13 calculations are wasted for every zero but it is simple enough.
 	for j := 0; j < 987; j++ {
-		if check = digits[j] * digits[j+1] * digits[j+2] * digits[j+3] * digits[j+4] * digits[j+5] * digits[j+6] * digits[j+7] * digits[j+8] * digits[j+9] * digits[j+10] * digits[j+11] * digits[j+12]; check > max {
-			max = check
+		if check = digits[j] * digits[j+1] * digits[j+2] * digits[j+3] * digits[j+4] * digits[j+5] * digits[j+6] * digits[j+7] * digits[j+8] * digits[j+9] * digits[j+10] * digits[j+11] * digits[j+12]; check > maxProduct {
+			maxProduct = check
 		}
 	}
 
-	return max
+	return maxProduct
 }
