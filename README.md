@@ -4,8 +4,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/andrew-field/projecteuler-go)](https://goreportcard.com/report/github.com/andrew-field/projecteuler-go)
 [![codecov](https://codecov.io/gh/andrew-field/projecteuler-go/graph/badge.svg?token=OBD2GRGRN2)](https://codecov.io/gh/andrew-field/projecteuler-go)
 [![Build and test](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml)
+[![Go Linter](https://github.com/andrew-field/projecteuler-go/actions/workflows/go-linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/go-linter.yml)
 [![CodeQL](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql)
-[![Lint Code Base](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/linter.yml)
+[![Super Linter](https://github.com/andrew-field/projecteuler-go/actions/workflows/super-linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/super-linter.yml)
 
 [![codecov - svg](https://codecov.io/gh/andrew-field/projecteuler-go/graphs/icicle.svg?token=OBD2GRGRN2)](https://codecov.io/gh/andrew-field/projecteuler-go)
 
