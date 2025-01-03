@@ -1,0 +1,17 @@
+name: Go Linter
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  lint:
+    name: Lint code base
+    uses: andrew-field/reusable-workflows/.github/workflows/go-linter.yml@master
