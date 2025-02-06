@@ -2,10 +2,9 @@ package euler2
 
 import (
 	"encoding/csv"
+	"os"
 	"sort"
 	"sync"
-
-	"github.com/andrew-field/projecteuler-go/filefunctions"
 )
 
 var (
@@ -42,13 +41,18 @@ var (
 
 // nameScores returns the summation of all the name scores in the file p022_names.txt
 func nameScores() int {
-	f := filefunctions.OpenFile("p022_names.txt")
-	defer filefunctions.CloseFile(f)
+	f, err := os.Open("p022_names.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
 
 	// Read names and sort.
 	reader := csv.NewReader(f)
 	records, err := reader.ReadAll()
-	filefunctions.Check(err)
+	if err != nil {
+		panic(err)
+	}
 	names := records[0]
 	sort.Strings(names) // Score depends on position in list.
 

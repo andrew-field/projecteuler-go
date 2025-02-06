@@ -3,17 +3,20 @@ package euler4
 import (
 	"bufio"
 	"io"
+	"os"
 	"strconv"
 
 	"github.com/andrew-field/maths"
-	"github.com/andrew-field/projecteuler-go/filefunctions"
 )
 
 // maximumPathSumTwo returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
 // and moving to adjacent numbers on the row below.
 func maximumPathSumTwo() int {
-	f := filefunctions.OpenFile("p067_triangle.txt")
-	defer filefunctions.CloseFile(f)
+	f, err := os.Open("p067_triangle.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
 
 	reader := bufio.NewReader(f) // This reader is used because of its efficiency with many small reads.
 
@@ -26,9 +29,15 @@ func maximumPathSumTwo() int {
 		if err == io.EOF {
 			break
 		}
-		filefunctions.Check(err)
+		if err != nil {
+			panic(err)
+		}
+
 		value, err := strconv.Atoi(string(number))
-		filefunctions.Check(err)
+		if err != nil {
+			panic(err)
+		}
+
 		numbers = append(numbers, value)
 	}
 
