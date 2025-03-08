@@ -7,11 +7,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-  contents: write
+# Permissions for the GITHUB_TOKEN.
+permissions: {}
 
 jobs:
   bump_go_mod_version:
     name: Call bump go mod version action
     uses: andrew-field/reusable-workflows/.github/workflows/bump-go-mod-version.yml@master
+
+    secrets: inherit # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks.
