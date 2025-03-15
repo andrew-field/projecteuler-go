@@ -1,11 +1,17 @@
 package euler1
 
-import "github.com/andrew-field/maths"
+import (
+	"context"
+
+	"github.com/andrew-field/maths/v2"
+)
 
 // summationOfPrimes returns the sum of all the primes below |n|.
 func summationOfPrimes(n int) int {
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 	sum := 0
-	for val := range maths.GetPrimeNumbersBelow(n) {
+	for val := range maths.GetPrimeNumbersBelowAndIncluding(ctx, n) {
 		sum += val
 	}
 

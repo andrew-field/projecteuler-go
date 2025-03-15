@@ -3,7 +3,7 @@ package euler1
 import (
 	"math/big"
 
-	"github.com/andrew-field/maths"
+	"github.com/andrew-field/maths/v2"
 )
 
 // powerDigitSum returns the sum of the digits of the number 2¹⁰⁰⁰.
@@ -14,7 +14,7 @@ func powerDigitSum() int {
 	x.Exp(x, big.NewInt(1000), nil)
 
 	total := 0
-	for val := range maths.DigitsBig(x) {
+	for val := range maths.GetDigitsBig(x) {
 		total += val
 	}
 

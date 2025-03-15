@@ -1,16 +1,25 @@
 package euler1
 
-import "github.com/andrew-field/maths"
+import (
+	"context"
+
+	"github.com/andrew-field/maths/v2"
+)
 
 // positionNthPrime returns the |n|th prime number, for |n| <= 100000
 // positionNthPrime(x) returns 0 for x = 0, x > 100000
 func positionNthPrime(n int) int {
-	n = maths.Abs(n)
+	n, err := maths.Abs(n)
+	if err != nil {
+		panic(err)
+	}
 	if n == 0 || n > 100000 {
 		return 0
 	}
 
-	primeCh := maths.GetPrimeNumbersBelow(1300000)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	primeCh := maths.GetPrimeNumbersBelowAndIncluding(ctx, 1300000)
 	for i := 1; i < n; i++ {
 		<-primeCh
 	}

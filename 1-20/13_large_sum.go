@@ -3,7 +3,7 @@ package euler1
 import (
 	"math/big"
 
-	"github.com/andrew-field/maths"
+	"github.com/andrew-field/maths/v2"
 )
 
 // largeSum returns an int whose digits are the first ten digits of the sum of the following one-hundred 50-digit numbers.
@@ -119,7 +119,7 @@ func largeSum() int {
 	}
 
 	numberOfDigits := maths.NumberOfDigitsBig(sum)
-	digits := maths.DigitsBig(sum)
+	digits := maths.GetDigitsBig(sum)
 	for i := 0; i < numberOfDigits-10; i++ {
 		<-digits
 	}

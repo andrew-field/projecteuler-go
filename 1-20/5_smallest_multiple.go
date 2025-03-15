@@ -1,6 +1,6 @@
 package euler1
 
-import "github.com/andrew-field/maths"
+import "github.com/andrew-field/maths/v2"
 
 // smallestMultiple returns the smallest positive number that is evenly divisible by all of the numbers from 1 to 20.
 func smallestMultiple() int {
@@ -10,5 +10,10 @@ func smallestMultiple() int {
 		numbers[ind] = ind + 2
 	}
 
-	return maths.LCM(numbers...)
+	lcm, err := maths.LCM(numbers...)
+	if err != nil {
+		panic(err)
+	}
+
+	return lcm
 }

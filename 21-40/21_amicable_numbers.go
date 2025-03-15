@@ -1,14 +1,18 @@
 package euler2
 
-import "github.com/andrew-field/maths"
+import "github.com/andrew-field/maths/v2"
 
 // amicableNumbers returns the sum of all the amicable numbers below n.
 func amicableNumbers(n int) int {
 	sumOfProperDivisors := make([]int, n)
 
 	for index := 2; index < n; index++ {
+		sum, err := maths.SumOfDivisorsBruteForce(index)
+		if err != nil {
+			panic(err)
+		}
 		// The sum of divisors includes the number itself but the challenge does not.
-		sumOfProperDivisors[index] = maths.SumOfDivisorsBruteForce(index) - index
+		sumOfProperDivisors[index] = sum - index
 		if index == sumOfProperDivisors[index] { // Setup to avoid perfect numbers, which satisfy the condition of d(a) = b and d(b) = a except that a = b.
 			sumOfProperDivisors[index] = 1
 		}

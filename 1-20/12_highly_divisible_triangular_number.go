@@ -1,12 +1,15 @@
 package euler1
 
 import (
-	"github.com/andrew-field/maths"
+	"github.com/andrew-field/maths/v2"
 )
 
 // highlyDivisibleTriangularNumber returns the value of the first triangle number to have over |n| divisors.
 func highlyDivisibleTriangularNumber(n int) int {
-	n = maths.Abs(n)
+	n, err := maths.Abs(n)
+	if err != nil {
+		panic(err)
+	}
 
 	// Each triangular number.
 	triangularNumber := 0

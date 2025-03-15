@@ -3,7 +3,7 @@ package euler1
 import (
 	"sync"
 
-	"github.com/andrew-field/maths"
+	"github.com/andrew-field/maths/v2"
 )
 
 // largestProductInAGrid returns the greatest product of four adjacent numbers

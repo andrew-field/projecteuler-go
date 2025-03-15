@@ -1,7 +1,7 @@
 package euler1
 
 import (
-	"github.com/andrew-field/maths"
+	"github.com/andrew-field/maths/v2"
 )
 
 // maximumPathSumOne returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
