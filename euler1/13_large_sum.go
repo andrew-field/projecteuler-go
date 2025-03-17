@@ -116,10 +116,10 @@ func largeSum() int {
 		sum.Add(sum, &val)
 	}
 
-	digits, _ := strconv.Atoi(sum.String()[:10]) // Get first 10 'digits' (Characters of this string can be manipulated easily as a slice).
-	// if err != nil {
-	// 	panic(err)
-	// }
+	digits, err := strconv.Atoi(sum.String()[:10]) // Get first 10 'digits' (Characters of this string can be manipulated easily as a slice).
+	if err != nil {
+		panic(err)
+	}
 
 	return digits
 }
