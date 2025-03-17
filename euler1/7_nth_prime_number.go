@@ -20,7 +20,7 @@ func positionNthPrime(n int) int {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	primeCh := maths.GetPrimeNumbersBelowAndIncluding(ctx, 1300000)
-	for i := 1; i < n; i++ {
+	for range n - 1 { // Discard the first n-1 primes.
 		<-primeCh
 	}
 

@@ -14,7 +14,7 @@ func highlyDivisibleTriangularNumber(n int) int {
 	// Each triangular number.
 	triangularNumber := 0
 
-	// Calculate the number of divisors and see if it is greater than 500.
+	// Calculate the number of divisors and see if it is greater than |n|.
 	sequenceStep := 1
 	for numberOfDivisors := 0; numberOfDivisors < n; sequenceStep++ {
 		triangularNumber += sequenceStep

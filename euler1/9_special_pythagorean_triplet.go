@@ -1,6 +1,6 @@
 package euler1
 
-// specialPythagoreanTriplet returns the product abc where a, b and c form the only Pythagorean triplet for which a + b + c = 1000.
+// specialPythagoreanTriplet returns the product abc where a, b and c form the only Pythagorean triplet, a²+b²=c², for which a + b + c = 1000.
 func specialPythagoreanTriplet() int {
 	// Cycle through possible a values.
 	for a := 1; ; a++ {

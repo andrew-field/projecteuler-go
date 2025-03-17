@@ -1,7 +1,25 @@
 package euler1
 
+import "math"
+
 // evenFibonacciNumbers sums all the even fibonacci numbers below x.
 func evenFibonacciNumbers(x int) int {
+	total := 0.0
+
+	// The even fibonacci numbers are every third Fibonacci number in the sequence.
+	for i := 3.0; ; i += 3 {
+		f := math.Round(math.Pow(math.Phi, i) / math.Sqrt(5)) // Fn = round(Phi^n / sqrt(5)).
+		if f >= float64(x) {
+			break
+		}
+		total += f
+	}
+
+	return int(total)
+}
+
+// evenFibonacciNumbers sums all the even fibonacci numbers below x.
+func evenFibonacciNumbers2(x int) int {
 	total := 0
 
 	// Fibonacci numbers 2 and 3.
@@ -11,7 +29,7 @@ func evenFibonacciNumbers(x int) int {
 	for num2 < x {
 		total += num2
 		// Only add even values so calculate three terms before adding.
-		for i := 0; i < 3; i++ {
+		for range 3 {
 			num1, num2 = num2, num1+num2
 		}
 	}

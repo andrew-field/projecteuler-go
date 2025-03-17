@@ -7,7 +7,6 @@ import (
 // maximumPathSumOne returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
 // and moving to adjacent numbers on the row below.
 func maximumPathSumOne() int {
-
 	// Written on multiple lines to make the pyramid result more clear.
 	pyramid := []int{75}
 	pyramid = append(pyramid, 95, 64)

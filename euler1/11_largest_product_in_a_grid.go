@@ -2,8 +2,6 @@ package euler1
 
 import (
 	"sync"
-
-	"github.com/andrew-field/maths/v2"
 )
 
 // largestProductInAGrid returns the greatest product of four adjacent numbers
@@ -51,11 +49,12 @@ func largestProductInAGrid() int {
 	var wg sync.WaitGroup
 	wg.Add(4)
 
+	// Four calculations are wasted for every zero but it is simple enough.
 	go func() {
 		// Horizontal.
-		for j := 0; j < 20; j++ {
-			for i := 0; i < 17; i++ {
-				max0 = maths.Max(max0, matrix[j][i]*matrix[j][i+1]*matrix[j][i+2]*matrix[j][i+3])
+		for j := range 20 {
+			for i := range 17 {
+				max0 = max(max0, matrix[j][i]*matrix[j][i+1]*matrix[j][i+2]*matrix[j][i+3]) // Can use builtin max function.
 			}
 		}
 		wg.Done()
@@ -63,9 +62,9 @@ func largestProductInAGrid() int {
 
 	go func() {
 		// Vertical.
-		for j := 0; j < 17; j++ {
-			for i := 0; i < 20; i++ {
-				max1 = maths.Max(max1, matrix1[j][i]*matrix1[j+1][i]*matrix1[j+2][i]*matrix1[j+3][i])
+		for j := range 17 {
+			for i := range 20 {
+				max1 = max(max1, matrix1[j][i]*matrix1[j+1][i]*matrix1[j+2][i]*matrix1[j+3][i])
 			}
 		}
 		wg.Done()
@@ -73,9 +72,9 @@ func largestProductInAGrid() int {
 
 	go func() {
 		// Left diagonal.
-		for j := 0; j < 17; j++ {
-			for i := 0; i < 17; i++ {
-				max2 = maths.Max(max2, matrix2[j][i]*matrix2[j+1][i+1]*matrix2[j+2][i+2]*matrix2[j+3][i+3])
+		for j := range 17 {
+			for i := range 17 {
+				max2 = max(max2, matrix2[j][i]*matrix2[j+1][i+1]*matrix2[j+2][i+2]*matrix2[j+3][i+3])
 			}
 		}
 		wg.Done()
@@ -83,18 +82,18 @@ func largestProductInAGrid() int {
 
 	go func() {
 		// Right diagonal.
-		for j := 0; j < 17; j++ {
-			for i := 0; i < 17; i++ {
-				max3 = maths.Max(max3, matrix3[j][19-i]*matrix3[j+1][18-i]*matrix3[j+2][17-i]*matrix3[j+3][16-i])
+		for j := range 17 {
+			for i := range 17 {
+				max3 = max(max3, matrix3[j][19-i]*matrix3[j+1][18-i]*matrix3[j+2][17-i]*matrix3[j+3][16-i])
 			}
 		}
 		wg.Done()
 	}()
 	wg.Wait()
 
-	return maths.Max(max0, max1, max2, max3)
+	return max(max0, max1, max2, max3)
 }
 
 // This is a simple brute force but at least with some concurrency.
 // One could probably use sync.Mutex to access the same matrix safely or a single max variable but actually then most of the calculations would be locked and the benefit of concurrency negated.
-// All the different products could be stored in one slice and then passed to the max function so the max function would only be called once but this is simple enough.
+// All the different products could be stored in one slice and then passed to the max function so the max function would only be called once, but this is simple enough.

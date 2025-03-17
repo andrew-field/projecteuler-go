@@ -2,13 +2,11 @@ package euler1
 
 import (
 	"math/big"
-
-	"github.com/andrew-field/maths/v2"
+	"strconv"
 )
 
 // largeSum returns an int whose digits are the first ten digits of the sum of the following one-hundred 50-digit numbers.
 func largeSum() int {
-
 	numbers := make([]big.Int, 100)
 
 	numbers[0].SetString("37107287533902102798797998220837590246510135740250", 10)
@@ -118,20 +116,13 @@ func largeSum() int {
 		sum.Add(sum, &val)
 	}
 
-	numberOfDigits := maths.NumberOfDigitsBig(sum)
-	digits := maths.GetDigitsBig(sum)
-	for i := 0; i < numberOfDigits-10; i++ {
-		<-digits
+	digits, err := strconv.Atoi(sum.String()[:10]) // Get first 10 'digits' (Characters of this string can be manipulated easily as a slice).
+	if err != nil {
+		panic(err)
 	}
 
-	firstTen := 0
-	powerOfTen := 1
-	for val := range digits {
-		firstTen += val * powerOfTen
-		powerOfTen *= 10
-	}
-
-	return firstTen
+	return digits
 }
 
 // Go makes this quite easy. This returns an int instead of individual ints so it is easier to test.
+// Possible to use maths.GetDigitsBig but this is easier to get the digits as one number and no arithmetic on the digits is needed.

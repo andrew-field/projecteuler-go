@@ -8,8 +8,10 @@ func TestProjectEulerChallenges(t *testing.T) {
 		actualResult   int
 		expectedResult int
 	}{
-		{"1: Multiples of 3 and 5", multiplesOf(3, 5, 1000), 233168},
-		{"2: Even Fibonacci Numbers", evenFibonacciNumbers(4000000), 4613732},
+		{"1a: Multiples of 3 and 5", multiplesOf(3, 5, 1000), 233168},
+		{"1b: Multiples of 3 and 5", multiplesOf2(3, 5, 1000), 233168},
+		{"2a: Even Fibonacci Numbers", evenFibonacciNumbers(4000000), 4613732},
+		{"2b: Even Fibonacci Numbers", evenFibonacciNumbers2(4000000), 4613732},
 		{"3: Largest Prime Factor", largestPrimeFactor(600851475143), 6857},
 		{"4: Largest Palindrome Product", largestPalindromeProduct(), 906609},
 		{"5: Smallest Multiple", smallestMultiple(), 232792560},
@@ -34,5 +36,29 @@ func TestProjectEulerChallenges(t *testing.T) {
 		if tC.actualResult != tC.expectedResult {
 			t.Errorf("Failure. Test case: %v. Actual result: %v. Expected result: %v.", tC.desc, tC.actualResult, tC.expectedResult)
 		}
+	}
+}
+
+func BenchmarkMultiplesOf(b *testing.B) {
+	for b.Loop() {
+		multiplesOf(3, 5, 1000)
+	}
+}
+
+func BenchmarkMultiplesOf2(b *testing.B) {
+	for b.Loop() {
+		multiplesOf2(3, 5, 1000)
+	}
+}
+
+func BenchmarkEvenFibonacciNumbers(b *testing.B) {
+	for b.Loop() {
+		evenFibonacciNumbers(1000000)
+	}
+}
+
+func BenchmarkEvenFibonacciNumbers2(b *testing.B) {
+	for b.Loop() {
+		evenFibonacciNumbers2(1000000)
 	}
 }
