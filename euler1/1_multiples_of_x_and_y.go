@@ -4,31 +4,25 @@ import "github.com/andrew-field/maths/v2"
 
 // multiplesOf sums the (positive) multiples of |x| or |y| below |z|.
 func multiplesOf(x, y, z int) int {
-	x, err := maths.Abs(x)
-	if err != nil {
-		panic(err)
-	}
-	y, err = maths.Abs(y)
-	if err != nil {
-		panic(err)
-	}
-
-	z, err = maths.Abs(z)
-	if err != nil {
-		panic(err)
+	for _, v := range []*int{&x, &y, &z} {
+		absVal, err := maths.Abs(*v)
+		if err != nil {
+			panic(err)
+		}
+		*v = absVal
 	}
 
 	// The number of multiples of |x| below |z|. The variable type int means that the result is floored.
-	var divX int = (z - 1) / x
+	divX := (z - 1) / x
 
 	// The sum of the multiples of |x| below |z|, which is equal to 1*x + 2*x + ... + divX*x => x*(1+2+...+divX). The sum of integers from 1 to n is n(n+1)/2.
 	total := x * divX * (divX + 1) / 2
 
 	// The number of multiples of |y| below |z|. The variable type int means that the result is floored.
-	var divY int = (z - 1) / y
+	divY := (z - 1) / y
 
 	// Add the sum of the multiples of |y| below |z| to the total so far.
-	total = total + (y * divY * (divY + 1) / 2)
+	total += y * divY * (divY + 1) / 2
 
 	lcm, err := maths.LCM(x, y)
 	if err != nil {
@@ -36,7 +30,7 @@ func multiplesOf(x, y, z int) int {
 	}
 
 	// The number of multiples of |lcm| (x and y) below |z|. The variable type int means that the result is floored.
-	var divLCM int = (z - 1) / lcm
+	divLCM := (z - 1) / lcm
 
 	// The sum of the multiples of |lcm| below |z|.
 	sum := lcm * divLCM * (divLCM + 1) / 2
