@@ -15,4 +15,4 @@ jobs:
     name: Call bump go mod version action
     uses: andrew-field/reusable-workflows/.github/workflows/bump-go-mod-version.yml@master
 
-    secrets: inherit # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks. BUMP_GO_VERSION_TOKEN needs to be added as a secret.
+    secrets: inherit # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the github app) needs to be added as a secret.
