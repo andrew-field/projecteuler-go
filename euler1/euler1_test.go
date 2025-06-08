@@ -2,12 +2,14 @@ package euler1
 
 import "testing"
 
+type TestCase struct {
+	desc           string
+	actualResult   int
+	expectedResult int
+}
+
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []struct {
-		desc           string
-		actualResult   int
-		expectedResult int
-	}{
+	testCases := []TestCase{
 		{"1a: Multiples of 3 and 5", multiplesOf(3, 5, 1000), 233168},
 		{"1b: Multiples of 3 and 5", multiplesOf2(3, 5, 1000), 233168},
 		{"2a: Even Fibonacci Numbers", evenFibonacciNumbers(4000000), 4613732},
@@ -32,6 +34,11 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"20: Factorial Digit Sum", factorialDigitSum(100), 648},
 		{"Bonus: PositionNthPrime(0) test", positionNthPrime(0), 0},
 	}
+
+	CheckResults(testCases, t)
+}
+
+func CheckResults(testCases []TestCase, t *testing.T) {
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			if tC.actualResult != tC.expectedResult {

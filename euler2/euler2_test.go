@@ -1,21 +1,16 @@
 package euler2
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/andrew-field/projecteuler-go/euler1"
+)
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []struct {
-		desc           string
-		actualResult   int
-		expectedResult int
-	}{
+	testCases := []euler1.TestCase{
 		{"21: Amicable Numbers", amicableNumbers(10000), 31626},
 		{"22: Name Scores", nameScores(), 871198282},
 	}
-	for _, tC := range testCases {
-		t.Run(tC.desc, func(t *testing.T) {
-			if actualResult := tC.actualResult; actualResult != tC.expectedResult {
-				t.Errorf("Actual result: %d. Expected result: %d.", tC.actualResult, tC.expectedResult)
-			}
-		})
-	}
+
+	euler1.CheckResults(testCases, t)
 }
