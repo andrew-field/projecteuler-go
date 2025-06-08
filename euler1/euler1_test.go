@@ -7,7 +7,7 @@ import (
 )
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []test.TestCase{
+	testCases := []test.Case{
 		{Desc: "1a: Multiples of 3 and 5", ActualResult: multiplesOf(3, 5, 1000), ExpectedResult: 233168},
 		{Desc: "1b: Multiples of 3 and 5", ActualResult: multiplesOf2(3, 5, 1000), ExpectedResult: 233168},
 		{Desc: "2a: Even Fibonacci Numbers", ActualResult: evenFibonacciNumbers(4000000), ExpectedResult: 4613732},

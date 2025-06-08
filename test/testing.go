@@ -2,12 +2,12 @@ package test
 
 import "testing"
 
-type TestCase struct {
+type Case struct {
 	Desc                         string
 	ActualResult, ExpectedResult int
 }
 
-func CheckResults(testCases []TestCase, t *testing.T) {
+func CheckResults(testCases []Case, t *testing.T) {
 	for _, tC := range testCases {
 		t.Run(tC.Desc, func(t *testing.T) {
 			if tC.ActualResult != tC.ExpectedResult {

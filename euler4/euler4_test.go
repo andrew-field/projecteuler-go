@@ -7,7 +7,7 @@ import (
 )
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []test.TestCase{
+	testCases := []test.Case{
 		{Desc: "67: Maximum Path Sum Two", ActualResult: maximumPathSumTwo(), ExpectedResult: 7273},
 	}
 
