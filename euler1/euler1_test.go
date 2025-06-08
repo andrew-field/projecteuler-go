@@ -3,11 +3,11 @@ package euler1
 import (
 	"testing"
 
-	"github.com/andrew-field/projecteuler-go/testing_helper"
+	"github.com/andrew-field/projecteuler-go/test"
 )
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []testing_helper.TestCase{
+	testCases := []test.TestCase{
 		{Desc: "1a: Multiples of 3 and 5", ActualResult: multiplesOf(3, 5, 1000), ExpectedResult: 233168},
 		{Desc: "1b: Multiples of 3 and 5", ActualResult: multiplesOf2(3, 5, 1000), ExpectedResult: 233168},
 		{Desc: "2a: Even Fibonacci Numbers", ActualResult: evenFibonacciNumbers(4000000), ExpectedResult: 4613732},
@@ -32,7 +32,7 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{Desc: "20: Factorial Digit Sum", ActualResult: factorialDigitSum(100), ExpectedResult: 648},
 	}
 
-	testing_helper.CheckResults(testCases, t)
+	test.CheckResults(testCases, t)
 }
 
 func BenchmarkMultiplesOf(b *testing.B) {
