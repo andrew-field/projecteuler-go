@@ -12,8 +12,10 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"22: Name Scores", nameScores(), 871198282},
 	}
 	for _, tC := range testCases {
-		if actualResult := tC.actualResult; actualResult != tC.expectedResult {
-			t.Errorf("Failure. Test case: %v. Actual result: %v. Expected result: %v.", tC.desc, tC.actualResult, tC.expectedResult)
-		}
+		t.Run(tC.desc, func(t *testing.T) {
+			if actualResult := tC.actualResult; actualResult != tC.expectedResult {
+				t.Errorf("Actual result: %d. Expected result: %d.", tC.actualResult, tC.expectedResult)
+			}
+		})
 	}
 }

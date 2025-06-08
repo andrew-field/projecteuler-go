@@ -11,8 +11,10 @@ func TestProjectEulerChallenges(t *testing.T) {
 		{"67: Maximum Path Sum Two", maximumPathSumTwo(), 7273},
 	}
 	for _, tC := range testCases {
-		if tC.actualResult != tC.expectedResult {
-			t.Errorf("Failure. Test case: %v. Actual result: %v. Expected result: %v.", tC.desc, tC.actualResult, tC.expectedResult)
-		}
+		t.Run(tC.desc, func(t *testing.T) {
+			if tC.actualResult != tC.expectedResult {
+				t.Errorf("Actual result: %d. Expected result: %d.", tC.actualResult, tC.expectedResult)
+			}
+		})
 	}
 }
