@@ -3,13 +3,13 @@ package euler4
 import (
 	"testing"
 
-	"github.com/andrew-field/projecteuler-go/euler1"
+	"github.com/andrew-field/projecteuler-go/testing_helper"
 )
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []euler1.TestCase{
-		{"67: Maximum Path Sum Two", maximumPathSumTwo(), 7273},
+	testCases := []testing_helper.TestCase{
+		{Desc: "67: Maximum Path Sum Two", ActualResult: maximumPathSumTwo(), ExpectedResult: 7273},
 	}
 
-	euler1.CheckResults(testCases, t)
+	testing_helper.CheckResults(testCases, t)
 }

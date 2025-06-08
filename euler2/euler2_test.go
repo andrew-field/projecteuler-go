@@ -3,14 +3,14 @@ package euler2
 import (
 	"testing"
 
-	"github.com/andrew-field/projecteuler-go/euler1"
+	"github.com/andrew-field/projecteuler-go/testing_helper"
 )
 
 func TestProjectEulerChallenges(t *testing.T) {
-	testCases := []euler1.TestCase{
-		{"21: Amicable Numbers", amicableNumbers(10000), 31626},
-		{"22: Name Scores", nameScores(), 871198282},
+	testCases := []testing_helper.TestCase{
+		{Desc: "21: Amicable Numbers", ActualResult: amicableNumbers(10000), ExpectedResult: 31626},
+		{Desc: "22: Name Scores", ActualResult: nameScores(), ExpectedResult: 871198282},
 	}
 
-	euler1.CheckResults(testCases, t)
+	testing_helper.CheckResults(testCases, t)
 }
