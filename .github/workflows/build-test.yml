@@ -19,4 +19,4 @@ jobs:
     # -race flag not used here because some tests (e.g. #14) use more than 8128 go routines.
 
     secrets: inherit
-    # Codecov secret used by the build-test action. CODECOV_TOKEN needs to be added as a secret.
+    # Codecov secret used by the build-test action. CODECOV_TOKEN (Use global token) needs to be added as a secret.
