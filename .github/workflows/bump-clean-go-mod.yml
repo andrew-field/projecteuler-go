@@ -1,4 +1,4 @@
-name: Bump go mod version
+name: Bump clean go mod
 
 on:
   schedule:
@@ -11,8 +11,7 @@ on:
 permissions: {}
 
 jobs:
-  bump_go_mod_version:
-    name: Call bump go mod version action
-    uses: andrew-field/reusable-workflows/.github/workflows/bump-go-mod-version.yml@master
-
+  bump_clean_go_mod:
+    name: Call bump clean go mod workflow
+    uses: andrew-field/reusable-workflows/.github/workflows/bump-clean-go-mod.yml@master
     secrets: inherit # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the github app) needs to be added as a secret.
