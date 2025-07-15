@@ -12,12 +12,11 @@ import (
 	"encoding/csv"
 	"os"
 	"sort"
-	"sync"
 )
 
-var (
-	mu           = sync.Mutex{}
-	letterValues = map[rune]int{
+// nameScores returns the summation of all the name scores in the file p022_names.txt
+func nameScores() int {
+	letterValues := map[rune]int{
 		'A': 1,
 		'B': 2,
 		'C': 3,
@@ -45,10 +44,7 @@ var (
 		'Y': 25,
 		'Z': 26,
 	}
-)
 
-// nameScores returns the summation of all the name scores in the file p022_names.txt
-func nameScores() int {
 	f, err := os.Open("p022_names.txt")
 	if err != nil {
 		panic(err)
@@ -64,26 +60,17 @@ func nameScores() int {
 	names := records[0]
 	sort.Strings(names) // Score depends on position in list.
 
-	// Send scores.
-	scores := make(chan int)
-	for ind, val := range names {
-		go func() { // Calculate and send scores.
-			nameScore := 0
-			for _, letter := range val {
-				mu.Lock()
-				nameScore += letterValues[letter]
-				mu.Unlock()
-			}
-			scores <- nameScore * (ind + 1)
-		}()
+	// Calculate scores.
+	total := 0
+	for ind, name := range names {
+		nameScore := 0
+		for _, letter := range name {
+			nameScore += letterValues[letter]
+		}
+		total += nameScore * (ind + 1)
 	}
 
-	// Sum scores as received.
-	total := 0
-	for range names { // There should be len(names) scores so no need for wait groups.
-		total += <-scores
-	}
 	return total
 }
 
-// It would probably be fine without the concurrency.
+// Could have a goroutine for each name to calculate the score concurrently, but this is fine.
