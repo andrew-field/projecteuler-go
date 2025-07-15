@@ -1,15 +1,22 @@
+/*
+Using the given names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+
+For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
+
+What is the total of all the name scores in the file?
+*/
+
 package euler2
 
 import (
 	"encoding/csv"
 	"os"
-	"sort"
-	"sync"
+	"slices"
 )
 
-var (
-	mu           = sync.Mutex{}
-	letterValues = map[rune]int{
+// nameScores returns the summation of all the name scores in the file p022_names.txt
+func nameScores() int {
+	letterValues := map[rune]int{
 		'A': 1,
 		'B': 2,
 		'C': 3,
@@ -37,10 +44,7 @@ var (
 		'Y': 25,
 		'Z': 26,
 	}
-)
 
-// nameScores returns the summation of all the name scores in the file p022_names.txt
-func nameScores() int {
 	f, err := os.Open("p022_names.txt")
 	if err != nil {
 		panic(err)
@@ -54,28 +58,19 @@ func nameScores() int {
 		panic(err)
 	}
 	names := records[0]
-	sort.Strings(names) // Score depends on position in list.
+	slices.Sort(names) // Score depends on position in list.
 
-	// Send scores.
-	scores := make(chan int)
-	for ind, val := range names {
-		go func() { // Calculate and send scores.
-			nameScore := 0
-			for _, letter := range val {
-				mu.Lock()
-				nameScore += letterValues[letter]
-				mu.Unlock()
-			}
-			scores <- nameScore * (ind + 1)
-		}()
-	}
-
-	// Sum scores as received.
+	// Calculate scores.
 	total := 0
-	for range names { // There should be len(names) scores so no need for wait groups.
-		total += <-scores
+	for ind, name := range names {
+		nameScore := 0
+		for _, letter := range name {
+			nameScore += letterValues[letter]
+		}
+		total += nameScore * (ind + 1)
 	}
+
 	return total
 }
 
-// It would probably be fine without the concurrency.
+// Could have a goroutine for each name to calculate the score concurrently, but this is fine.

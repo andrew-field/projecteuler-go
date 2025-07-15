@@ -1,3 +1,9 @@
+/*
+2¹⁵ = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+
+What is the sum of the digits of the number 2¹⁰⁰⁰?
+*/
+
 package euler1
 
 import (
@@ -19,7 +25,5 @@ func powerDigitSum() int {
 	return total
 }
 
-// Go makes this quite easy. Can calculate the exponent directly, but using the SetBit method is more efficient.
-// x := big.NewInt(2)
-// // Calculate 2¹⁰⁰⁰.
-// x.Exp(x, big.NewInt(1000), nil)
+// Go makes this quite easy. Can calculate the exponent directly using Exp(x, y, m *Int) but using the SetBit method is more efficient.
+// I don't know a clever way of doing this.
