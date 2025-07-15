@@ -13,7 +13,7 @@ func factorialDigitSum(n int) int {
 		panic(err)
 	}
 
-	var z *big.Int
+	z := new(big.Int)
 	z.MulRange(2, int64(absN))
 
 	total := 0

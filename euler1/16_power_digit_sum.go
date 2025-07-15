@@ -8,7 +8,7 @@ import (
 
 // powerDigitSum returns the sum of the digits of the number 2¹⁰⁰⁰.
 func powerDigitSum() int {
-	var x *big.Int
+	x := new(big.Int)
 	x.SetBit(x, 1000, 1) // Since 2¹⁰⁰⁰ is so computer friendly, use the SetBit method.
 
 	total := 0
