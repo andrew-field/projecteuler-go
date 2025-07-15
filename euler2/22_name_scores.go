@@ -12,12 +12,11 @@ import (
 	"encoding/csv"
 	"os"
 	"sort"
-	"sync"
 )
 
-var (
-	mu           = sync.Mutex{}
-	letterValues = map[rune]int{
+// nameScores returns the summation of all the name scores in the file p022_names.txt
+func nameScores() int {
+	letterValues := map[rune]int{
 		'A': 1,
 		'B': 2,
 		'C': 3,
@@ -45,10 +44,7 @@ var (
 		'Y': 25,
 		'Z': 26,
 	}
-)
 
-// nameScores returns the summation of all the name scores in the file p022_names.txt
-func nameScores() int {
 	f, err := os.Open("p022_names.txt")
 	if err != nil {
 		panic(err)
@@ -66,13 +62,11 @@ func nameScores() int {
 
 	// Send scores.
 	scores := make(chan int)
-	for ind, val := range names {
+	for ind, name := range names {
 		go func() { // Calculate and send scores.
 			nameScore := 0
-			for _, letter := range val {
-				mu.Lock()
+			for _, letter := range name {
 				nameScore += letterValues[letter]
-				mu.Unlock()
 			}
 			scores <- nameScore * (ind + 1)
 		}()
