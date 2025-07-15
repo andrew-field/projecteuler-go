@@ -24,9 +24,7 @@ func largestPalindromeProduct() int {
 			for index := 0; digits[index] == digits[lastIndex-index]; index++ {
 				// Works fine with even and odd length as int/2 is always the lower bound.
 				if index == lastIndex/2 {
-					if product > largest {
-						largest = product
-					}
+					largest = max(largest, product)
 					break
 				}
 			}
