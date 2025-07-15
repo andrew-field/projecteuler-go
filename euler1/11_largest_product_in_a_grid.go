@@ -31,15 +31,6 @@ func largestProductInAGrid() int {
 	matrix[18] = []int{20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54}
 	matrix[19] = []int{01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48}
 
-	matrix1 := make([][]int, 20)
-	copy(matrix1, matrix)
-
-	matrix2 := make([][]int, 20)
-	copy(matrix2, matrix)
-
-	matrix3 := make([][]int, 20)
-	copy(matrix3, matrix)
-
 	// Maximum.
 	var max0 int
 	var max1 int
@@ -64,7 +55,7 @@ func largestProductInAGrid() int {
 		// Vertical.
 		for j := range 17 {
 			for i := range 20 {
-				max1 = max(max1, matrix1[j][i]*matrix1[j+1][i]*matrix1[j+2][i]*matrix1[j+3][i])
+				max1 = max(max1, matrix[j][i]*matrix[j+1][i]*matrix[j+2][i]*matrix[j+3][i])
 			}
 		}
 		wg.Done()
@@ -74,7 +65,7 @@ func largestProductInAGrid() int {
 		// Left diagonal.
 		for j := range 17 {
 			for i := range 17 {
-				max2 = max(max2, matrix2[j][i]*matrix2[j+1][i+1]*matrix2[j+2][i+2]*matrix2[j+3][i+3])
+				max2 = max(max2, matrix[j][i]*matrix[j+1][i+1]*matrix[j+2][i+2]*matrix[j+3][i+3])
 			}
 		}
 		wg.Done()
@@ -84,7 +75,7 @@ func largestProductInAGrid() int {
 		// Right diagonal.
 		for j := range 17 {
 			for i := range 17 {
-				max3 = max(max3, matrix3[j][19-i]*matrix3[j+1][18-i]*matrix3[j+2][17-i]*matrix3[j+3][16-i])
+				max3 = max(max3, matrix[j][19-i]*matrix[j+1][18-i]*matrix[j+2][17-i]*matrix[j+3][16-i])
 			}
 		}
 		wg.Done()
@@ -95,5 +86,6 @@ func largestProductInAGrid() int {
 }
 
 // This is a simple brute force but at least with some concurrency.
-// One could probably use sync.Mutex to access the same matrix safely or a single max variable but actually then most of the calculations would be locked and the benefit of concurrency negated.
+// Only one matrix is needed as there can not be a race condition involving only read operations.
+// One could probably use a single max variable but actually then most of the calculations would be locked and the benefit of concurrency negated. This way is simplier.
 // All the different products could be stored in one slice and then passed to the max function so the max function would only be called once, but this is simple enough.
