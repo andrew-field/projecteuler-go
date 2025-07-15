@@ -60,24 +60,17 @@ func nameScores() int {
 	names := records[0]
 	sort.Strings(names) // Score depends on position in list.
 
-	// Send scores.
-	scores := make(chan int)
+	// Calculate scores.
+	total := 0
 	for ind, name := range names {
-		go func() { // Calculate and send scores.
-			nameScore := 0
-			for _, letter := range name {
-				nameScore += letterValues[letter]
-			}
-			scores <- nameScore * (ind + 1)
-		}()
+		nameScore := 0
+		for _, letter := range name {
+			nameScore += letterValues[letter]
+		}
+		total += nameScore * (ind + 1)
 	}
 
-	// Sum scores as received.
-	total := 0
-	for range names { // There should be len(names) scores so no need for wait groups.
-		total += <-scores
-	}
 	return total
 }
 
-// It would probably be fine without the concurrency.
+// Could have a go routine for each name to calculate the score concurrently, but this is fine.
