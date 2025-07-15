@@ -13,13 +13,15 @@ func factorialDigitSum(n int) int {
 		panic(err)
 	}
 
+	var z *big.Int
+	z.MulRange(2, int64(absN))
+
 	total := 0
-	var z big.Int
-	for _, val := range maths.GetDigitsBig(z.MulRange(2, int64(absN))) {
+	for _, val := range maths.GetDigits(z) {
 		total += val
 	}
 
 	return total
 }
 
-// The go math package does the heavy lifting.
+// The standard library maths package does the heavy lifting.

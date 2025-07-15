@@ -3,7 +3,6 @@ package euler1
 import "github.com/andrew-field/maths/v2"
 
 // largestPrimeFactor returns the largest prime factor of |x|.
-// Does not handle math.MinInt64
 func largestPrimeFactor(x int) int {
 	largestPrimeFactor := 0
 

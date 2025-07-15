@@ -6,7 +6,7 @@ import (
 	"github.com/andrew-field/maths/v2"
 )
 
-// summationOfPrimes returns the sum of all the primes below |n|.
+// summationOfPrimes returns the sum of all the primes below and including |n|.
 func summationOfPrimes(n int) int {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
