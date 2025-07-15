@@ -73,4 +73,4 @@ func nameScores() int {
 	return total
 }
 
-// Could have a go routine for each name to calculate the score concurrently, but this is fine.
+// Could have a goroutine for each name to calculate the score concurrently, but this is fine.
