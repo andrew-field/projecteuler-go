@@ -87,5 +87,5 @@ func largestProductInAGrid() int {
 
 // This is a simple brute force but at least with some concurrency.
 // Only one matrix is needed as there can not be a race condition involving only read operations.
-// One could probably use a single max variable but actually then most of the calculations would be locked and the benefit of concurrency negated. This way is simplier.
+// One could probably use a single max variable but actually then most of the calculations would be locked and the benefit of concurrency negated. This way is simpler.
 // All the different products could be stored in one slice and then passed to the max function so the max function would only be called once, but this is simple enough.
