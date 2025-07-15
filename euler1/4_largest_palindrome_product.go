@@ -30,4 +30,4 @@ func largestPalindromeProduct() int {
 	return largest
 }
 
-// Possible to use math.GetDigits and use slices comparison functions but in the end it would still use a loop under the hood but also provide more overhead.
+// Possible to use maths.GetDigits and use slices comparison functions but in the end it would still use a loop under the hood but also provide more overhead.

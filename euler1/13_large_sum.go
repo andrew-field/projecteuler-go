@@ -125,4 +125,4 @@ func largeSum() int {
 }
 
 // Go makes this quite easy. This returns an int instead of individual ints so it is easier to test.
-// Possible to use maths.GetDigitsBig but this is easier to get the digits as one number and no arithmetic on the digits is needed.
+// Possible to use maths.GetDigits but this is easier to get the digits as one number and no arithmetic on the digits is needed.

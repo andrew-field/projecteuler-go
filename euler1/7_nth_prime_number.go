@@ -7,7 +7,7 @@ import (
 )
 
 // positionNthPrime returns the |n|th prime number, for |n| <= 100000
-// positionNthPrime(x) returns 0 for x = 0, x > 100000
+// positionNthPrime(n) returns 0 for n = 0 or n > 100000
 func positionNthPrime(n int) int {
 	n, err := maths.Abs(n)
 	if err != nil {

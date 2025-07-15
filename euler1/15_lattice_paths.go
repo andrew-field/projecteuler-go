@@ -1,12 +1,17 @@
 package euler1
 
-import "math/big"
+import (
+	"github.com/andrew-field/maths/v2"
+)
 
 // latticePaths returns the number of routes through a 20x20 grid starting in the top left, finishing in the bottom right
 // and only moving right or down.
 func latticePaths() int {
-	var z big.Int
-	return int(z.Binomial(40, 20).Int64())
+	result, err := maths.Binomial(40, 20)
+	if err != nil {
+		panic(err)
+	}
+	return result
 }
 
 // This problem is just picking k choices from n scenarios, where order does not matter.
