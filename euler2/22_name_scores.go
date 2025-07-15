@@ -11,7 +11,7 @@ package euler2
 import (
 	"encoding/csv"
 	"os"
-	"sort"
+	"slices"
 )
 
 // nameScores returns the summation of all the name scores in the file p022_names.txt
@@ -58,7 +58,7 @@ func nameScores() int {
 		panic(err)
 	}
 	names := records[0]
-	sort.Strings(names) // Score depends on position in list.
+	slices.Sort(names) // Score depends on position in list.
 
 	// Calculate scores.
 	total := 0

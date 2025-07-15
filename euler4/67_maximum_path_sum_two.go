@@ -16,49 +16,31 @@ NOTE: This is a much more difficult version of Problem 18.
 package euler4
 
 import (
-	"bufio"
-	"io"
-	"os"
 	"strconv"
+
+	_ "embed"
 
 	"github.com/andrew-field/maths/v2"
 )
 
+//go:embed p067_triangle.txt
+var s string
+
 // maximumPathSumTwo returns the maximum total from top to bottom of a pyramid by starting at the top of the triangle
 // and moving to adjacent numbers on the row below.
 func maximumPathSumTwo() int {
-	f, err := os.Open("p067_triangle.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer f.Close()
+	numbers := make([]int, len(s)/2)
 
-	reader := bufio.NewReader(f) // This reader is used because of its efficiency with many small reads.
-
-	numbers := make([]int, 0)
-
-	// Read 2 bytes/digits every time to get the right number.
-	number := make([]byte, 2)
-	for {
-		_, err := reader.Read(number)
-		if err == io.EOF {
-			break
-		}
+	for i := 0; i < len(s); i += 2 {
+		value, err := strconv.Atoi(s[i : i+2])
 		if err != nil {
 			panic(err)
 		}
 
-		value, err := strconv.Atoi(string(number))
-		if err != nil {
-			panic(err)
-		}
-
-		numbers = append(numbers, value)
+		numbers[i/2] = value
 	}
 
-	pyramidTree := maths.CreatePyramidTree(numbers...)
-
-	return maths.MaxPath(pyramidTree)
+	return maths.MaxPath(maths.CreatePyramidTree(numbers...))
 }
 
 // The maths library does most of the work.
