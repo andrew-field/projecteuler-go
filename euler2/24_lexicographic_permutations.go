@@ -40,8 +40,8 @@ func lexicographicPermutations(n int) int {
 			numbers = slices.Delete(numbers, position, position+1)
 
 			// The remaining digits (perhaps only digit) left in the permutation are the remaining numbers in reverse order.
-			for i, v := range numbers {
-				permutation[9-i] = v
+			for j, v := range numbers {
+				permutation[9-j] = v
 			}
 
 			result, err := maths.DigitsToInt(permutation...)
