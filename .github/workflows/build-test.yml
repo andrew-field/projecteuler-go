@@ -15,8 +15,11 @@ permissions: {}
 jobs:
   build_test:
     name: Call build and test action
+    permissions:
+      contents: read # The contents: read is not necessary for this public repository but it is necessary for the reusable workflow.
     uses: andrew-field/reusable-workflows/.github/workflows/build-test.yml@master
     # -race flag not used here because some tests (e.g. #14) use more than 8128 go routines.
 
-    secrets: inherit
     # Codecov secret used by the build-test action. CODECOV_TOKEN (Use global token) needs to be added as a secret.
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

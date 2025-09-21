@@ -1,8 +1,8 @@
-name: Bump clean go mod
+name: Pinact
 
 on:
-  schedule:
-    - cron: "40 0 */7 * *"
+  pull_request:
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
@@ -11,13 +11,13 @@ on:
 permissions: {}
 
 jobs:
-  bump_clean_go_mod:
-    name: Call bump clean go mod workflow
+  lint:
+    name: Run pinact
     permissions:
       contents: read # The contents: read is not necessary for this public repository but it is necessary for the reusable workflow.
-    uses: andrew-field/reusable-workflows/.github/workflows/bump-clean-go-mod.yml@master
+    uses: andrew-field/reusable-workflows/.github/workflows/pinact.yml@master
 
-    # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the github app) need to be added as a secret.
+    # Needs to inherit more than the GITHUB_TOKEN to commit changes and trigger Github Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the github app) need to be added as a secret.
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
