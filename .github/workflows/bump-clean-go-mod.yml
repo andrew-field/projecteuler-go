@@ -17,7 +17,7 @@ jobs:
       contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow.
     uses: andrew-field/reusable-workflows/.github/workflows/bump-clean-go-mod.yml@master
 
-    # Needs to inherit more than the GITHUB_TOKEN to trigger Github Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the github app) need to be added as a secret.
+    # Needs to inherit more than the GITHUB_TOKEN to trigger GitHub Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the GitHub app) need to be added as a secret.
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
