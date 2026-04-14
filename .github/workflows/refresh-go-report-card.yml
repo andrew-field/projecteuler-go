@@ -13,4 +13,4 @@ permissions: {}
 jobs:
   post-request:
     name: Call refresh go report card action
-    uses: andrew-field/reusable-workflows/.github/workflows/refresh-go-report-card.yml@2d107512e74864be54b378e61d023a40e60a8f15 # v1.0.8
+    uses: andrew-field/reusable-workflows/.github/workflows/refresh-go-report-card.yml@e348e3e34b3c2634cf7fbae67e694c2dec3eb23c # v1.5.1
