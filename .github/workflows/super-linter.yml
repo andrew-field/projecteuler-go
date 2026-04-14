@@ -17,6 +17,6 @@ jobs:
     name: Lint code base
     permissions:
       contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow.
-    uses: andrew-field/reusable-workflows/.github/workflows/super-linter.yml@6d68839aeb4c6777dcb036f4688257e9b838f9cd # v1.5.2
+    uses: andrew-field/reusable-workflows/.github/workflows/super-linter.yml@1c68689caade3cd9997cbdae7a73d661cb0aa2b8 # v1.5.4
     with:
       regex_exclude: p022_names.txt # Exclude this text file because there are no spelling mistakes.
