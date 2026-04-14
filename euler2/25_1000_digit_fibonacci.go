@@ -27,6 +27,7 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 package euler2
 
 import (
+	"fmt"
 	"math/big"
 
 	"github.com/andrew-field/maths/v2"
@@ -41,6 +42,13 @@ func digitFibonacci(n int) int {
 		fib.Set(num1)
 		num1.Set(num2)
 		num2.Add(fib, num2)
+	}
+
+	if true {
+		fmt.Println("test")
+		return i
+	} else {
+		fmt.Println("fdsf")
 	}
 
 	return i
