@@ -15,9 +15,9 @@ jobs:
     name: Call bump clean go mod workflow
     permissions:
       contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow.
-    uses: andrew-field/reusable-workflows/.github/workflows/bump-clean-go-mod.yml@cc9576b077da5c054e2b938602afbcd321787091 # v1.5.13
+    uses: andrew-field/reusable-workflows/.github/workflows/bump-clean-go-mod.yml@0e8a348c69366992354938d2bb2345b51d5e79c9 # v1.5.17
 
-    # Needs to inherit more than the GITHUB_TOKEN to trigger GitHub Actions CI checks. APP_ID and APP_PRIVATE_KEY (for the GitHub app) need to be added as a secret.
+    # Needs to inherit more than the GITHUB_TOKEN to trigger GitHub Actions CI checks. APP_CLIENT_ID and APP_PRIVATE_KEY (for the GitHub app) need to be added as a secret.
     secrets:
-      APP_ID: ${{ secrets.APP_ID }}
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
