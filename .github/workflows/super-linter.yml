@@ -16,7 +16,7 @@ jobs:
   lint:
     name: Lint code base
     permissions:
-      contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow which has it as a requirement.
+      contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow, which has it as a requirement.
       packages: read
       issues: write
       pull-requests: write
