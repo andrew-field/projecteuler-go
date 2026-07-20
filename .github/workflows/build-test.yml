@@ -17,7 +17,7 @@ jobs:
     name: Call build and test action
     permissions:
       contents: read # The contents: read is not necessary for a public repository but it is necessary for the reusable workflow, which has it as a requirement.
-    uses: andrew-field/reusable-workflows/.github/workflows/build-test.yml@04e78ccda75eeebc0ce21a051299da5fc4b9913c # v1.5.18
+    uses: andrew-field/reusable-workflows/.github/workflows/build-test.yml@747e0a31c3420b738598f23ba8f4dec8e548aaba # v1.5.19
 
     # Codecov secret used by the build-test action. CODECOV_TOKEN (Use global token) needs to be added as a secret.
     secrets:
