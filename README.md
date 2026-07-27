@@ -1,13 +1,11 @@
 # Project Euler Challenges
 
-[![License](https://img.shields.io/github/license/andrew-field/projecteuler-go)](./LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andrew-field/projecteuler-go)](https://goreportcard.com/report/github.com/andrew-field/projecteuler-go)
-[![codecov](https://codecov.io/gh/andrew-field/projecteuler-go/graph/badge.svg?token=OBD2GRGRN2)](https://codecov.io/gh/andrew-field/projecteuler-go)
 [![Build and test](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/build-test.yml)
 [![CodeQL](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/github-code-scanning/codeql)
 [![Super Linter](https://github.com/andrew-field/projecteuler-go/actions/workflows/super-linter.yml/badge.svg)](https://github.com/andrew-field/projecteuler-go/actions/workflows/super-linter.yml)
 
 This is a repository to keep my code for solving project Euler challenges. You can see the fantastic challenges on the [Project Euler](https://projecteuler.net/ "Project Euler") site.
 
-The problems have been generalized where possible. The challenges are organized into groups of 20.
+The problems have been generalised where possible. The challenges are organised into groups of 20.
