@@ -2,7 +2,7 @@ name: Bump clean go mod
 
 on:
   schedule:
-    - cron: "40 0 */7 * *"
+    - cron: "40 0 2 * *"
 
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
